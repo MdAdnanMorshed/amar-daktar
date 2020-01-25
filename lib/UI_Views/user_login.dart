@@ -1,5 +1,4 @@
-
-
+import 'package:amar_daktar/UI_Views/user_register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'user_login.dart';
@@ -10,12 +9,11 @@ class UserLogin extends StatefulWidget {
 }
 
 class _LoginPageState extends State<UserLogin> {
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
           alignment: Alignment.center,
@@ -45,30 +43,15 @@ class _LoginPageState extends State<UserLogin> {
               Padding(
                 padding: const EdgeInsets.only(left: 50, right: 50, top: 20),
                 child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.lock),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(width: 20),
-                        ),
-                        hintText: "Password"),
-                   ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Visibility(
-                  //visible: visible,
-                  child: CircularProgressIndicator(
-                    value: null,
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
-                  ),
+                  obscureText: true,
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.lock),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(width: 20),
+                      ),
+                      hintText: "Password"),
                 ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(left: 60, right: 60, top: 25),
-                child: Text("Register Here"),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
@@ -76,16 +59,25 @@ class _LoginPageState extends State<UserLogin> {
                   minWidth: 270,
                   height: 55,
                   child: RaisedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => UserRegister()),
+                      );
+                    },
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    color: Colors.purple,
-                    textColor: Colors.white,
+                        borderRadius: BorderRadius.circular(15)),
+                    color: Colors.blueAccent,
                     child: Text(
                       "Login",
                       style: TextStyle(fontSize: 20.0),
                     ),
                   ),
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 60, right: 60, top: 25),
+                child: Text("If you are not register? Register here"),
               ),
             ],
           ),
