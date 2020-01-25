@@ -1,6 +1,7 @@
 import 'package:amar_daktar/UI_Views/user_register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'deshboard_ui.dart';
 import 'user_login.dart';
 
 class UserLogin extends StatefulWidget {
@@ -62,7 +63,7 @@ class _LoginPageState extends State<UserLogin> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => UserRegister()),
+                        MaterialPageRoute(builder: (context) => Dashboard()),
                       );
                     },
                     shape: RoundedRectangleBorder(
