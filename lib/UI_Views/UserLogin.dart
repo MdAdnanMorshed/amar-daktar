@@ -1,3 +1,4 @@
+import 'package:amar_daktar/REST_Api/UserLoginApi.dart';
 import 'package:amar_daktar/UI_Views/UserRegister.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +11,11 @@ class UserLogin extends StatefulWidget {
 }
 
 class _LoginPageState extends State<UserLogin> {
+  String uEmail = '';
+  String uPassword = '';
+  bool visible = false;
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

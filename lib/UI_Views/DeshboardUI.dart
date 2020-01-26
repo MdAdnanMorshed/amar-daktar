@@ -16,6 +16,43 @@ class _DashboardState extends State<Dashboard> {
         title: Text("DeshBoard"),
         backgroundColor: Colors.blue,
       ),
+      body: Container(
+        child: GridView.count(
+          crossAxisCount: 2,
+          children: <Widget>[
+            Card(
+              child: InkWell(
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[Icon(Icons.home), Text("home")],
+                  ),
+                ),
+              ),
+            ),
+            Card(
+              child: InkWell(
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[Icon(Icons.home), Text("home")],
+                  ),
+                ),
+              ),
+            ),
+            Card(
+              child: InkWell(
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[Icon(Icons.home), Text("home")],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
