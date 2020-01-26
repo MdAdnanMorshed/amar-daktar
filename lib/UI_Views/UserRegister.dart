@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'user_register.dart';
+import 'UserRegister.dart';
 
 class UserRegister extends StatefulWidget {
   @override

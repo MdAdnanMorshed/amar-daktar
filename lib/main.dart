@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'UI_Views/SplashScreen.dart';
-import 'UI_Views/user_login.dart';
-import 'UI_Views/deshboard_ui.dart';
+import 'UI_Views/UserLogin.dart';
+import 'UI_Views/DeshboardUI.dart';
 
 void main() => runApp(MyDoctorApps());
 

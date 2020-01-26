@@ -1,8 +1,8 @@
-import 'package:amar_daktar/UI_Views/user_register.dart';
+import 'package:amar_daktar/UI_Views/UserRegister.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'deshboard_ui.dart';
-import 'user_login.dart';
+import 'DeshboardUI.dart';
+import 'UserLogin.dart';
 
 class UserLogin extends StatefulWidget {
   @override
@@ -68,7 +68,7 @@ class _LoginPageState extends State<UserLogin> {
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
-                    color: Colors.blueAccent,
+                    color: Colors.grey,
                     child: Text(
                       "Login",
                       style: TextStyle(fontSize: 20.0),
