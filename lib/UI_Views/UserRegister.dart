@@ -8,6 +8,9 @@ class UserRegister extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<UserRegister> {
+  String dropdownValue = 'Hospitals';
+  String dropdownCountry = 'Bangladesh';
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,22 +20,18 @@ class _RegisterPageState extends State<UserRegister> {
           title: Text("Rgister "),
         ),
         body: Container(
-          alignment: Alignment.center,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset(
-                'images/amardaktar_logo.png',
-                width: 280,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 50),
+              Container(
+                width: 400.0,
+                height: 60.0,
+                padding: const EdgeInsets.only(left: 5, right: 10, top: 10),
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(5),
                         borderSide: BorderSide(width: 10),
                       ),
                       hintText: "Enter your Name "),
@@ -41,88 +40,117 @@ class _RegisterPageState extends State<UserRegister> {
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 10),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(width: 20),
-                      ),
-                      hintText: "Enter your Email"),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 10),
+              Container(
+                width: 400.0,
+                height: 60.0,
+                padding: const EdgeInsets.only(left: 5, right: 10, top: 10),
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(width: 20),
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: BorderSide(width: 10),
                       ),
-                      hintText: "Enter your Phone Number "),
+                      hintText: "Enter your Email Address"),
                   onChanged: (text) {
                     //email = text;
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 10),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(width: 20),
-                      ),
-                      hintText: "Choose your Play Role "),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Text("Select Your Sign Up Type    "),
+                  ),
+                  DropdownButton<String>(
+                    value: dropdownValue,
+                    icon: Icon(Icons.arrow_downward),
+                    iconSize: 15,
+                    elevation: 16,
+                    style: TextStyle(color: Colors.deepPurple),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.deepPurpleAccent,
+                    ),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        dropdownValue = newValue;
+                      });
+                    },
+                    items: <String>['Hospitals', 'Doctors', 'Patient']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Text("Country  :"),
+                  ),
+                  DropdownButton<String>(
+                    value: dropdownCountry,
+                    icon: Icon(Icons.arrow_downward),
+                    iconSize: 15,
+                    elevation: 16,
+                    style: TextStyle(color: Colors.deepPurple),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.deepPurpleAccent,
+                    ),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        dropdownCountry = newValue;
+                      });
+                    },
+                    items: <String>['Bangladesh', 'India']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+              Container(
+                width: 400.0,
+                height: 60.0,
+                padding: const EdgeInsets.only(left: 5, right: 10, top: 10),
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(width: 20),
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: BorderSide(width: 10),
                       ),
-                      hintText: "Password"),
+                      hintText: "Enter your Name"),
                   onChanged: (text) {
                     //email = text;
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 10),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(width: 20),
-                      ),
-                      hintText: "Confirm password"),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 10),
+              Container(
+                width: 400.0,
+                height: 60.0,
+                padding: const EdgeInsets.only(left: 5, right: 10, top: 10),
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(width: 20),
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: BorderSide(width: 10),
                       ),
-                      hintText: "Country "),
+                      hintText: "Enter your Name"),
                   onChanged: (text) {
                     //email = text;
                   },
@@ -131,8 +159,8 @@ class _RegisterPageState extends State<UserRegister> {
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: ButtonTheme(
-                  minWidth: 270,
-                  height: 55,
+                  minWidth: 250,
+                  height: 50,
                   child: RaisedButton(
                     onPressed: () {
                       print("ok");

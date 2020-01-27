@@ -37,7 +37,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   goTo() {
-
     Navigator.pushReplacementNamed(context, '/user_login');
     print(" go to the login Page ");
   }

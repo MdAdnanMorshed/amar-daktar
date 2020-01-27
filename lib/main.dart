@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'UI_Views/SplashScreen.dart';
 import 'UI_Views/UserLogin.dart';
-import 'UI_Views/DeshboardUI.dart';
+import 'UI_Views/DashboardUI.dart';
+import 'UI_Views/UserRegister.dart';
 
 void main() => runApp(MyDoctorApps());
 
@@ -12,7 +13,8 @@ class MyDoctorApps extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/user_login': (context) => UserLogin(),
-        '/deshboard_ui': (context) => Dashboard(),
+        '/user_register': (context) => UserRegister(),
+        '/dashboard': (context) => Dashboard(),
         '/': (context) => SplashScreen(),
       },
     );

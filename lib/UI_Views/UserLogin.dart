@@ -1,8 +1,8 @@
-import 'package:amar_daktar/REST_Api/UserLoginApi.dart';
+import 'package:amar_daktar/RESTApi/UserLoginApi.dart';
 import 'package:amar_daktar/UI_Views/UserRegister.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'DeshboardUI.dart';
+import 'DashboardUI.dart';
 import 'UserLogin.dart';
 
 class UserLogin extends StatefulWidget {
@@ -71,7 +71,7 @@ class _LoginPageState extends State<UserLogin> {
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
-                    color: Colors.grey,
+                    color: Colors.blue,
                     child: Text(
                       "Login",
                       style: TextStyle(fontSize: 20.0),
@@ -79,7 +79,14 @@ class _LoginPageState extends State<UserLogin> {
                   ),
                 ),
               ),
-              Padding(
+              FlatButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserRegister()),
+                  );
+                  print("Register Here");
+                },
                 padding: const EdgeInsets.only(left: 60, right: 60, top: 25),
                 child: Text("If you are not register? Register here"),
               ),
