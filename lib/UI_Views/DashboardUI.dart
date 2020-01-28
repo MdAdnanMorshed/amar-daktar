@@ -21,95 +21,45 @@ class _DashboardState extends State<Dashboard> {
       ),
       body: Container(
         child: GridView.count(
-          crossAxisCount: 4,
+          crossAxisCount: 2,
           children: <Widget>[
-            Card(
-              child: InkWell(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[Text("Total Doctor's"), Text("1250")],
-                  ),
-                ),
-              ),
-            ),
-            Card(
-              child: InkWell(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[Text("Total Awards"), Text("2500")],
-                  ),
-                ),
-              ),
-            ),
-            Card(
-              child: InkWell(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Text("Happy Patients"),
-                      Text("3580"),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Card(
-              child: InkWell(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Text("Clinical Services"),
-                      Text("9800"),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Card(
-              child: InkWell(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[Icon(Icons.home), Text("Doctor's")],
-                  ),
-                ),
-              ),
-            ),
-            Card(
-              child: InkWell(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[Icon(Icons.home), Text("Hostitals")],
-                  ),
-                ),
-              ),
-            ),
-            Card(
-              child: InkWell(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[Icon(Icons.home), Text("Blood Donors")],
-                  ),
-                ),
-              ),
-            ),
-            Card(
-              child: InkWell(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[Icon(Icons.home), Text("Ambulances")],
-                  ),
-                ),
-              ),
-            ),
+            MenuItemCard('Doctors', Icons.home),
+            MenuItemCard('Hospitals', Icons.home),
+            MenuItemCard('Blood Donars', Icons.home),
+            MenuItemCard('Ambulances', Icons.home),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class MenuItemCard extends StatelessWidget {
+  MenuItemCard(this.title, this.iCon);
+  String title;
+  IconData iCon;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Card(
+          child: InkWell(
+            // onTap pass
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(iCon, size: 50.0),
+                  Text(title, style: TextStyle(fontSize: 20.3)),
+                  Text("1250")
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

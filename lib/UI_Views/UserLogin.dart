@@ -24,76 +24,103 @@ class _LoginPageState extends State<UserLogin> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset(
-                'images/amardaktar_logo.png',
-                width: 280,
-              ),
+              _builLoginHeader(),
               Padding(
                 padding: const EdgeInsets.only(left: 50, right: 50, top: 50),
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.email),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(width: 20),
-                      ),
-                      hintText: "Email"),
-                  onChanged: (text) {
-                    //email = text;
-                  },
-                ),
+                child: _buildTextFieldEmail('demo@gmail.com'),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 20),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(width: 20),
-                      ),
-                      hintText: "Password"),
-                ),
-              ),
+                  padding: const EdgeInsets.only(left: 50, right: 50, top: 20),
+                  child: _buildTextFieldPassword('demo password')),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
-                child: ButtonTheme(
-                  minWidth: 270,
-                  height: 55,
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Dashboard()),
-                      );
-                    },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    color: Colors.blue,
-                    child: Text(
-                      "Login",
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                  ),
-                ),
+                child: _buildButtonLogin(context),
               ),
-              FlatButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => UserRegister()),
-                  );
-                  print("Register Here");
-                },
-                padding: const EdgeInsets.only(left: 60, right: 60, top: 25),
-                child: Text("If you are not register? Register here"),
-              ),
+              _builRegister(context),
             ],
           ),
         ),
       ),
     );
   }
+}
+
+// ------------------- Login UI ---------------------------
+
+Widget _builLoginHeader() {
+  return Image.asset(
+    'images/amardaktar_logo.png',
+    width: 280,
+  );
+}
+
+Widget _buildTextFieldEmail(String email) {
+  return TextField(
+    obscureText: true,
+    decoration: InputDecoration(
+      labelText: 'Enter your Email',
+      prefixIcon: Icon(Icons.lock),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide(width: 20),
+      ),
+    ),
+  );
+}
+
+Widget _buildTextFieldPassword(String password) {
+  return TextField(
+    keyboardType: TextInputType.emailAddress,
+    decoration: InputDecoration(
+      labelText: 'Enter your Password',
+      errorText: password == null ? null : "Password is required",
+      prefixIcon: Icon(Icons.email),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide(width: 20),
+      ),
+    ),
+    onChanged: (passwordValue) {
+      print(passwordValue);
+      bool isFieldValid = passwordValue.trim().isNotEmpty;
+      if (isFieldValid != password) {
+        setState(() => password = password);
+      }
+    },
+  );
+}
+
+Widget _buildButtonLogin(BuildContext context) {
+  return ButtonTheme(
+    minWidth: 270,
+    height: 55,
+    child: RaisedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Dashboard()),
+        );
+      },
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      color: Colors.blue,
+      child: Text(
+        "Login",
+        style: TextStyle(fontSize: 20.0),
+      ),
+    ),
+  );
+}
+
+Widget _builRegister(BuildContext context) {
+  return FlatButton(
+    onPressed: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => UserRegister()),
+      );
+      print("Register Here");
+    },
+    padding: const EdgeInsets.only(left: 60, right: 60, top: 25),
+    child: Text("If you are not register? Register here"),
+  );
 }

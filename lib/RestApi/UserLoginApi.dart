@@ -5,10 +5,11 @@ import 'package:http/http.dart' as http;
 class UserLoginApi {
   String uEmail = "";
   String uPassword = "";
-
-  UserLoginApi(this.uEmail, this.uPassword);
   static bool status = false;
   static String userType;
+
+  // constructor
+  UserLoginApi(this.uEmail, this.uPassword);
 
   Future fetchData() async {
     try {
@@ -18,9 +19,8 @@ class UserLoginApi {
       final jsonData = json.decode(data.body);
 
       if (data.statusCode == 200) {
-        userType = jsonData['user_info'][0]['user_type'];
         status = jsonData['success'];
-        print(userType);
+        print(status);
         return jsonData;
       } else {
         throw Exception('Error');
