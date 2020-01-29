@@ -1,4 +1,3 @@
-import 'package:amar_daktar/UI_Views/UserRegister.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -49,6 +48,7 @@ class MenuItemCard extends StatelessWidget {
         child: Card(
           child: InkWell(
             // onTap pass
+
             child: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
