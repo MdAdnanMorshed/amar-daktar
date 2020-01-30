@@ -14,7 +14,7 @@ class DoctorListPage extends State<DoctorListUI> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white,
       drawer: AppDrawer(currentRoute: '/dashboard'),
       appBar: AppBar(
         title: Text('Doctor List'),

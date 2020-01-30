@@ -35,7 +35,7 @@ class _LoginPageState extends State<UserLogin> {
                     prefixIcon: Icon(Icons.email),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(width: 20),
+                      borderSide: BorderSide(width: 10),
                     ),
                   ),
                   onChanged: (text) {
@@ -53,7 +53,7 @@ class _LoginPageState extends State<UserLogin> {
                     prefixIcon: Icon(Icons.lock),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(width: 20),
+                      borderSide: BorderSide(width: 10),
                     ),
                   ),
                   onChanged: (passwordValue) {
@@ -64,7 +64,27 @@ class _LoginPageState extends State<UserLogin> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
-                child: _buildButtonLogin(context, uEmail, uPassword),
+                child: ButtonTheme(
+                  minWidth: 270,
+                  height: 45,
+                  child: RaisedButton(
+                    onPressed: () async {
+                      print("loginClick");
+                      print('mail:' + uEmail + 'pass:' + uPassword);
+                      UserLoginApi(uEmail, uPassword)
+                          .fetchData()
+                          .whenComplete(_goToDashboard(context));
+                    },
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    color: Colors.blue,
+                    child: Text(
+                      "Login",
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  ),
+                ),
+                // _buildButtonLogin(context, uEmail, uPassword),
               ),
               _builRegister(context),
             ],
@@ -80,30 +100,7 @@ class _LoginPageState extends State<UserLogin> {
 Widget _builLoginHeader() {
   return Image.asset(
     'images/amardaktar_logo.png',
-    width: 280,
-  );
-}
-
-Widget _buildButtonLogin(BuildContext context, String mail, String passowrd) {
-  print('email passing: $mail pass passing: $passowrd');
-  return ButtonTheme(
-    minWidth: 270,
-    height: 55,
-    child: RaisedButton(
-      onPressed: () {
-        print("loginClick");
-
-        UserLoginApi(mail, passowrd)
-            .fetchData()
-            .whenComplete(_goToDashboard(context));
-      },
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      color: Colors.blue,
-      child: Text(
-        "Login",
-        style: TextStyle(fontSize: 20.0),
-      ),
-    ),
+    width: 220,
   );
 }
 
@@ -116,7 +113,7 @@ Widget _builRegister(BuildContext context) {
       );
       print("Register Here");
     },
-    padding: const EdgeInsets.only(left: 60, right: 60, top: 25),
+    padding: const EdgeInsets.only(left: 60, right: 60, top: 5),
     child: Text("If you are not register? Register here"),
   );
 }
@@ -124,12 +121,13 @@ Widget _builRegister(BuildContext context) {
 // ---------------- go to the Dashboard --------
 _goToDashboard(BuildContext context) async {
   if (UserLoginApi.status == true) {
+    print(UserLoginApi.status);
     print("Login is successfull!");
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => Dashboard()),
     );
   } else {
-    print("Login is not successfull!");
+    print("login is not successfull!");
   }
 }

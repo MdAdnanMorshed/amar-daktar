@@ -13,7 +13,6 @@ class DoctorsListApi {
         Links.getdistrictsApiUrl,
         headers: {"Accept": "aplication/json"},
       );
-
       var jsonData = json.decode(data.body);
 
       if (data.statusCode == 200) {
@@ -30,7 +29,6 @@ class DoctorsListApi {
           );
           getDoctorsList.add(getdoctorlist);
         }
-
         print(getDoctorsList);
 
         return getDoctorsList;

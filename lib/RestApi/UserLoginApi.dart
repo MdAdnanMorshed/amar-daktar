@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:amar_daktar/UI_Views/UserRegister.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:amar_daktar/URL/Link.dart';
@@ -21,26 +22,26 @@ class UserLoginApi {
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    try {
-      final response = await http.post(Links.loginApiUrl,
-          headers: {"Accept": "aplication/json"},
-          body: {'email': uEmail, 'password': uPassword});
+    final response = await http.post(Links.loginApiUrl,
+        headers: {"Accept": "application/json"},
+        body: {'email': uEmail, 'password': uPassword});
 
-      if (response.statusCode == 200) {
-        final jsonData = json.decode(response.body);
+    if (response.statusCode == 200) {
+      final jsonData = json.decode(response.body);
 
-        prefs.setString('loginToken', jsonData['token']);
+      print(jsonData['response']['token']);
 
-        print(prefs.get('loginToken'));
+      status = jsonData['success'];
 
-        return jsonData;
-      } else {
-        print("error");
-        throw Exception('Error');
-      }
-    } catch (e) {
-      print("Catch Error");
-      throw Exception(e.toString());
+      // SF Save token and role id
+      prefs.setString('loginToken', jsonData['response']['token'].toString());
+      prefs.setString('role_id', jsonData['response']['role_id'].toString());
+
+//        return jsonData;
+//      } else {
+//        print("error");
+//        throw Exception('Error');
+//      }
     }
   }
 }
