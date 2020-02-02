@@ -11,9 +11,11 @@ class _RegisterPageState extends State<UserRegister> {
   //init
   String uName;
   String uPassword;
+  String uEmail;
 
-  String dropdownHospitals = 'Hospitals';
-  String dropdownCountrys = 'Bangladesh';
+  String dropdownHospitals = 'hospitals';
+  String dropdownCountrys = 'countrys';
+  String dropdownCitys = 'citys';
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +26,8 @@ class _RegisterPageState extends State<UserRegister> {
         appBar: AppBar(
           title: Text("Register "),
         ),
-        body: _buildRegisterUI(
-            context, uName, uPassword, dropdownHospitals, dropdownCountrys),
+        body: _buildRegisterUI(context, uName, uPassword, uEmail,
+            dropdownHospitals, dropdownCountrys, dropdownCitys),
       ),
     );
   }
@@ -33,15 +35,21 @@ class _RegisterPageState extends State<UserRegister> {
 
 //--------- Register UI ------------------
 
-Widget _buildRegisterUI(BuildContext mContext, String uName, String uPassword,
-    String dropdownHospitals, String dropdownCountrys) {
+Widget _buildRegisterUI(
+    BuildContext mContext,
+    String uName,
+    String uPassword,
+    String uEmail,
+    String dropdownHospitals,
+    String dropdownCountrys,
+    String dropdownCitys) {
   return Container(
     child: Column(
       children: <Widget>[
         Container(
           width: 400.0,
-          height: 60.0,
-          padding: const EdgeInsets.only(left: 5, right: 10, top: 10),
+          height: 50.0,
+          padding: const EdgeInsets.only(left: 5, right: 10, top: 0),
           child: TextField(
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
@@ -52,7 +60,7 @@ Widget _buildRegisterUI(BuildContext mContext, String uName, String uPassword,
                 ),
                 hintText: "Enter your Name "),
             onChanged: (text) {
-              //email = text;
+              uEmail = text;
             },
           ),
         ),
@@ -73,6 +81,64 @@ Widget _buildRegisterUI(BuildContext mContext, String uName, String uPassword,
               //email = text;
             },
           ),
+        ),
+        Container(
+          width: 400.0,
+          height: 30.0,
+          padding: const EdgeInsets.only(left: 5, right: 10, top: 10),
+          child: TextField(
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+                prefixIcon: Icon(Icons.email),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(0),
+                  borderSide: BorderSide(width: 10),
+                ),
+                hintText: "Enter your Phone Number "),
+            onChanged: (text) {
+              //email = text;
+            },
+          ),
+        ),
+        Row(
+          children: <Widget>[
+            Container(
+              width: 200.0,
+              height: 60.0,
+              padding: const EdgeInsets.only(left: 5, right: 10, top: 10),
+              child: TextField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.email),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: BorderSide(width: 10),
+                    ),
+                    hintText: "Password"),
+                onChanged: (text) {
+                  //email = text;
+                },
+              ),
+            ),
+            Container(
+              width: 200.0,
+              height: 60.0,
+              padding: const EdgeInsets.only(left: 5, right: 10, top: 10),
+              child: TextField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.email),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: BorderSide(width: 10),
+                    ),
+                    hintText: "Confirm Password"),
+                onChanged: (text) {
+                  //email = text;
+                },
+              ),
+            ),
+          ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -136,23 +202,36 @@ Widget _buildRegisterUI(BuildContext mContext, String uName, String uPassword,
             ),
           ],
         ),
-        Container(
-          width: 400.0,
-          height: 60.0,
-          padding: const EdgeInsets.only(left: 5, right: 10, top: 10),
-          child: TextField(
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-                prefixIcon: Icon(Icons.email),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
-                  borderSide: BorderSide(width: 10),
-                ),
-                hintText: "Enter your Name"),
-            onChanged: (text) {
-              //email = text;
-            },
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              child: Text("City  :"),
+            ),
+            DropdownButton<String>(
+              value: dropdownCitys,
+              icon: Icon(Icons.arrow_downward),
+              iconSize: 15,
+              elevation: 16,
+              style: TextStyle(color: Colors.deepPurple),
+              underline: Container(
+                height: 2,
+                color: Colors.deepPurpleAccent,
+              ),
+              onChanged: (String newValue) {
+                setState(() {
+                  dropdownCitys = newValue;
+                });
+              },
+              items: <String>['Azimpur', 'Mirpur', 'Dhanmondi']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+          ],
         ),
         Container(
           width: 400.0,
@@ -166,7 +245,7 @@ Widget _buildRegisterUI(BuildContext mContext, String uName, String uPassword,
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide(width: 10),
                 ),
-                hintText: "Enter your Name"),
+                hintText: "Area"),
             onChanged: (text) {
               //email = text;
             },

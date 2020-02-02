@@ -3,21 +3,21 @@ import 'package:http/http.dart' as http;
 import 'package:amar_daktar/URL/Link.dart';
 import 'dart:convert';
 
-class DoctorsListApi {
-  List getDoctorsList = [];
+class AmbulancesListApi {
+  List getAmbulancesList = [];
   bool status = false;
 
   Future fetchData() async {
     try {
       final data = await http.get(
-        Links.getdoctorslistApiUrl,
+        Links.getambulanceslistApiUrl,
         headers: {"Accept": "aplication/json"},
       );
       var jsonData = json.decode(data.body);
 
       if (data.statusCode == 200) {
         status = jsonData['success'];
-        getDoctorsList.clear();
+        getAmbulancesList.clear();
         for (var item in jsonData['response']) {
           DoctorsList getdoctorlist = DoctorsList(
             item['user_id'],
@@ -33,11 +33,11 @@ class DoctorsListApi {
             item['bmdc_reg_no'],
             item['description'],
           );
-          getDoctorsList.add(getdoctorlist);
+          getAmbulancesList.add(getdoctorlist);
         }
-        print(getDoctorsList);
+        print(getAmbulancesList);
 
-        return getDoctorsList;
+        return getAmbulancesList;
       } else {
         throw Exception('Error');
       }

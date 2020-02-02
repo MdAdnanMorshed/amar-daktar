@@ -21,15 +21,9 @@ class DistrictsList {
         status = jsonData['success'];
         districtsList.clear();
         for (var item in jsonData['response']) {
-          DoctorsList getdoctorlist = DoctorsList(
-            item['id'],
-            item['division_id'],
-            item['name'],
-            item['lat'],
-            item['lon'],
-            item['website'],
-          );
-          districtsList.add(getdoctorlist);
+          DistrictsList getdistrict = DistrictsList();
+          // districtsList.add(getdoctorlist);
+
         }
         print(districtsList);
         return districtsList;

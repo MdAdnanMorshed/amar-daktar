@@ -1,11 +1,28 @@
 class DoctorsList {
-  String doctorId;
+  String doctorid;
   String doctorName;
-  String doctorStudy;
-  String doctorHospital;
-  String doctorVisit;
-  String doctorFeedback;
+  String doctorDptId;
+  String doctorDesignation;
+  String doctorFees;
+  String doctorGender;
+  String doctorCountryId;
+  String doctorCityId;
+  String doctorAreaId;
+  String doctorSpecification;
+  String doctorRegNo;
+  String doctorDescription;
 
-  DoctorsList(this.doctorId, this.doctorName, this.doctorStudy,
-      this.doctorHospital, this.doctorVisit, this.doctorFeedback);
+  DoctorsList(
+      this.doctorid,
+      this.doctorName,
+      this.doctorDptId,
+      this.doctorDesignation,
+      this.doctorFees,
+      this.doctorGender,
+      this.doctorCountryId,
+      this.doctorCityId,
+      this.doctorAreaId,
+      this.doctorSpecification,
+      this.doctorRegNo,
+      this.doctorDescription);
 }

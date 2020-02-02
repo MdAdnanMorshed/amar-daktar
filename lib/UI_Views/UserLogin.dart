@@ -1,5 +1,6 @@
 import 'package:amar_daktar/RESTApi/UserLoginApi.dart';
 import 'package:amar_daktar/UI_Views/DoctorListUI.dart';
+import 'package:amar_daktar/UI_Views/UserRegister.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
