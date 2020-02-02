@@ -1,7 +1,5 @@
 import 'package:amar_daktar/RESTApi/UserLoginApi.dart';
-import 'package:amar_daktar/UI_Views/AmbulancesListUI.dart';
 import 'package:amar_daktar/UI_Views/DoctorListUI.dart';
-import 'package:amar_daktar/UI_Views/UserRegister.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +109,7 @@ Widget _builRegister(BuildContext context) {
     onPressed: () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => AmbulanceListUI()),
+        MaterialPageRoute(builder: (context) => DoctorListUI()),
       );
       print("Register Here");
     },

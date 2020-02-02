@@ -1,3 +1,5 @@
+import 'package:amar_daktar/ListViewAll/hospitalListView.dart';
+import 'package:amar_daktar/Models/HospitalsList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +18,10 @@ class HospitalListPage extends State<HospitalListUI> {
       backgroundColor: Colors.grey,
       drawer: AppDrawer(currentRoute: '/dashboard'),
       appBar: AppBar(
-        title: Text('Blood Donor List'),
+        title: Text('Hospital List'),
+      ),
+      body: Container(
+        child: hospitalListView(context),
       ),
     );
   }

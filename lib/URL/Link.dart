@@ -8,11 +8,11 @@ class Links {
   static String getdoctorslistApiUrl =
       'http://amardaktar24.com/api/get/all/doctors';
 
-  // Hospital List
+  // Hospital List done
   static String gethospitalslistApiUrl =
       'http://amardaktar24.com/api/get-hospitals';
 
-  // Ambulance List
+  // Ambulance List done
   static String getambulanceslistApiUrl =
       'http://amardaktar24.com/api/get-ambulance';
 
