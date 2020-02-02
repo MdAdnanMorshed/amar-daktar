@@ -36,7 +36,6 @@ class DoctorsListApi {
           getDoctorsList.add(getdoctorlist);
         }
         print(getDoctorsList);
-
         return getDoctorsList;
       } else {
         throw Exception('Error');

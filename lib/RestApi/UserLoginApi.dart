@@ -34,6 +34,7 @@ class UserLoginApi {
       status = jsonData['success'];
 
       // SF Save token and role id
+
       prefs.setString('loginToken', jsonData['response']['token'].toString());
       prefs.setString('role_id', jsonData['response']['role_id'].toString());
 
