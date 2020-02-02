@@ -21,10 +21,10 @@ Widget ambulanceListView(BuildContext context) {
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      title: Text(snapshot.data[index].doctorName),
-                      subtitle: Text(snapshot.data[index].doctorDesignation),
+                      title: Text(snapshot.data[index].ambulanceName),
+                      subtitle: Text(snapshot.data[index].ambulanceAddress),
                       onTap: () {
-                        print('onClick');
+                        print('Ambulances Details Item Click');
                       },
                     );
                   });

@@ -1,4 +1,4 @@
-import 'package:amar_daktar/Models/DoctorsList.dart';
+import 'package:amar_daktar/Models/AmbulancesList.dart';
 import 'package:http/http.dart' as http;
 import 'package:amar_daktar/URL/Link.dart';
 import 'dart:convert';
@@ -15,25 +15,28 @@ class AmbulancesListApi {
       );
       var jsonData = json.decode(data.body);
 
+      print('Ambulances:');
+      print(jsonData);
+
       if (data.statusCode == 200) {
         status = jsonData['success'];
         getAmbulancesList.clear();
         for (var item in jsonData['response']) {
-          DoctorsList getdoctorlist = DoctorsList(
-            item['user_id'],
-            item['doctor_name'],
-            item['department_id'],
-            item['title_or_designation'],
-            item['doctor_fees'],
-            item['gender'],
+          AmbulanceList getambulanceslist = AmbulanceList(
+            item['id'],
+            item['name'],
+            item['ambulance_type'],
+            item['mobile_number'],
+            item['phone_number'],
+            item['email'],
             item['country_id'],
             item['city_id'],
             item['area_id'],
-            item['degree_and_other_specification'],
-            item['bmdc_reg_no'],
-            item['description'],
+            item['address'],
+            item['services'],
+            item['descriptions'],
           );
-          getAmbulancesList.add(getdoctorlist);
+          getAmbulancesList.add(getambulanceslist);
         }
         print(getAmbulancesList);
 
