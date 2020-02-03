@@ -120,14 +120,6 @@ class _RegisterPageState extends State<UserRegister> {
                         hint: Text("Please Choose One"),
                         items: [
                           DropdownMenuItem(
-                            child: Text("Hospital"),
-                            value: "Hospital",
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Doctor"),
-                            value: "Doctor",
-                          ),
-                          DropdownMenuItem(
                             child: Text("Patient"),
                             value: "Patient",
                           ),
