@@ -5,6 +5,7 @@ import 'package:amar_daktar/UI_Views/UserRegister.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'DashboardUI.dart';
+import 'UserProfileUI.dart';
 
 class UserLogin extends StatefulWidget {
   @override
@@ -48,6 +49,7 @@ class _LoginPageState extends State<UserLogin> {
               Padding(
                 padding: const EdgeInsets.only(left: 50, right: 50, top: 20),
                 child: TextField(
+                  obscureText: true,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     labelText: 'Enter your Password',
@@ -109,7 +111,7 @@ Widget _builRegister(BuildContext context) {
     onPressed: () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => UserRegister()),
+        MaterialPageRoute(builder: (context) => UserProfile()),
       );
       print("Register Here");
     },

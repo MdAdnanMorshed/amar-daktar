@@ -163,7 +163,7 @@ Widget _createHeader() {
       padding: EdgeInsets.zero,
       decoration: BoxDecoration(
           image: DecorationImage(
-              fit: BoxFit.fill, image: AssetImage('images/purple.png'))),
+              fit: BoxFit.fill, image: AssetImage('images/bg.jpg'))),
       child: Stack(children: <Widget>[
         Positioned(
           left: 20,
@@ -173,14 +173,13 @@ Widget _createHeader() {
             height: 80.0,
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.white,
+                color: Colors.blue,
                 width: 3,
               ),
               shape: BoxShape.circle,
               image: DecorationImage(
                 fit: BoxFit.fill,
-                image: NetworkImage(photo ??
-                    'https://image.flaticon.com/icons/png/512/149/149071.png'),
+                image: AssetImage('images/profile.png'),
               ),
 //                userPhoto ??
             ),
@@ -189,16 +188,9 @@ Widget _createHeader() {
         Positioned(
             bottom: 12.0,
             left: 16.0,
-            child: Text(name,
+            child: Text('adnan@gmail.com', //name
                 style: TextStyle(
-                    shadows: [
-                      Shadow(
-                        blurRadius: 4.0,
-                        color: Colors.black54,
-                        offset: Offset(2.0, 2.0),
-                      ),
-                    ],
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 20.0,
                     fontWeight: FontWeight.w500))),
       ]));

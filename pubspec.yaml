@@ -24,6 +24,9 @@ flutter:
 
   assets:
    - images/amardaktar_logo.png
+   - images/profile.png
+   - images/bg.jpg
+   - images/pencil.png
 
 
   # fonts:

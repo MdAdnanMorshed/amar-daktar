@@ -294,12 +294,13 @@ class _RegisterPageState extends State<UserRegister> {
                         ),
                       ),
                       SizedBox(height: 10),
-
                       Align(
                         alignment: Alignment.centerLeft,
                         child: RaisedButton(
                           child: AlertDialog(
-                            title: Text("Select image source"),
+                            title: Text("Select image source",
+                                style: TextStyle(fontSize: 10)
+                            ),
                             actions: <Widget>[
                               MaterialButton(
                                 child: Text("Camera"),
@@ -355,7 +356,6 @@ class _RegisterPageState extends State<UserRegister> {
   // Camera
   Future getImageFromCamera() async {
     image = await ImagePicker.pickImage(source: ImageSource.camera);
-
     setState(() {
       imageURI = image;
     });
@@ -364,9 +364,9 @@ class _RegisterPageState extends State<UserRegister> {
   //Gallery
   Future getImageFromGallery() async {
     image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
     setState(() {
       imageURI = image;
+      print(imageURI);
     });
   }
 }

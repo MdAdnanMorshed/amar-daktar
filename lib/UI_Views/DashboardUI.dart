@@ -12,7 +12,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white,
       drawer: AppDrawer(currentRoute: '/dashboard'),
       appBar: AppBar(
         title: Text("DeshBoard"),
