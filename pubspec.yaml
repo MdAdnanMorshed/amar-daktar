@@ -27,6 +27,7 @@ flutter:
    - images/profile.png
    - images/bg.jpg
    - images/pencil.png
+   - images/doctorpic.jpg
 
 
   # fonts:

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'AppDrawer.dart';
+
 class UserProfile extends StatefulWidget {
   @override
   _UserProfileState createState() => _UserProfileState();
@@ -44,10 +46,8 @@ class _UserProfileState extends State<UserProfile> {
     return WillPopScope(
       onWillPop: _onBackPressed,
       child: Scaffold(
-        //backgroundColor: Colors.lightBlue,
-        //drawer: AppDrawer(
-        // currentRoute: '/userAccount',
-        //),
+        drawer: AppDrawer(currentRoute: '/dashboard'),
+        backgroundColor: Colors.lightBlue,
         appBar: AppBar(
           title: Text('User Profile'),
         ),
@@ -79,7 +79,7 @@ class _UserProfileState extends State<UserProfile> {
                 Card(
                   margin:
                       EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 5),
-                  color: Colors.purple[100],
+                  color: Colors.grey,
                   child: Row(
                     children: <Widget>[
                       Expanded(
@@ -111,7 +111,7 @@ class _UserProfileState extends State<UserProfile> {
                 Card(
                   margin:
                       EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 5),
-                  color: Colors.purple[100],
+                  color: Colors.grey,
                   child: Row(
                     children: <Widget>[
                       Expanded(

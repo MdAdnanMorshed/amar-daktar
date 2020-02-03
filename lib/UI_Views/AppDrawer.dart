@@ -52,8 +52,8 @@ class _AppDrawerState extends State<AppDrawer> {
                 icon: Icons.perm_identity,
                 text: 'Profile Settings',
                 onTap: () {
-                  if (current != '/dashboard') {
-                    Navigator.popAndPushNamed(context, '/dashboard');
+                  if (current != '/user_profile') {
+                    Navigator.popAndPushNamed(context, '/user_profile');
                   } else {
                     Navigator.of(context).pop();
                   }
@@ -62,47 +62,50 @@ class _AppDrawerState extends State<AppDrawer> {
               icon: Icons.settings,
               text: 'Services',
               onTap1: () {
-                if (current != '/bookList') {
-                  Navigator.popAndPushNamed(context, '/bookList');
+                if (current != '/doctorList') {
+                  Navigator.popAndPushNamed(context, '/doctorList');
                 } else {
                   Navigator.of(context).pop();
                 }
               },
               onTap2: () {
-                if (current != '/bookRequest') {
-                  Navigator.popAndPushNamed(context, '/bookRequest');
+                if (current != '/hospitalList') {
+                  Navigator.popAndPushNamed(context, '/hospitalList');
+                } else {
+                  Navigator.of(context).pop();
+                }
+              },
+              onTap3: () {
+                if (current != '/bloodDonor') {
+                  Navigator.popAndPushNamed(context, '/bloodDonor');
+                } else {
+                  Navigator.of(context).pop();
+                }
+              },
+              onTap4: () {
+                if (current != '/ambulanceList') {
+                  Navigator.popAndPushNamed(context, '/ambulanceList');
                 } else {
                   Navigator.of(context).pop();
                 }
               },
             ),
             _createDrawerItem(
-                icon: Icons.directions_bus,
-                text: 'Blog',
-                onTap: () {
-                  if (current != '/transport') {
-                    Navigator.popAndPushNamed(context, '/transport');
-                  } else {
-                    Navigator.of(context).pop();
-                  }
-                }),
-            _createDrawerItem(
-                icon: Icons.notifications,
+                icon: Icons.call,
                 text: 'Contact',
                 onTap: () {
-                  if (current != '/noticeBoard') {
-                    Navigator.popAndPushNamed(context, '/noticeBoard');
+                  if (current != '/Contact') {
+                    Navigator.popAndPushNamed(context, '/Contact');
                   } else {
                     Navigator.of(context).pop();
                   }
                 }),
-            _createDrawerItem(icon: Icons.local_post_office, text: 'Message'),
             _createDrawerItem(
-                icon: Icons.account_circle,
+                icon: Icons.info,
                 text: 'About',
                 onTap: () {
-                  if (current != '/userAccount') {
-                    Navigator.popAndPushNamed(context, '/userAccount');
+                  if (current != '/About') {
+                    Navigator.popAndPushNamed(context, '/About');
                   } else {
                     Navigator.of(context).pop();
                   }
@@ -118,7 +121,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 onTap: () {
                   // removeShared();
                   Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/loginPage', (Route r) => r == null);
+                      '/user_login', (Route r) => r == null);
                 }),
             Divider(
               color: Colors.purple,
@@ -127,7 +130,7 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
             ListTile(
               trailing: Text(
-                'Version : $version',
+                'Version : 1.0',
                 textScaleFactor: .8,
               ),
             )
@@ -166,11 +169,11 @@ Widget _createHeader() {
               fit: BoxFit.fill, image: AssetImage('images/bg.jpg'))),
       child: Stack(children: <Widget>[
         Positioned(
-          left: 20,
-          top: 30,
+          left: 16,
+          top: 40,
           child: Container(
-            width: 80.0,
-            height: 80.0,
+            width: 70.0,
+            height: 70.0,
             decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.blue,
@@ -186,12 +189,20 @@ Widget _createHeader() {
           ),
         ),
         Positioned(
-            bottom: 12.0,
+            bottom: 20.0,
+            left: 16.0,
+            child: Text('Md. Adnan ', //name
+                style: TextStyle(
+                    color: Colors.indigo,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w500))),
+        Positioned(
+            bottom: 5.0,
             left: 16.0,
             child: Text('adnan@gmail.com', //name
                 style: TextStyle(
                     color: Colors.black,
-                    fontSize: 20.0,
+                    fontSize: 12.0,
                     fontWeight: FontWeight.w500))),
       ]));
 }
@@ -203,7 +214,7 @@ Widget _createDrawerItem(
       children: <Widget>[
         Icon(icon),
         Padding(
-          padding: EdgeInsets.only(left: 8.0),
+          padding: EdgeInsets.only(left: 8.0, top: 10),
           child: Text(text),
         )
       ],
@@ -216,7 +227,9 @@ Widget _createDrawerItem2(
     {IconData icon,
     String text,
     GestureTapCallback onTap1,
-    GestureTapCallback onTap2}) {
+    GestureTapCallback onTap2,
+    GestureTapCallback onTap3,
+    GestureTapCallback onTap4}) {
   return ExpansionTile(
     initiallyExpanded: false,
 //    leading: Icon(icon),
@@ -258,7 +271,7 @@ Widget _createDrawerItem2(
             )
           ],
         ),
-        onTap: onTap1,
+        onTap: onTap2,
       ),
       ListTile(
         title: Row(
@@ -273,7 +286,7 @@ Widget _createDrawerItem2(
             )
           ],
         ),
-        onTap: onTap1,
+        onTap: onTap3,
       ),
       ListTile(
         title: Row(
@@ -288,7 +301,7 @@ Widget _createDrawerItem2(
             )
           ],
         ),
-        onTap: onTap2,
+        onTap: onTap4,
       )
     ],
 //    onTap: onTap,

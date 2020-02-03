@@ -22,6 +22,8 @@ Widget doctorListView(BuildContext context) {
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
+                      leading: CircleAvatar(
+                          backgroundImage: AssetImage('images/doctorpic.jpg')),
                       title: Text(snapshot.data[index].doctorName),
                       subtitle: Text(snapshot.data[index].doctorDesignation),
                       onTap: () {
