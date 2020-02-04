@@ -23,7 +23,7 @@ class AmbulancesListApi {
         getAmbulancesList.clear();
         for (var item in jsonData['response']) {
           AmbulanceList getambulanceslist = AmbulanceList(
-            item['id'],
+            //item['id'],
             item['name'],
             item['ambulance_type'],
             item['mobile_number'],

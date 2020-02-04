@@ -7,13 +7,14 @@ Widget hospitalListView(BuildContext context) {
     color: Colors.white,
     child: Container(
       child: FutureBuilder(
-        future: HospitalListApi().fetchData(),
+        future: HospitalListApi().fetchDataHospital(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
+            print(snapshot.data);
             if (snapshot.data == null) {
               return Container(
                 child: Center(
-                  child: Text('Loading...'),
+                  child: Text('Hospital Loading...'),
                 ),
               );
             } else {
@@ -21,7 +22,9 @@ Widget hospitalListView(BuildContext context) {
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      title: Text(snapshot.data[index].hospitalChamberName),
+                      leading: CircleAvatar(
+                          backgroundImage: AssetImage('images/doctorpic.jpg')),
+                      title: Text(snapshot.data[index].hospitalAbout),
                       subtitle:
                           Text(snapshot.data[index].hospitalChamberAddress),
                       onTap: () {

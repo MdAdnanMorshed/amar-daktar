@@ -17,7 +17,7 @@ class AmbulanceListPage extends State<AmbulanceListUI> {
       backgroundColor: Colors.white,
       drawer: AppDrawer(currentRoute: '/dashboard'),
       appBar: AppBar(
-        title: Text('Ambulance Service  List'),
+        title: Text('Ambulance List'),
       ),
       body: Container(
         child: ambulanceListView(context),

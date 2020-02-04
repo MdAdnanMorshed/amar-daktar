@@ -112,7 +112,7 @@ Widget _builRegister(BuildContext context) {
     onPressed: () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => UserRegister()),
+        MaterialPageRoute(builder: (context) => Dashboard()),
       );
       print("Register Here");
     },

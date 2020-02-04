@@ -1,4 +1,3 @@
-import 'package:amar_daktar/ListViewAll/doctorListViewDetails.dart';
 import 'package:amar_daktar/RestApi/DoctorsListApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +10,7 @@ Widget doctorListView(BuildContext context) {
         future: DoctorsListApi().fetchData(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
+            print(snapshot.data.length);
             if (snapshot.data == null) {
               return Container(
                 child: Center(

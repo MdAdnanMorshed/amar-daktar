@@ -1,5 +1,5 @@
 class AmbulanceList {
-  String ambulanceId;
+  // String ambulanceId;
   String ambulanceName;
   String ambulanceType;
   String ambulanceMobile;
@@ -13,7 +13,7 @@ class AmbulanceList {
   String ambulanceDescription;
 
   AmbulanceList(
-      this.ambulanceId,
+      //this.ambulanceId,
       this.ambulanceName,
       this.ambulanceType,
       this.ambulanceMobile,

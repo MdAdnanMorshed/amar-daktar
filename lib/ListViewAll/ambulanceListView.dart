@@ -9,6 +9,7 @@ Widget ambulanceListView(BuildContext context) {
       child: FutureBuilder(
         future: AmbulancesListApi().fetchData(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+          print(snapshot.toString());
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.data == null) {
               return Container(
@@ -22,7 +23,10 @@ Widget ambulanceListView(BuildContext context) {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       title: Text(snapshot.data[index].ambulanceName),
-                      subtitle: Text(snapshot.data[index].ambulanceAddress),
+                      subtitle: Text('Address: ' +
+                          snapshot.data[index].ambulanceAddress +
+                          '\n' +
+                          snapshot.data[index].ambulanceMobile),
                       onTap: () {
                         print('Ambulances Details Item Click');
                       },
