@@ -19,4 +19,8 @@ class Links {
   // District List
   static String getdistrictsApiUrl =
       'http://amardaktar24.com/api/get/all/districts';
+
+  // Blood Donar List
+  static String getBloodDonarListApiUrl =
+      'http://amardaktar24.com/api/get-blood-donor';
 }

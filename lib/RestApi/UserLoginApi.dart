@@ -1,8 +1,5 @@
 import 'dart:convert';
-
-import 'package:amar_daktar/UI_Views/UserRegister.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:amar_daktar/URL/Link.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,7 +15,6 @@ class UserLoginApi {
   Future fetchData() async {
     print(uEmail);
     print(uPassword);
-    var jsonData = null;
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
