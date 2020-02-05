@@ -21,15 +21,16 @@ Widget ambulanceListView(BuildContext context) {
               return ListView.builder(
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      title: Text(snapshot.data[index].ambulanceName),
-                      subtitle: Text('Address: ' +
-                          snapshot.data[index].ambulanceAddress +
-                          '\n' +
-                          snapshot.data[index].ambulanceMobile),
-                      onTap: () {
-                        print('Ambulances Details Item Click');
-                      },
+                    return Card(
+                      child: ListTile(
+                        title: Text(snapshot.data[index].ambulanceName),
+                        subtitle: Text(snapshot.data[index].ambulanceAddress +
+                            '\n' +
+                            snapshot.data[index].ambulanceMobile),
+                        onTap: () {
+                          print('Ambulances Details Item Click');
+                        },
+                      ),
                     );
                   });
             }

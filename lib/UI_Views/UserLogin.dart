@@ -1,8 +1,8 @@
-import 'package:amar_daktar/RESTApi/UserLoginApi.dart';
+import 'package:amar_daktar/RestApi/UserLoginApi.dart';
+import 'package:amar_daktar/UI_Views/UserRegister.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'DashboardUI.dart';
-import 'UserProfileUI.dart';
 
 class UserLogin extends StatefulWidget {
   @override
@@ -39,7 +39,6 @@ class _LoginPageState extends State<UserLogin> {
                   ),
                   onChanged: (text) {
                     uEmail = text;
-                    print(uEmail);
                   },
                 ),
               ),
@@ -58,7 +57,6 @@ class _LoginPageState extends State<UserLogin> {
                   ),
                   onChanged: (passwordValue) {
                     uPassword = passwordValue;
-                    print(passwordValue);
                   },
                 ),
               ),
@@ -69,11 +67,9 @@ class _LoginPageState extends State<UserLogin> {
                   height: 45,
                   child: RaisedButton(
                     onPressed: () async {
-                      print("loginClick");
-                      print('mail:' + uEmail + 'pass:' + uPassword);
                       UserLoginApi(uEmail, uPassword)
                           .fetchData()
-                          .whenComplete(_goToDashboard(context));
+                          .whenComplete(_goToDashboard);
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
@@ -93,6 +89,20 @@ class _LoginPageState extends State<UserLogin> {
       ),
     );
   }
+
+  _goToDashboard() async {
+    if (UserLoginApi.status == true) {
+      print(UserLoginApi.status);
+      print("Login is successfull!");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Dashboard()),
+      );
+    } else {
+      print(UserLoginApi.status);
+      print("login is not successfull!");
+    }
+  }
 }
 // ------------------- Login UI ---------------------------
 
@@ -108,7 +118,7 @@ Widget _builRegister(BuildContext context) {
     onPressed: () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Dashboard()),
+        MaterialPageRoute(builder: (context) => UserRegister()),
       );
       print("Register Here");
     },
@@ -118,15 +128,3 @@ Widget _builRegister(BuildContext context) {
 }
 
 // ---------------- go to the Dashboard --------
-_goToDashboard(BuildContext context) async {
-  if (UserLoginApi.status == true) {
-    print(UserLoginApi.status);
-    print("Login is successfull!");
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Dashboard()),
-    );
-  } else {
-    print("login is not successfull!");
-  }
-}
