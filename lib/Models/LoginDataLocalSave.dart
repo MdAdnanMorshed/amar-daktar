@@ -3,13 +3,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LoginDataLocalSave {
   static int uId;
   String uRoleId;
-  String uName;
-  String uEmail;
+  static String uName;
+  static String uEmail;
 
-  String uPhone;
+  static String uPhone;
   String uMailVarify;
-  String uImage;
-  String uToken;
+  static String uImage;
+  static String uToken;
 
   LoginDataLocalSave.fromJson(Map json) {
     if (json.containsKey('id')) {

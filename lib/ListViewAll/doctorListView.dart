@@ -25,18 +25,6 @@ Widget doctorListView(BuildContext context) {
                     return index == 0
                         ? searchbar(snapshot, index)
                         : listItem(context, snapshot, index);
-                    /*
-
-                    return ListTile(
-                      leading: CircleAvatar(
-                          backgroundImage: AssetImage('images/doctorpic.jpg')),
-                      title: Text(snapshot.data[index].doctorName),
-                      subtitle: Text(snapshot.data[index].doctorDesignation),
-                      onTap: () {
-                        print('onClick');
-                      },
-                    );
-                   */
                   });
             }
           } else {

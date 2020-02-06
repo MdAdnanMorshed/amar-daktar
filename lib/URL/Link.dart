@@ -20,7 +20,14 @@ class Links {
   static String getdistrictsApiUrl =
       'http://amardaktar24.com/api/get/all/districts';
 
-  // Blood Donar List
+  // Blood Donar List done
   static String getBloodDonarListApiUrl =
       'http://amardaktar24.com/api/get-blood-donor';
+
+  // Change password List
+  static String getChangePasswordApiUrl =
+      'http://amardaktar24.com/api/change-password';
+
+  // Register
+  static String getRegisterApiUrl = ' http://amardaktar24.com/api/register';
 }
