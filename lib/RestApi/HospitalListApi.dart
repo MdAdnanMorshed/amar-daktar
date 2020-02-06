@@ -42,9 +42,9 @@ class HospitalListApi {
           print('Address:' + gethospitallist.hospitalChamberAddress);
           getHospitalList.add(gethospitallist);
           print(getHospitalList);
+          return getHospitalList;
         }
-        print('gethosList');
-        return getHospitalList;
+        print('ok1232');
       } else {
         throw Exception('Error');
       }

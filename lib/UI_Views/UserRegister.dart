@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:amar_daktar/RestApi/UserRegisterApi.dart';
+import 'package:amar_daktar/UI_Views/UserLogin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -299,8 +303,7 @@ class _RegisterPageState extends State<UserRegister> {
                         child: RaisedButton(
                           child: AlertDialog(
                             title: Text("Select image source",
-                                style: TextStyle(fontSize: 10)
-                            ),
+                                style: TextStyle(fontSize: 10)),
                             actions: <Widget>[
                               MaterialButton(
                                 child: Text("Camera"),
@@ -330,6 +333,11 @@ class _RegisterPageState extends State<UserRegister> {
                           ),
                           padding: EdgeInsets.symmetric(vertical: 12),
                           onPressed: () {
+                            print("Register is Click Button");
+                            UserRegisterApi('Morshed', '017',
+                                    'morshed@gmail.com', 'male', 'dfdf.jpg')
+                                .fetchData()
+                                .whenComplete(Register);
                             print("I am signup button !");
                           },
                         ),
@@ -368,5 +376,12 @@ class _RegisterPageState extends State<UserRegister> {
       imageURI = image;
       print(imageURI);
     });
+  }
+
+  FutureOr Register() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => UserLogin()),
+    );
   }
 }

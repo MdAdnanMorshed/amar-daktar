@@ -24,7 +24,7 @@ Widget hospitalListView(BuildContext context) {
                     return ListTile(
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('images/doctorpic.jpg')),
-                      title: Text(snapshot.data[index].hospitalAbout),
+                      title: Text(snapshot.data[index].hospitalChamberName),
                       subtitle:
                           Text(snapshot.data[index].hospitalChamberAddress),
                       onTap: () {
