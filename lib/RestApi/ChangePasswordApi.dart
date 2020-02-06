@@ -30,3 +30,16 @@ class ChangePassword {
     }
   }
 }
+
+/*
+void getValuesSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    setState(() {
+      studentId = prefs.getString('STUDENT_ID');
+    });
+
+    print('Studen Id:$studentId');
+    getData(studentId);
+  }
+ */
