@@ -1,3 +1,4 @@
+import 'package:amar_daktar/ListViewAll/doctorListViewDetails.dart';
 import 'package:amar_daktar/RestApi/DoctorsListApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,11 @@ Widget doctorListView(BuildContext context) {
               return ListView.builder(
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
+                    return index == 0
+                        ? searchbar(snapshot, index)
+                        : listItem(context, snapshot, index);
+                    /*
+
                     return ListTile(
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('images/doctorpic.jpg')),
@@ -30,6 +36,7 @@ Widget doctorListView(BuildContext context) {
                         print('onClick');
                       },
                     );
+                   */
                   });
             }
           } else {
@@ -37,6 +44,45 @@ Widget doctorListView(BuildContext context) {
               child: LinearProgressIndicator(),
             );
           }
+        },
+      ),
+    ),
+  );
+}
+
+// Doctor  Search
+searchbar(AsyncSnapshot snapshot, int index) {
+  return Padding(
+    padding: EdgeInsets.all(8.0),
+    child: TextField(
+        decoration: InputDecoration(hintText: "ambulance Searching "),
+        onChanged: (text) {
+          // Searching
+        }),
+  );
+}
+
+listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Card(
+      child: ListTile(
+        leading:
+            // path Name
+            CircleAvatar(backgroundImage: AssetImage('images/profile.png')),
+        title: Text("Doctor Name: " +
+            snapshot.data[index].doctorName +
+            "Designation :" +
+            snapshot.data[index].doctorDesignation),
+        subtitle: Text("Free  :" + snapshot.data[index].doctorFees),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    DoctorlistViewDetails(snapshot.data[index])),
+          );
+          print('Blood Donoar  Details Item Click');
         },
       ),
     ),

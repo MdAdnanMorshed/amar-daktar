@@ -18,6 +18,7 @@ class MyDoctorApps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       routes: {
         '/user_login': (context) => UserLogin(),
         '/user_register': (context) => UserRegister(),

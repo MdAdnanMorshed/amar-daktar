@@ -1,15 +1,20 @@
+import 'package:amar_daktar/Models/DoctorsList.dart';
 import 'package:amar_daktar/UI_Views/AppDrawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DoctorlistViewDetails extends StatelessWidget {
+  final DoctorsList doctorsList;
+
+  DoctorlistViewDetails(this.doctorsList);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       drawer: AppDrawer(currentRoute: '/dashboard'),
       appBar: AppBar(
-        title: Text('Doctor Details'),
+        title: Text(doctorsList.doctorid),
       ),
       body: Container(
         child: RaisedButton(

@@ -21,13 +21,9 @@ Widget bloodDonarListView(BuildContext context) {
               return ListView.builder(
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      title: Text(snapshot.data[index].donarEmail),
-                      subtitle: Text('tasting blood'),
-                      onTap: () {
-                        print('Blood Donoar  Details Item Click');
-                      },
-                    );
+                    return index == 0
+                        ? _searchbar(snapshot, index)
+                        : _listItem(snapshot, index);
                   });
             }
           } else {
@@ -35,6 +31,38 @@ Widget bloodDonarListView(BuildContext context) {
               child: LinearProgressIndicator(),
             );
           }
+        },
+      ),
+    ),
+  );
+}
+
+// Blood Group Search
+_searchbar(AsyncSnapshot snapshot, int index) {
+  return Padding(
+    padding: EdgeInsets.all(8.0),
+    child: TextField(
+        decoration: InputDecoration(hintText: "Blood Group Searching "),
+        onChanged: (text) {
+          // Searching
+        }),
+  );
+}
+
+_listItem(AsyncSnapshot snapshot, int index) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Card(
+      child: ListTile(
+        leading: CircleAvatar(
+            backgroundImage: AssetImage(snapshot.data[index].DonarImage)),
+        title: Text("Name: " +
+            snapshot.data[index].donarfastName +
+            " " +
+            snapshot.data[index].donarlastName),
+        subtitle: Text("Blood Group :" + snapshot.data[index].bloodGroup),
+        onTap: () {
+          print('Blood Donoar  Details Item Click');
         },
       ),
     ),

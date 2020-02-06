@@ -14,24 +14,16 @@ Widget ambulanceListView(BuildContext context) {
             if (snapshot.data == null) {
               return Container(
                 child: Center(
-                  child: Text('Loading...'),
+                  child: Text(' Loading...'),
                 ),
               );
             } else {
               return ListView.builder(
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      child: ListTile(
-                        title: Text(snapshot.data[index].ambulanceName),
-                        subtitle: Text(snapshot.data[index].ambulanceAddress +
-                            '\n' +
-                            snapshot.data[index].ambulanceMobile),
-                        onTap: () {
-                          print('Ambulances Details Item Click');
-                        },
-                      ),
-                    );
+                    return index == 0
+                        ? _searchbar(snapshot, index)
+                        : _listItem(snapshot, index);
                   });
             }
           } else {
@@ -39,6 +31,39 @@ Widget ambulanceListView(BuildContext context) {
               child: LinearProgressIndicator(),
             );
           }
+        },
+      ),
+    ),
+  );
+}
+
+// ambulance Search
+_searchbar(AsyncSnapshot snapshot, int index) {
+  return Padding(
+    padding: EdgeInsets.all(8.0),
+    child: TextField(
+        decoration: InputDecoration(hintText: "ambulance Searching "),
+        onChanged: (text) {
+          // Searching
+        }),
+  );
+}
+
+_listItem(AsyncSnapshot snapshot, int index) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Card(
+      child: ListTile(
+        leading:
+            // path Name
+            CircleAvatar(backgroundImage: AssetImage('images/profile.png')),
+        title: Text("Name: " +
+            snapshot.data[index].ambulanceName +
+            "Type :" +
+            snapshot.data[index].ambulanceType),
+        subtitle: Text("Service :" + snapshot.data[index].ambulanceService),
+        onTap: () {
+          print('Ambulances Details Item Click');
         },
       ),
     ),
