@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppDrawer extends StatefulWidget {
   final String currentRoute;
@@ -10,7 +11,10 @@ class AppDrawer extends StatefulWidget {
 }
 
 String name = '';
-String photo = '';
+String mail = '';
+String phone = '123';
+String profileIamge = '123';
+
 bool isStudent = false;
 String version;
 
@@ -20,8 +24,9 @@ class _AppDrawerState extends State<AppDrawer> {
   _AppDrawerState({this.current});
 
   @override
-  void initState() {
+  void initState()  {
     _getSharedPref();
+    print('init');
     //_getBuildNumber();
     super.initState();
   }
@@ -120,6 +125,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 text: 'Log Out',
                 onTap: () {
                   // removeShared();
+                  logut();
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/user_login', (Route r) => r == null);
                 }),
@@ -141,24 +147,21 @@ class _AppDrawerState extends State<AppDrawer> {
   }
 
   void _getSharedPref() async {
-    //SharedPreferences prefs = await SharedPreferences.getInstance();
-    //SharedPreferences prefs = await SharedPreferences.getInstance();
-    //Return String
+    print('sharedPref');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
-      //name = prefs.getString('NAME');
-      //photo = prefs.getString('USER_PHOTO');
+      name = prefs.getString('userName');
+      print(name);
+      mail = prefs.getString('userEmail');
+      print(mail);
+      //phone = prefs.getString('userPhone');
+      //print(phone);
+      //profileIamge = prefs.getString('userIamge');
     });
   }
-}
 
-void removeShared() async {
-  // SharedPreferences prefs = await SharedPreferences.getInstance();
-  // prefs.remove('EMAIL');
-  // prefs.remove('PASSWORD');
-  //await prefs.clear();
-  //LoginApi.status = false;
-}
+
 
 Widget _createHeader() {
   return DrawerHeader(
@@ -191,7 +194,7 @@ Widget _createHeader() {
         Positioned(
             bottom: 20.0,
             left: 16.0,
-            child: Text('Md. Adnan ', //name
+            child: Text(name, //name
                 style: TextStyle(
                     color: Colors.indigo,
                     fontSize: 15.0,
@@ -199,7 +202,7 @@ Widget _createHeader() {
         Positioned(
             bottom: 5.0,
             left: 16.0,
-            child: Text('adnan@gmail.com', //name
+            child: Text(mail, //name
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 12.0,
@@ -306,4 +309,12 @@ Widget _createDrawerItem2(
     ],
 //    onTap: onTap,
   );
+}
+
+logut() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.remove('userToken');
+  await prefs.clear();
+  print("Logout");
+}
 }

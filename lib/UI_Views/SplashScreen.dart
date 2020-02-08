@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -36,8 +37,39 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 5), () => goTo());
   }
 
-  goTo() {
-    Navigator.pushReplacementNamed(context, '/user_login');
-    print(" go to the login Page ");
+  goTo() async {
+    // login or Deshboard
+
+//----------------------
+    print('goto the next page ');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    bool userId = prefs.containsKey('userId');
+    bool role=prefs.containsKey('userRoleId');
+    bool name = prefs.containsKey('userName');
+
+    print('UserName');
+    print(name);
+    String mail =prefs.getString('userEmail');
+    print(mail);
+
+    bool phone =prefs.containsKey('userPhone');
+    //prefs.containsKey('userMailverfiy');
+   // prefs.containsKey('userIamge');
+
+    bool token = prefs.containsKey('userToken');
+
+    if (token) {
+      print('Deshboard session');
+      print(token);
+        Navigator.pushReplacementNamed(context, '/dashboard');
+    } else {
+      print('login session');
+      Navigator.pushReplacementNamed(context, '/user_login');
+      print(" go to the login Page ");
+    }
+
+
+
   }
 }
