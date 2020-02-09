@@ -1,12 +1,13 @@
 import 'package:amar_daktar/Models/DoctorsList.dart';
+import 'package:amar_daktar/Models/HospitalsList.dart';
 import 'package:amar_daktar/UI_Views/AppDrawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HospitallistViewDetails extends StatelessWidget {
-  final DoctorsList doctorsList;
+  final HospitalList hospitalList;
 
-  HospitallistViewDetails(this.doctorsList);
+  HospitallistViewDetails(this.hospitalList);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class HospitallistViewDetails extends StatelessWidget {
     return Scaffold(
       drawer: AppDrawer(currentRoute: '/dashboard'),
       appBar: AppBar(
-        title: Text(doctorsList.doctorName),
+        title: Text(hospitalList.hospitalChamberName),
       ),
       body: Column(
         children: <Widget>[
@@ -49,7 +50,7 @@ class HospitallistViewDetails extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(
                         left: 5.0, top: 7, right: 0, bottom: 7),
-                    child: Text("Doctor Name  :",
+                    child: Text("Hospital Name  :",
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -57,7 +58,7 @@ class HospitallistViewDetails extends StatelessWidget {
                   flex: 4,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
-                    child: Text(doctorsList.doctorName,
+                    child: Text(hospitalList.hospitalChamberName,
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -74,7 +75,7 @@ class HospitallistViewDetails extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(
                         left: 5.0, top: 7, right: 0, bottom: 7),
-                    child: Text("Designation  :",
+                    child: Text("LicenseNo  :",
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -82,7 +83,7 @@ class HospitallistViewDetails extends StatelessWidget {
                   flex: 4,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
-                    child: Text(doctorsList.doctorDesignation,
+                    child: Text(hospitalList.hospitalLicenseNo,
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -99,7 +100,7 @@ class HospitallistViewDetails extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(
                         left: 5.0, top: 7, right: 0, bottom: 7),
-                    child: Text("Register No:",
+                    child: Text("Status:",
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -107,7 +108,7 @@ class HospitallistViewDetails extends StatelessWidget {
                   flex: 4,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
-                    child: Text(doctorsList.doctorRegNo,
+                    child: Text(hospitalList.hospitalStatus,
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -125,7 +126,7 @@ class HospitallistViewDetails extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 5.0, top: 7, right: 0, bottom: 7),
                     child: Text(
-                      "Specification :",
+                      "About :",
                       style: TextStyle(color: Colors.white, fontSize: 18.5),
                     ),
                   ),
@@ -135,7 +136,7 @@ class HospitallistViewDetails extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
                     child: Text(
-                      doctorsList.doctorSpecification,
+                      hospitalList.hospitalAbout,
                       style: TextStyle(color: Colors.white, fontSize: 18.5),
                     ),
                   ),
