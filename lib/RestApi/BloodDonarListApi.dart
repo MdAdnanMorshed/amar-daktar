@@ -5,10 +5,11 @@ import 'package:amar_daktar/URL/Link.dart';
 import 'dart:convert';
 
 class BloodDonarListApi {
-  List getBloodDonarList = [];
+  //List getBloodDonarList = [];
+  List<BloodDonarList> getBloodDonarList = [];
   bool status = false;
 
-  Future fetchData() async {
+  Future<List<BloodDonarList>> fetchData() async {
     try {
       final data = await http.get(
         Links.getBloodDonarListApiUrl,

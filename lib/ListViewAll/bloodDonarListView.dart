@@ -2,6 +2,8 @@ import 'package:amar_daktar/RestApi/BloodDonarListApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'bloodDonarListViewDetails.dart';
+
 Widget bloodDonarListView(BuildContext context) {
   return Container(
     color: Colors.white,
@@ -23,7 +25,7 @@ Widget bloodDonarListView(BuildContext context) {
                   itemBuilder: (BuildContext context, int index) {
                     return index == 0
                         ? _searchbar(snapshot, index)
-                        : _listItem(snapshot, index);
+                        : _listItem(context, snapshot, index);
                   });
             }
           } else {
@@ -49,19 +51,24 @@ _searchbar(AsyncSnapshot snapshot, int index) {
   );
 }
 
-_listItem(AsyncSnapshot snapshot, int index) {
+_listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Card(
       child: ListTile(
         leading: CircleAvatar(
             backgroundImage: AssetImage(snapshot.data[index].DonarImage)),
-        title: Text("Name: " +
-            snapshot.data[index].donarfastName +
+        title: Text(snapshot.data[index].donarfastName +
             " " +
             snapshot.data[index].donarlastName),
-        subtitle: Text("Blood Group :" + snapshot.data[index].bloodGroup),
+        subtitle: Text(snapshot.data[index].bloodGroup),
         onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    BloodDonarlistViewDetails(snapshot.data[index])),
+          );
           print('Blood Donoar  Details Item Click');
         },
       ),

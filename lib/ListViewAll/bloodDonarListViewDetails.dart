@@ -1,12 +1,13 @@
+import 'package:amar_daktar/Models/BloodDonarList.dart';
 import 'package:amar_daktar/Models/DoctorsList.dart';
 import 'package:amar_daktar/UI_Views/AppDrawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BloodDonarlistViewDetails extends StatelessWidget {
-  final DoctorsList doctorsList;
+  final BloodDonarList bloodDonarList;
 
-  BloodDonarlistViewDetails(this.doctorsList);
+  BloodDonarlistViewDetails(this.bloodDonarList);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,8 @@ class BloodDonarlistViewDetails extends StatelessWidget {
     return Scaffold(
       drawer: AppDrawer(currentRoute: '/dashboard'),
       appBar: AppBar(
-        title: Text(doctorsList.doctorName),
+        title: Text(
+            bloodDonarList.donarfastName + " " + bloodDonarList.donarlastName),
       ),
       body: Column(
         children: <Widget>[
@@ -49,7 +51,7 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(
                         left: 5.0, top: 7, right: 0, bottom: 7),
-                    child: Text("Doctor Name  :",
+                    child: Text("Blood Donar :",
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -57,7 +59,10 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                   flex: 4,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
-                    child: Text(doctorsList.doctorName,
+                    child: Text(
+                        bloodDonarList.donarfastName +
+                            " " +
+                            bloodDonarList.donarlastName,
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -74,7 +79,7 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(
                         left: 5.0, top: 7, right: 0, bottom: 7),
-                    child: Text("Designation  :",
+                    child: Text("Mobile :",
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -82,7 +87,7 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                   flex: 4,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
-                    child: Text(doctorsList.doctorDesignation,
+                    child: Text(bloodDonarList.donarPhone,
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -99,7 +104,7 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(
                         left: 5.0, top: 7, right: 0, bottom: 7),
-                    child: Text("Register No:",
+                    child: Text("Country:",
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -107,7 +112,7 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                   flex: 4,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
-                    child: Text(doctorsList.doctorRegNo,
+                    child: Text(bloodDonarList.donarConutry,
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -125,7 +130,7 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 5.0, top: 7, right: 0, bottom: 7),
                     child: Text(
-                      "Specification :",
+                      "Blood Group :",
                       style: TextStyle(color: Colors.white, fontSize: 18.5),
                     ),
                   ),
@@ -135,7 +140,7 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
                     child: Text(
-                      doctorsList.doctorSpecification,
+                      bloodDonarList.bloodGroup,
                       style: TextStyle(color: Colors.white, fontSize: 18.5),
                     ),
                   ),
@@ -145,37 +150,16 @@ class BloodDonarlistViewDetails extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        left: 20, right: 10, top: 10, bottom: 5),
-                    child: RaisedButton(
-                      onPressed: () {
-                        print("get Appointment");
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(3)),
-                      color: Colors.blue,
-                      child: Text(
-                        "get Appointment",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
               Container(
                 child: RaisedButton(
                   onPressed: () {
-                    print("Contact");
+                    print("Blood Donar Sign Up");
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(3)),
                   color: Colors.blue,
                   child: Text(
-                    " Contact",
+                    " Blood Donar Sign Up",
                     style: TextStyle(fontSize: 20.0),
                   ),
                 ),
