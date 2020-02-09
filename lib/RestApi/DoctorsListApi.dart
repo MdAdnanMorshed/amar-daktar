@@ -4,10 +4,11 @@ import 'package:amar_daktar/URL/Link.dart';
 import 'dart:convert';
 
 class DoctorsListApi {
-  List getDoctorsList = [];
+  //List getDoctorsList = [];
+  List<DoctorsList> getDoctorsList = [];
   bool status = false;
 
-  Future fetchData() async {
+  Future<List<DoctorsList>> fetchData() async {
     try {
       final data = await http.get(
         Links.getdoctorslistApiUrl,

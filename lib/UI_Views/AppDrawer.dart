@@ -9,22 +9,24 @@ class AppDrawer extends StatefulWidget {
   @override
   _AppDrawerState createState() => _AppDrawerState(current: this.currentRoute);
 }
-
+/*
 String name = '';
 String mail = '';
-String phone = '123';
+String phone = '018';
 String profileIamge = '123';
-
-bool isStudent = false;
-String version;
+*/
 
 class _AppDrawerState extends State<AppDrawer> {
-  String current;
-
+  String current = '';
+  String name = '';
+  String mail = '';
+  String phone = '018';
+  String profileIamge = '123';
+  String version;
   _AppDrawerState({this.current});
 
   @override
-  void initState()  {
+  void initState() {
     _getSharedPref();
     print('init');
     //_getBuildNumber();
@@ -146,175 +148,168 @@ class _AppDrawerState extends State<AppDrawer> {
     );
   }
 
-  void _getSharedPref() async {
+  _getSharedPref() async {
     print('sharedPref');
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
       name = prefs.getString('userName');
-      print(name);
       mail = prefs.getString('userEmail');
-      print(mail);
-      //phone = prefs.getString('userPhone');
-      //print(phone);
-      //profileIamge = prefs.getString('userIamge');
     });
   }
 
-
-
-Widget _createHeader() {
-  return DrawerHeader(
-      margin: EdgeInsets.zero,
-      padding: EdgeInsets.zero,
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.fill, image: AssetImage('images/bg.jpg'))),
-      child: Stack(children: <Widget>[
-        Positioned(
-          left: 16,
-          top: 40,
-          child: Container(
-            width: 70.0,
-            height: 70.0,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.blue,
-                width: 3,
-              ),
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage('images/profile.png'),
-              ),
+  Widget _createHeader() {
+    return DrawerHeader(
+        margin: EdgeInsets.zero,
+        padding: EdgeInsets.zero,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.fill, image: AssetImage('images/bg.jpg'))),
+        child: Stack(children: <Widget>[
+          Positioned(
+            left: 16,
+            top: 40,
+            child: Container(
+              width: 70.0,
+              height: 70.0,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.blue,
+                  width: 3,
+                ),
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage('images/profile.png'),
+                ),
 //                userPhoto ??
+              ),
             ),
           ),
-        ),
-        Positioned(
-            bottom: 20.0,
-            left: 16.0,
-            child: Text(name, //name
-                style: TextStyle(
-                    color: Colors.indigo,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.w500))),
-        Positioned(
-            bottom: 5.0,
-            left: 16.0,
-            child: Text(mail, //name
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w500))),
-      ]));
-}
+          Positioned(
+              bottom: 20.0,
+              left: 16.0,
+              child: Text('ade',
+                  style: TextStyle(
+                      color: Colors.indigo,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.w500))),
+          Positioned(
+              bottom: 5.0,
+              left: 16.0,
+              child: Text('adnande', //name
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w500))),
+        ]));
+  }
 
-Widget _createDrawerItem(
-    {IconData icon, String text, GestureTapCallback onTap}) {
-  return ListTile(
-    title: Row(
-      children: <Widget>[
-        Icon(icon),
-        Padding(
-          padding: EdgeInsets.only(left: 8.0, top: 10),
-          child: Text(text),
-        )
-      ],
-    ),
-    onTap: onTap,
-  );
-}
+  Widget _createDrawerItem(
+      {IconData icon, String text, GestureTapCallback onTap}) {
+    return ListTile(
+      title: Row(
+        children: <Widget>[
+          Icon(icon),
+          Padding(
+            padding: EdgeInsets.only(left: 8.0, top: 10),
+            child: Text(text),
+          )
+        ],
+      ),
+      onTap: onTap,
+    );
+  }
 
-Widget _createDrawerItem2(
-    {IconData icon,
-    String text,
-    GestureTapCallback onTap1,
-    GestureTapCallback onTap2,
-    GestureTapCallback onTap3,
-    GestureTapCallback onTap4}) {
-  return ExpansionTile(
-    initiallyExpanded: false,
+  Widget _createDrawerItem2(
+      {IconData icon,
+      String text,
+      GestureTapCallback onTap1,
+      GestureTapCallback onTap2,
+      GestureTapCallback onTap3,
+      GestureTapCallback onTap4}) {
+    return ExpansionTile(
+      initiallyExpanded: false,
 //    leading: Icon(icon),
-    title: Row(
+      title: Row(
+        children: <Widget>[
+          Icon(icon),
+          Padding(
+            padding: EdgeInsets.only(left: 8.0),
+            child: Text(text),
+          )
+        ],
+      ),
       children: <Widget>[
-        Icon(icon),
-        Padding(
-          padding: EdgeInsets.only(left: 8.0),
-          child: Text(text),
+        ListTile(
+          title: Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Icon(Icons.keyboard_arrow_right),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: Text('Doctors'),
+              )
+            ],
+          ),
+          onTap: onTap1,
+        ),
+        ListTile(
+          title: Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Icon(Icons.keyboard_arrow_right),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: Text('Hospitals'),
+              )
+            ],
+          ),
+          onTap: onTap2,
+        ),
+        ListTile(
+          title: Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Icon(Icons.keyboard_arrow_right),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: Text('Blood Donar'),
+              )
+            ],
+          ),
+          onTap: onTap3,
+        ),
+        ListTile(
+          title: Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Icon(Icons.keyboard_arrow_right),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: Text('Ambulances'),
+              )
+            ],
+          ),
+          onTap: onTap4,
         )
       ],
-    ),
-    children: <Widget>[
-      ListTile(
-        title: Row(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Icon(Icons.keyboard_arrow_right),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 8.0),
-              child: Text('Doctors'),
-            )
-          ],
-        ),
-        onTap: onTap1,
-      ),
-      ListTile(
-        title: Row(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Icon(Icons.keyboard_arrow_right),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 8.0),
-              child: Text('Hospitals'),
-            )
-          ],
-        ),
-        onTap: onTap2,
-      ),
-      ListTile(
-        title: Row(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Icon(Icons.keyboard_arrow_right),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 8.0),
-              child: Text('Blood Donar'),
-            )
-          ],
-        ),
-        onTap: onTap3,
-      ),
-      ListTile(
-        title: Row(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Icon(Icons.keyboard_arrow_right),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 8.0),
-              child: Text('Ambulances'),
-            )
-          ],
-        ),
-        onTap: onTap4,
-      )
-    ],
 //    onTap: onTap,
-  );
-}
+    );
+  }
 
-logut() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.remove('userToken');
-  await prefs.clear();
-  print("Logout");
-}
+  logut() async {
+    SharedPreferences prefs1 = await SharedPreferences.getInstance();
+    prefs1.remove('userToken');
+    await prefs1.clear();
+    print("Logout");
+  }
 }

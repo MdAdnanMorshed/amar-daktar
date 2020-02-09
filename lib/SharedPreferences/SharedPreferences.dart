@@ -1,1 +1,1 @@
-class SharedPreferences {}
+class erences {}

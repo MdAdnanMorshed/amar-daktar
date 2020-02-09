@@ -14,21 +14,175 @@ class DoctorlistViewDetails extends StatelessWidget {
     return Scaffold(
       drawer: AppDrawer(currentRoute: '/dashboard'),
       appBar: AppBar(
-        title: Text(doctorsList.doctorid),
+        title: Text(doctorsList.doctorName),
       ),
-      body: Container(
-        child: RaisedButton(
-          onPressed: () {
-            _showDialog(context);
-            print("get Appointment");
-          },
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
-          color: Colors.blue,
-          child: Text(
-            "get Appointment",
-            style: TextStyle(fontSize: 20.0),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(
+              10.0,
+            ),
+            child: Container(
+              margin: EdgeInsets.only(top: 50),
+              width: 150.0,
+              height: 150.0,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 1,
+                ),
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage('images/profile.png'),
+                ),
+              ),
+            ),
           ),
-        ),
+          Card(
+            margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+            color: Colors.blueGrey,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 7, right: 0, bottom: 7),
+                    child: Text("Doctor Name  :",
+                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                  ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15.0),
+                    child: Text(doctorsList.doctorName,
+                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+            color: Colors.blueGrey,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 7, right: 0, bottom: 7),
+                    child: Text("Designation  :",
+                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                  ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15.0),
+                    child: Text(doctorsList.doctorDesignation,
+                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+            color: Colors.blueGrey,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 7, right: 0, bottom: 7),
+                    child: Text("Register No:",
+                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                  ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15.0),
+                    child: Text(doctorsList.doctorRegNo,
+                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 5),
+            color: Colors.blueGrey,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 7, right: 0, bottom: 7),
+                    child: Text(
+                      "Specification :",
+                      style: TextStyle(color: Colors.white, fontSize: 18.5),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15.0),
+                    child: Text(
+                      doctorsList.doctorSpecification,
+                      style: TextStyle(color: Colors.white, fontSize: 18.5),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Row(
+            children: <Widget>[
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        left: 20, right: 10, top: 10, bottom: 5),
+                    child: RaisedButton(
+                      onPressed: () {
+                        print("get Appointment");
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(3)),
+                      color: Colors.blue,
+                      child: Text(
+                        "get Appointment",
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                child: RaisedButton(
+                  onPressed: () {
+                    print("Contact");
+                  },
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(3)),
+                  color: Colors.blue,
+                  child: Text(
+                    " Contact",
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
