@@ -5,10 +5,11 @@ import 'dart:convert';
 import 'dart:async';
 
 class HospitalListApi {
-  List getHospitalList = [];
+  //List getHospitalList = [];
+  List<HospitalList> getHospitalList = [];
   bool status = false;
 
-  Future fetchDataHospital() async {
+  Future<List<HospitalList>> fetchDataHospital() async {
     try {
       final data = await http.get(
         Links.gethospitalslistApiUrl,

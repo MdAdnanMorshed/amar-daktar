@@ -2,6 +2,8 @@ import 'package:amar_daktar/RestApi/AmbulancesListApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'ambulanceListViewDetails.dart';
+
 Widget ambulanceListView(BuildContext context) {
   return Container(
     color: Colors.white,
@@ -23,7 +25,7 @@ Widget ambulanceListView(BuildContext context) {
                   itemBuilder: (BuildContext context, int index) {
                     return index == 0
                         ? _searchbar(snapshot, index)
-                        : _listItem(snapshot, index);
+                        : _listItem(context, snapshot, index);
                   });
             }
           } else {
@@ -49,7 +51,7 @@ _searchbar(AsyncSnapshot snapshot, int index) {
   );
 }
 
-_listItem(AsyncSnapshot snapshot, int index) {
+_listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Card(
@@ -57,13 +59,18 @@ _listItem(AsyncSnapshot snapshot, int index) {
         leading:
             // path Name
             CircleAvatar(backgroundImage: AssetImage('images/profile.png')),
-        title: Text("Name: " +
-            snapshot.data[index].ambulanceName +
-            "Type :" +
+        title: Text(snapshot.data[index].ambulanceName +
+            "\n" +
             snapshot.data[index].ambulanceType),
-        subtitle: Text("Service :" + snapshot.data[index].ambulanceService),
+        subtitle: Text(snapshot.data[index].ambulanceService),
         onTap: () {
-          print('Ambulances Details Item Click');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    AmbulancelistViewDetails(snapshot.data[index])),
+          );
+          print('Blood Donoar  Details Item Click');
         },
       ),
     ),
