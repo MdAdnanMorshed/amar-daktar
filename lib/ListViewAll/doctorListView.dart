@@ -43,7 +43,7 @@ searchbar(AsyncSnapshot snapshot, int index) {
   return Padding(
     padding: EdgeInsets.all(8.0),
     child: TextField(
-        decoration: InputDecoration(hintText: "ambulance Searching "),
+        decoration: InputDecoration(hintText: "Doctor Searching "),
         onChanged: (text) {
           // Searching
         }),
@@ -70,6 +70,7 @@ listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
                 builder: (context) =>
                     DoctorlistViewDetails(snapshot.data[index])),
           );
+
           print('Blood Donoar  Details Item Click');
         },
       ),
