@@ -29,5 +29,5 @@ class Links {
       'http://amardaktar24.com/api/change-password';
 
   // Register
-  static String getRegisterApiUrl = ' http://amardaktar24.com/api/register';
+  static String getRegisterApiUrl = 'http://amardaktar24.com/api/register';
 }

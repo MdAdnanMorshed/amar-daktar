@@ -341,7 +341,7 @@ class _HireAmbulancesPageState extends State<HireAmbulances> {
                         child: RaisedButton(
                           color: Colors.green,
                           child: Text(
-                            "Send Message ",
+                            "Send Message",
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                           shape: RoundedRectangleBorder(
@@ -349,6 +349,7 @@ class _HireAmbulancesPageState extends State<HireAmbulances> {
                           ),
                           padding: EdgeInsets.symmetric(vertical: 12),
                           onPressed: () {
+                            //goTo();
                             print("I am send Message button !");
                           },
                         ),
