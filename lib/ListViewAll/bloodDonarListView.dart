@@ -67,7 +67,7 @@ _listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    BloodDonarlistViewDetails(snapshot.data[index])),
+                    BlooddonarlistViewDetails(snapshot.data[index])),
           );
           print('Blood Donoar  Details Item Click');
         },

@@ -1,13 +1,12 @@
 import 'package:amar_daktar/Models/BloodDonarList.dart';
-import 'package:amar_daktar/Models/DoctorsList.dart';
 import 'package:amar_daktar/UI_Views/AppDrawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class BloodDonarlistViewDetails extends StatelessWidget {
+class BlooddonarlistViewDetails extends StatelessWidget {
   final BloodDonarList bloodDonarList;
 
-  BloodDonarlistViewDetails(this.bloodDonarList);
+  BlooddonarlistViewDetails(this.bloodDonarList);
 
   @override
   Widget build(BuildContext context) {

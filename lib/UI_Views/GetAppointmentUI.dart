@@ -16,7 +16,6 @@ class _AppointmentPageState extends State<GetAppointment> {
 
   var imageURI;
   var image;
-
   // time picker
   DateTime _dateTime = new DateTime.now();
   TimeOfDay _time = new TimeOfDay.now();
@@ -27,11 +26,17 @@ class _AppointmentPageState extends State<GetAppointment> {
         initialDate: _dateTime,
         firstDate: new DateTime(2010),
         lastDate: new DateTime(2025));
-    if (picker != null && picker != _dateTime) {}
-    print('Date:${_dateTime.toString()}');
-    setState(() {
-      _dateTime = picker;
-    });
+
+    print(_dateTime.toString());
+
+    if (picker != null && picker != _dateTime) {
+      print('Date:${_dateTime.toString()}');
+      setState(() {
+        _dateTime = picker;
+      });
+    } else {
+      print('else');
+    }
   }
 
   @override
@@ -141,10 +146,10 @@ class _AppointmentPageState extends State<GetAppointment> {
                         onSaved: (value) => print(value),
                       ),
                       SizedBox(height: 15),
-
                       //Patients Status
                       Row(
                         children: <Widget>[
+                          /*
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
@@ -154,7 +159,6 @@ class _AppointmentPageState extends State<GetAppointment> {
                           ),
                           ButtonBar(
                             children: <Widget>[
-                              /*
                               //Male
                               ListTile(
                                 title: Text("Male"),
@@ -167,19 +171,10 @@ class _AppointmentPageState extends State<GetAppointment> {
                                     }),
                               ),
                               //Female
-                              ListTile(
-                                title: Text("Female"),
-                                leading: Radio(
-                                    value: 0,
-                                    groupValue: 1,
-                                    activeColor: Colors.green,
-                                    onChanged: (val) {
-                                      print('');
-                                    }),
-                              )
-                            */
                             ],
-                          )
+                          ),
+
+                          */
                         ],
                       ),
 
@@ -194,15 +189,15 @@ class _AppointmentPageState extends State<GetAppointment> {
                       SizedBox(height: 10),
                       TextFormField(
                         onTap: () {
-                          // selectDate(context);
-                          print("Date here");
+                          selectDate(context);
+                          print("get Appointment Date here");
                         },
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(15),
-                          hintText: "mm/dd/yyyy",
+                          hintText: '${_dateTime.toString()}',
                           border: OutlineInputBorder(),
                         ),
-                        keyboardType: TextInputType.emailAddress,
+                        //  keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value.isEmpty) return ("This is Required");
                           return null;
