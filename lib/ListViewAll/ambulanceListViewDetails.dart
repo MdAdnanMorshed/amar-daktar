@@ -1,6 +1,7 @@
 import 'package:amar_daktar/Models/AmbulancesList.dart';
 import 'package:amar_daktar/Models/DoctorsList.dart';
 import 'package:amar_daktar/UI_Views/AppDrawer.dart';
+import 'package:amar_daktar/UI_Views/HireAmbulanceUI.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -153,7 +154,7 @@ class AmbulancelistViewDetails extends StatelessWidget {
                   child: RaisedButton(
                     color: Colors.green,
                     child: Text(
-                      "Send Message",
+                      "Hire an Ambulances",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     shape: RoundedRectangleBorder(
@@ -161,8 +162,8 @@ class AmbulancelistViewDetails extends StatelessWidget {
                     ),
                     padding: EdgeInsets.symmetric(vertical: 12),
                     onPressed: () {
-                      // _SendMessage(context);
-                      print("I am Send Message button !");
+                      _Hire_Ambulances(context);
+                      print("I am Hire an Ambulances button !");
                     },
                   ),
                 ),
@@ -173,31 +174,36 @@ class AmbulancelistViewDetails extends StatelessWidget {
       ),
     );
   }
-}
 
-void _showDialog(BuildContext context) {
-  // flutter defined function
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      // return object of type Dialog
-      return AlertDialog(
-        title: new Text("Alert Dialog title"),
-        content: new Text("Alert Dialog body"),
-        actions: <Widget>[
-          TextField(
-            decoration: InputDecoration(
-                border: InputBorder.none, hintText: 'Enter a search term'),
-          ),
-          // usually buttons at the bottom of the dialog
-          new FlatButton(
-            child: new Text("Close"),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
+  void _showDialog(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Alert Dialog title"),
+          content: new Text("Alert Dialog body"),
+          actions: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                  border: InputBorder.none, hintText: 'Enter a search term'),
+            ),
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  _Hire_Ambulances(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => HireAmbulances()));
+  }
 }
