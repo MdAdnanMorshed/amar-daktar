@@ -16,6 +16,7 @@ class _RegisterPageState extends State<UserRegister> {
 
   var imageURI;
   var image;
+  String item;
 
   @override
   Widget build(BuildContext context) {
@@ -334,8 +335,7 @@ class _RegisterPageState extends State<UserRegister> {
                           padding: EdgeInsets.symmetric(vertical: 12),
                           onPressed: () {
                             print("Register is Click Button");
-                            UserRegisterApi('Morshed', '017',
-                                    'morshed@gmail.com', 'male', 'dfdf.jpg')
+                            UserRegisterApi()
                                 .fetchData()
                                 .whenComplete(Register);
                             print("I am signup button !");
