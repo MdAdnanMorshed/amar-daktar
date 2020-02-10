@@ -335,7 +335,7 @@ class _RegisterPageState extends State<UserRegister> {
                           padding: EdgeInsets.symmetric(vertical: 12),
                           onPressed: () {
                             print("Register is Click Button");
-                            UserRegisterApi()
+                            UserRegisterApi("Rocky", "0183", "rocky@gmail.com")
                                 .fetchData()
                                 .whenComplete(Register);
                             print("I am signup button !");
