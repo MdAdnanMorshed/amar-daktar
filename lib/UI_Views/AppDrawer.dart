@@ -4,24 +4,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AppDrawer extends StatefulWidget {
   final String currentRoute;
-
   const AppDrawer({Key key, this.currentRoute}) : super(key: key);
   @override
   _AppDrawerState createState() => _AppDrawerState(current: this.currentRoute);
 }
-/*
-String name = '';
-String mail = '';
-String phone = '018';
-String profileIamge = '123';
-*/
 
 class _AppDrawerState extends State<AppDrawer> {
   String current = '';
-  String name = '';
-  String mail = '';
+  String name = 'demo';
+  String mail = 'demo@gmail.com';
   String phone = '018';
-  String profileIamge = '123';
+  String profileIamge = 'spk45546';
   String version;
   _AppDrawerState({this.current});
 
@@ -148,16 +141,6 @@ class _AppDrawerState extends State<AppDrawer> {
     );
   }
 
-  _getSharedPref() async {
-    print('sharedPref');
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    setState(() {
-      name = prefs.getString('userName');
-      mail = prefs.getString('userEmail');
-    });
-  }
-
   Widget _createHeader() {
     return DrawerHeader(
         margin: EdgeInsets.zero,
@@ -189,7 +172,7 @@ class _AppDrawerState extends State<AppDrawer> {
           Positioned(
               bottom: 20.0,
               left: 16.0,
-              child: Text('ade',
+              child: Text(name,
                   style: TextStyle(
                       color: Colors.indigo,
                       fontSize: 15.0,
@@ -197,7 +180,7 @@ class _AppDrawerState extends State<AppDrawer> {
           Positioned(
               bottom: 5.0,
               left: 16.0,
-              child: Text('adnande', //name
+              child: Text('demo@gmail.com', //name
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 12.0,
@@ -304,6 +287,16 @@ class _AppDrawerState extends State<AppDrawer> {
       ],
 //    onTap: onTap,
     );
+  }
+
+  _getSharedPref() async {
+    print('sharedPref');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      name = prefs.getString('userName');
+      print('name:' + name);
+      //mail = prefs.getString('userEmail');
+    });
   }
 
   logut() async {

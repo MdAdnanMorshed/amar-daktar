@@ -23,9 +23,8 @@ class HospitalListApi {
       if (data.statusCode == 200) {
         status = jsonData['success'];
         print(status);
-        //getHospitalList.clear();
+        getHospitalList.clear();
         for (var item in jsonData['response']) {
-          print("ok");
           HospitalList gethospitallist = HospitalList(
             item['user_id'],
             item['hospital_chamber_name'],
@@ -42,10 +41,10 @@ class HospitalListApi {
           );
           print('Address:' + gethospitallist.hospitalChamberAddress);
           getHospitalList.add(gethospitallist);
-          print(getHospitalList);
-          return getHospitalList;
         }
-        print('ok1232');
+        print(getHospitalList.length);
+        print('okadnan');
+        return getHospitalList;
       } else {
         throw Exception('Error');
       }

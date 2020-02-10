@@ -52,7 +52,7 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 5.0, top: 7, right: 0, bottom: 7),
                     child: Text("Blood Donar :",
-                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
                   ),
                 ),
                 Expanded(
@@ -80,7 +80,7 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 5.0, top: 7, right: 0, bottom: 7),
                     child: Text("Mobile :",
-                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
                   ),
                 ),
                 Expanded(
@@ -88,7 +88,7 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
                     child: Text(bloodDonarList.donarPhone,
-                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
                   ),
                 ),
               ],
@@ -105,7 +105,7 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 5.0, top: 7, right: 0, bottom: 7),
                     child: Text("Country:",
-                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
                   ),
                 ),
                 Expanded(
@@ -131,7 +131,7 @@ class BloodDonarlistViewDetails extends StatelessWidget {
                         left: 5.0, top: 7, right: 0, bottom: 7),
                     child: Text(
                       "Blood Group :",
-                      style: TextStyle(color: Colors.white, fontSize: 18.5),
+                      style: TextStyle(color: Colors.white, fontSize: 12.5),
                     ),
                   ),
                 ),
@@ -148,19 +148,26 @@ class BloodDonarlistViewDetails extends StatelessWidget {
               ],
             ),
           ),
-          Row(
+          Column(
             children: <Widget>[
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    print("Blood Donar Sign Up");
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(3)),
-                  color: Colors.blue,
-                  child: Text(
-                    " Blood Donar Sign Up",
-                    style: TextStyle(fontSize: 20.0),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: RaisedButton(
+                    color: Colors.green,
+                    child: Text(
+                      "Blood Donar Sign Up",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    onPressed: () {
+                      // _SendMessage(context);
+                      print("I am Blood Donar Sign Up button !");
+                    },
                   ),
                 ),
               ),

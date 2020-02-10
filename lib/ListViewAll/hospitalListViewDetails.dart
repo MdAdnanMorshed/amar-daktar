@@ -51,7 +51,7 @@ class HospitallistViewDetails extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 5.0, top: 7, right: 0, bottom: 7),
                     child: Text("Hospital Name  :",
-                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
                   ),
                 ),
                 Expanded(
@@ -59,7 +59,7 @@ class HospitallistViewDetails extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
                     child: Text(hospitalList.hospitalChamberName,
-                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
                   ),
                 ),
               ],
@@ -84,7 +84,7 @@ class HospitallistViewDetails extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
                     child: Text(hospitalList.hospitalLicenseNo,
-                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
                   ),
                 ),
               ],
@@ -109,7 +109,7 @@ class HospitallistViewDetails extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
                     child: Text(hospitalList.hospitalStatus,
-                        style: TextStyle(color: Colors.white, fontSize: 18.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
                   ),
                 ),
               ],
@@ -127,7 +127,7 @@ class HospitallistViewDetails extends StatelessWidget {
                         left: 5.0, top: 7, right: 0, bottom: 7),
                     child: Text(
                       "About :",
-                      style: TextStyle(color: Colors.white, fontSize: 18.5),
+                      style: TextStyle(color: Colors.white, fontSize: 12.5),
                     ),
                   ),
                 ),
@@ -137,7 +137,7 @@ class HospitallistViewDetails extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 15.0),
                     child: Text(
                       hospitalList.hospitalAbout,
-                      style: TextStyle(color: Colors.white, fontSize: 18.5),
+                      style: TextStyle(color: Colors.white, fontSize: 12.5),
                     ),
                   ),
                 ),
@@ -146,27 +146,6 @@ class HospitallistViewDetails extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        left: 20, right: 10, top: 10, bottom: 5),
-                    child: RaisedButton(
-                      onPressed: () {
-                        print("get Appointment");
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(3)),
-                      color: Colors.blue,
-                      child: Text(
-                        "get Appointment",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
               Container(
                 child: RaisedButton(
                   onPressed: () {
@@ -177,7 +156,7 @@ class HospitallistViewDetails extends StatelessWidget {
                   color: Colors.blue,
                   child: Text(
                     " Contact",
-                    style: TextStyle(fontSize: 20.0),
+                    style: TextStyle(fontSize: 10.0),
                   ),
                 ),
               ),

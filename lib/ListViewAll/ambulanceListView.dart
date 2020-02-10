@@ -70,7 +70,7 @@ _listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
                 builder: (context) =>
                     AmbulancelistViewDetails(snapshot.data[index])),
           );
-          print('Blood Donoar  Details Item Click');
+          print('Ambulances  Details Item Click');
         },
       ),
     ),

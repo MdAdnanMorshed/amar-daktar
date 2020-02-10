@@ -65,7 +65,7 @@ listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
                 builder: (context) =>
                     DoctorlistViewDetails(snapshot.data[index])),
           );
-          print('Blood Donoar  Details Item Click');
+          print('Doctor  Details Item Click');
         },
       ),
     ),

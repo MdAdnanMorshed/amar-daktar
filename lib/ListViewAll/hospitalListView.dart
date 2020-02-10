@@ -35,7 +35,7 @@ Widget hospitalListView(BuildContext context) {
                               builder: (context) => HospitallistViewDetails(
                                   snapshot.data[index])),
                         );
-                        print('Blood Donoar  Details Item Click');
+                        print('Hospital  Details Item Click');
                       },
                     );
                   });

@@ -53,8 +53,8 @@ class MenuItemCard extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Icon(iCon, size: 50.0),
-                  Text(title, style: TextStyle(fontSize: 20.3)),
+                  Icon(iCon, size: 30.0),
+                  Text(title, style: TextStyle(fontSize: 15.3)),
                   Text("1250")
                 ],
               ),
