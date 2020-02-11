@@ -10,6 +10,7 @@ class AmbulanceListUI extends StatefulWidget {
 }
 
 class AmbulanceListPage extends State<AmbulanceListUI> {
+  var searchTxt = "";
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -20,7 +21,25 @@ class AmbulanceListPage extends State<AmbulanceListUI> {
         title: Text('Ambulance List'),
       ),
       body: Container(
-        child: ambulanceListView(context),
+        child: Column(children: <Widget>[
+          Container(
+            color: Colors.green,
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                  decoration: InputDecoration(hintText: "Doctor Searching "),
+                  onChanged: (text) {
+                    print(text);
+                    setState(() {
+                      searchTxt = text;
+                    });
+                  }),
+            ),
+          ),
+          Expanded(
+            child: ambulanceListView(context, searchTxt),
+          ),
+        ]),
       ),
     );
   }
