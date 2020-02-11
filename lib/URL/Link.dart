@@ -30,4 +30,12 @@ class Links {
 
   // Register
   static String getRegisterApiUrl = 'http://amardaktar24.com/api/register';
+
+  // Get Appointment
+  static String getAppointmentApiUrl =
+      'http://amardaktar24.com/api/appointment-by-patient-store';
+
+  // Doctor Contact
+  static String getContactDoctorApiUrl =
+      'http://amardaktar24.com/api/contact-with-doctor';
 }
