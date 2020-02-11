@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:amar_daktar/Models/LoginDataLocalSave.dart';
 import 'package:amar_daktar/URL/Link.dart';
 import 'package:http/http.dart' as http;
 
@@ -35,7 +34,7 @@ class UserRegisterApi {
       print(status);
       print(jsonData['response']['name']);
       //LoginDataLocalSave.fromJson(jsonData['response']);
-      print('Register is successfull ');
+      print('Register is successfull');
       return jsonData;
     } else {
       print('Register is not Successful');

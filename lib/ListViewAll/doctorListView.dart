@@ -3,36 +3,38 @@ import 'package:amar_daktar/RestApi/DoctorsListApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget doctorListView(BuildContext context) {
-  return Container(
-    color: Colors.white,
-    child: FutureBuilder(
-      future: DoctorsListApi().fetchData(),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          print(snapshot.data.length);
-          if (snapshot.data == null) {
-            return Container(
-              child: Center(
-                child: Text('Loading...'),
-              ),
-            );
-          } else {
-            return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return index == 0
-                      ? searchbar(snapshot, index)
-                      : listItem(context, snapshot, index);
-                });
-          }
+Widget doctorListView(BuildContext context, String searchTxt) {
+  return FutureBuilder(
+    future: DoctorsListApi().fetchData(),
+    builder: (BuildContext context, AsyncSnapshot snapshot) {
+      if (snapshot.connectionState == ConnectionState.done) {
+        print('snapshot.data.length' + snapshot.data.length.toString());
+        if (snapshot.hasData) {
+          return ListView.builder(
+              shrinkWrap: true,
+              itemCount: snapshot.data.length,
+              itemBuilder: (BuildContext context, int index) {
+                print('index' + index.toString());
+                String doctorName = snapshot.data[index].doctorName;
+                if (searchTxt == doctorName) {
+                  print('null');
+                  return listItem(context, snapshot, index);
+                } else if (doctorName
+                    .toLowerCase()
+                    .contains(searchTxt.toLowerCase())) {
+                  print('match');
+                  return listItem(context, snapshot, index);
+                } else {
+                  return Container();
+                }
+              });
         } else {
-          return Container(
-            child: LinearProgressIndicator(),
-          );
+          return CircularProgressIndicator();
         }
-      },
-    ),
+      } else {
+        return CircularProgressIndicator();
+      }
+    },
   );
 }
 
