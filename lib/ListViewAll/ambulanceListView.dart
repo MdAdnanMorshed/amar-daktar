@@ -1,7 +1,6 @@
 import 'package:amar_daktar/RestApi/AmbulancesListApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'ambulanceListViewDetails.dart';
 
 Widget ambulanceListView(BuildContext context, String searchTxt) {
