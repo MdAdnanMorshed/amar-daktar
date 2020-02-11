@@ -10,6 +10,7 @@ class BloodDonorUI extends StatefulWidget {
 }
 
 class BloodDonorListPage extends State<BloodDonorUI> {
+  var searchTxt = "";
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -21,7 +22,26 @@ class BloodDonorListPage extends State<BloodDonorUI> {
       ),
       body: Container(
         color: Colors.black12,
-        child: bloodDonarListView(context),
+        child: Column(children: <Widget>[
+          Container(
+            color: Colors.green,
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                  decoration:
+                      InputDecoration(hintText: "Blood Group Searching "),
+                  onChanged: (text) {
+                    print(text);
+                    setState(() {
+                      searchTxt = text;
+                    });
+                  }),
+            ),
+          ),
+          Expanded(
+            child: bloodDonarListView(context, searchTxt),
+          ),
+        ]),
       ),
     );
   }
