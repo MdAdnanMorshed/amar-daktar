@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:amar_daktar/RestApi/GetAppointmentApi.dart';
 import 'package:amar_daktar/RestApi/UserRegisterApi.dart';
 import 'package:amar_daktar/UI_Views/UserLogin.dart';
 import 'package:flutter/cupertino.dart';
@@ -245,6 +246,9 @@ class _AppointmentPageState extends State<GetAppointment> {
                           padding: EdgeInsets.symmetric(vertical: 12),
                           onPressed: () {
                             print("I am send button !");
+                            GetAppointmentApi()
+                                .fetchData()
+                                .whenComplete(confimMsg);
                           },
                         ),
                       ),
@@ -264,5 +268,10 @@ class _AppointmentPageState extends State<GetAppointment> {
       context,
       MaterialPageRoute(builder: (context) => UserLogin()),
     );
+  }
+
+  FutureOr confimMsg() {
+    // Dailog Successful Masseage
+    print('Get Appointment Done');
   }
 }

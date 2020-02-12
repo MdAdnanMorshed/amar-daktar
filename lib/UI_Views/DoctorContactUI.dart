@@ -18,6 +18,12 @@ class _ContactPageState extends State<ContactDoctor> {
   var imageURI;
   var image;
 
+  var doctorId = '';
+  var doctorName = '';
+  var doctorPhone = '';
+  var doctorMail = '';
+  var doctorMsg = '';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -56,6 +62,8 @@ class _ContactPageState extends State<ContactDoctor> {
                         keyboardType: TextInputType.text,
                         validator: (value) {
                           if (value.isEmpty) return ("This is Required");
+                          doctorName = value;
+                          print('doctorName:' + doctorName);
                           return null;
                         },
                         onSaved: (value) => print(value),
@@ -79,6 +87,7 @@ class _ContactPageState extends State<ContactDoctor> {
                         keyboardType: TextInputType.phone,
                         validator: (value) {
                           if (value.isEmpty) return ("This is Required");
+                          doctorPhone = value;
                           return null;
                         },
                         onSaved: (value) => print(value),
@@ -102,6 +111,7 @@ class _ContactPageState extends State<ContactDoctor> {
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value.isEmpty) return ("This is Required");
+                          doctorMail = value;
                           return null;
                         },
                         onSaved: (value) => print(value),
@@ -127,6 +137,7 @@ class _ContactPageState extends State<ContactDoctor> {
                         maxLines: 3,
                         validator: (value) {
                           if (value.isEmpty) return ("This is Required");
+                          doctorMsg = value;
                           return null;
                         },
                         onSaved: (value) => print(value),

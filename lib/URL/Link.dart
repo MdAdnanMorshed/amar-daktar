@@ -28,14 +28,14 @@ class Links {
   static String getChangePasswordApiUrl =
       'http://amardaktar24.com/api/change-password';
 
-  // Register
+  // Register done
   static String getRegisterApiUrl = 'http://amardaktar24.com/api/register';
 
-  // Get Appointment
+  // Get Appointment done
   static String getAppointmentApiUrl =
       'http://amardaktar24.com/api/appointment-by-patient-store';
 
-  // Doctor Contact
+  // Doctor Contact done
   static String getContactDoctorApiUrl =
       'http://amardaktar24.com/api/contact-with-doctor';
 }

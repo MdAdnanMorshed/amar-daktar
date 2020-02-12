@@ -17,7 +17,9 @@ class GetAppointmentApi {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     token = prefs.getString('userToken');
 
-    final response = await http.post(Links.loginApiUrl, headers: {
+    print('token:' + token);
+
+    final response = await http.post(Links.getAppointmentApiUrl, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     }, body: {
