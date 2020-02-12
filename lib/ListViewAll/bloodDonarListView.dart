@@ -8,7 +8,6 @@ Widget bloodDonarListView(BuildContext context, String searchtxt) {
     future: BloodDonarListApi().fetchData(),
     builder: (BuildContext context, AsyncSnapshot snapshot) {
       print(snapshot.toString());
-
       if (snapshot.connectionState == ConnectionState.done) {
         print('snapshot.data.length' + snapshot.data.length.toString());
         if (snapshot.hasData) {
@@ -42,7 +41,7 @@ Widget bloodDonarListView(BuildContext context, String searchtxt) {
 
 listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(5.0),
     child: Card(
       child: ListTile(
         leading: CircleAvatar(

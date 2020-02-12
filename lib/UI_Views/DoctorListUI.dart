@@ -25,10 +25,11 @@ class DoctorListPage extends State<DoctorListUI> {
         // child: doctorListView(context),
         child: Column(children: <Widget>[
           Container(
-            color: Colors.green,
+            color: Colors.greenAccent,
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(12.0),
               child: TextField(
+                  textAlign: TextAlign.center,
                   decoration: InputDecoration(hintText: "Doctor Searching "),
                   onChanged: (text) {
                     print(text);

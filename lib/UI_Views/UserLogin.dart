@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:amar_daktar/RestApi/UserLoginApi.dart';
 import 'package:amar_daktar/UI_Views/UserRegister.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,7 +18,7 @@ class _LoginPageState extends State<UserLogin> {
 
   @override
   Widget build(BuildContext context) {
-   // pr = new ProgressDialog(context);
+    // pr = new ProgressDialog(context);
 
     /*
     pr.style(
@@ -88,7 +86,7 @@ class _LoginPageState extends State<UserLogin> {
                   height: 45,
                   child: RaisedButton(
                     onPressed: () async {
-                    //  pr.show();
+                      //  pr.show();
                       UserLoginApi(uEmail, uPassword)
                           .fetchData()
                           .whenComplete(_goToDashboard);
@@ -116,7 +114,7 @@ class _LoginPageState extends State<UserLogin> {
     if (UserLoginApi.status == true) {
       print(UserLoginApi.status);
       print("Login is successfull!");
-    //  pr.hide();
+      //  pr.hide();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Dashboard()),

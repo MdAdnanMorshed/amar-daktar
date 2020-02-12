@@ -1,4 +1,4 @@
-class BlooddonorRegister {
+class BlooddonarRegister {
   String donorName;
   String donorlastName;
   String donorEmail;
@@ -14,7 +14,7 @@ class BlooddonorRegister {
   String donorCity;
   String donorArea;
 
-  BlooddonorRegister(
+  BlooddonarRegister(
       this.donorName,
       this.donorlastName,
       this.donorEmail,

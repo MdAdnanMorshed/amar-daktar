@@ -24,7 +24,8 @@ class UserLoginApi {
     if (response.statusCode == 200) {
       status = jsonData['success'];
       print(status);
-      print(jsonData['response']['name']);
+      print('name' + jsonData['response']['name']);
+      print('Email:' + jsonData['response']['email']);
       LoginDataLocalSave.fromJson(jsonData['response']);
       print('success');
       return jsonData;

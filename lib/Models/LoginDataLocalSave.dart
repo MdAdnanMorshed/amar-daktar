@@ -21,11 +21,11 @@ class LoginDataLocalSave {
     if (json.containsKey('name')) {
       uName = json['name'];
     }
-    if (json.containsKey('uEmail')) {
-      uEmail = json['uEmail'];
+    if (json.containsKey('email')) {
+      uEmail = json['email'];
     }
-    if (json.containsKey('uPhone')) {
-      uPhone = json['uPhone'];
+    if (json.containsKey('phone')) {
+      uPhone = json['phone'];
     }
     if (json.containsKey('uMailVarify')) {
       uMailVarify = json['uMailVarify'];

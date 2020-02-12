@@ -180,7 +180,7 @@ class _AppDrawerState extends State<AppDrawer> {
           Positioned(
               bottom: 5.0,
               left: 16.0,
-              child: Text('demo@gmail.com', //name
+              child: Text(mail, //name
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 12.0,
@@ -294,8 +294,9 @@ class _AppDrawerState extends State<AppDrawer> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       name = prefs.getString('userName');
-      print('name:' + name);
-      //mail = prefs.getString('userEmail');
+      print('SFname:' + name);
+      // mail = prefs.getString('userEmail');
+      // print('SFmail:' + mail);
     });
   }
 

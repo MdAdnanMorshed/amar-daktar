@@ -22,7 +22,10 @@ class ContectdoctorApi {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     token = prefs.getString('userToken');
 
-    final response = await http.post(Links.loginApiUrl, headers: {
+    print('contectToken:' + token);
+    print('End line');
+
+    final response = await http.post(Links.getContactDoctorApiUrl, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     }, body: {
@@ -35,7 +38,6 @@ class ContectdoctorApi {
 
     final jsonData = json.decode(response.body);
     print(jsonData);
-
     if (response.statusCode == 200) {
       status = jsonData['success'];
       print('contactStatus:' + status.toString());

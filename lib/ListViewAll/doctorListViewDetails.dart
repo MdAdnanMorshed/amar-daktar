@@ -25,9 +25,9 @@ class DoctorlistViewDetails extends StatelessWidget {
               10.0,
             ),
             child: Container(
-              margin: EdgeInsets.only(top: 50),
-              width: 150.0,
-              height: 150.0,
+              margin: EdgeInsets.only(top: 20),
+              width: 120.0,
+              height: 120.0,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.grey,
