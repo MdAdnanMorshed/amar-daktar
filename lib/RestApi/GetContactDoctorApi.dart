@@ -1,29 +1,35 @@
 import 'dart:convert';
-import 'package:amar_daktar/Models/LoginDataLocalSave.dart';
 import 'package:amar_daktar/URL/Link.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-class getContectDoctorApi {
+class ContectdoctorApi {
   String cDoctorId = "";
   String patientName = "";
-  String patientphone = "";
-  String patientemail = "";
+  String patientPhone = "";
+  String patientEmail = "";
   String patientMsg = "";
+
+  String token;
 
   static bool status = false;
   static String userType;
 
-  getContectDoctorApi(this.cDoctorId, this.patientName, this.patientphone,
-      this.patientemail, this.patientMsg);
+  ContectdoctorApi(this.cDoctorId, this.patientName, this.patientPhone,
+      this.patientEmail, this.patientMsg);
 
   Future fetchData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    token = prefs.getString('userToken');
+
     final response = await http.post(Links.loginApiUrl, headers: {
-      "Accept": "application/json"
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
     }, body: {
       'doctor_id': cDoctorId,
       'name': patientName,
-      'phn': patientphone,
-      'email': patientemail,
+      'phn': patientPhone,
+      'email': patientEmail,
       'msg': patientMsg,
     });
 
@@ -33,13 +39,13 @@ class getContectDoctorApi {
     if (response.statusCode == 200) {
       status = jsonData['success'];
       print('contactStatus:' + status.toString());
-
       print(jsonData['response']['name']);
-      LoginDataLocalSave.fromJson(jsonData['response']);
-      print('success');
+      // LoginDataLocalSave.fromJson(jsonData['response']);
+
+      print('contact is successful');
       return jsonData;
     } else {
-      print('200 else');
+      print('contact is not successful');
     }
   }
 }

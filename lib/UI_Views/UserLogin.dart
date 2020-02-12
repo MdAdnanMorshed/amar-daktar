@@ -1,7 +1,10 @@
+import 'dart:html';
+
 import 'package:amar_daktar/RestApi/UserLoginApi.dart';
 import 'package:amar_daktar/UI_Views/UserRegister.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'DashboardUI.dart';
 
 class UserLogin extends StatefulWidget {
@@ -13,9 +16,27 @@ class _LoginPageState extends State<UserLogin> {
   static String uEmail = '';
   static String uPassword = '';
   bool visible = false;
+  //ProgressDialog pr;
 
   @override
   Widget build(BuildContext context) {
+   // pr = new ProgressDialog(context);
+
+    /*
+    pr.style(
+        message: 'Please Waiting...',
+        borderRadius: 10.0,
+        backgroundColor: Colors.white,
+        progressWidget: CircularProgressIndicator(),
+        elevation: 10.0,
+        insetAnimCurve: Curves.easeInOut,
+        progress: 0.0,
+        maxProgress: 100.0,
+        progressTextStyle: TextStyle(
+            color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+        messageTextStyle: TextStyle(
+            color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600));
+*/
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -67,6 +88,7 @@ class _LoginPageState extends State<UserLogin> {
                   height: 45,
                   child: RaisedButton(
                     onPressed: () async {
+                    //  pr.show();
                       UserLoginApi(uEmail, uPassword)
                           .fetchData()
                           .whenComplete(_goToDashboard);
@@ -94,6 +116,7 @@ class _LoginPageState extends State<UserLogin> {
     if (UserLoginApi.status == true) {
       print(UserLoginApi.status);
       print("Login is successfull!");
+    //  pr.hide();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Dashboard()),
@@ -126,5 +149,3 @@ Widget _builRegister(BuildContext context) {
     child: Text("If you are not register? Register here"),
   );
 }
-
-// ---------------- Login Session --------

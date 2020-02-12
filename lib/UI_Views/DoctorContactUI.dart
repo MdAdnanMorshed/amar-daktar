@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:amar_daktar/RestApi/GetContactDoctorApi.dart';
 import 'package:amar_daktar/RestApi/UserRegisterApi.dart';
 import 'package:amar_daktar/UI_Views/UserLogin.dart';
 import 'package:flutter/cupertino.dart';
@@ -145,6 +146,11 @@ class _ContactPageState extends State<ContactDoctor> {
                           ),
                           padding: EdgeInsets.symmetric(vertical: 12),
                           onPressed: () {
+                            ContectdoctorApi("12", "nahid", "demo@gmail.com",
+                                    "01548", "Testing Conect Api")
+                                .fetchData()
+                                .whenComplete(confimMsg);
+
                             print("I am Submit button !");
                           },
                         ),
@@ -165,5 +171,13 @@ class _ContactPageState extends State<ContactDoctor> {
       context,
       MaterialPageRoute(builder: (context) => UserLogin()),
     );
+  }
+
+  FutureOr confimMsg() {
+    print('confirm Msg');
+//    Navigator.push(
+//      context,
+//      MaterialPageRoute(builder: (context) => UserLogin()),
+//    );
   }
 }
