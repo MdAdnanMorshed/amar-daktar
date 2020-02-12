@@ -1,4 +1,7 @@
+import 'package:amar_daktar/RestApi/PasswordChangeApiParent.dart';
+import 'package:amar_daktar/RestApi/UpdateProfileApi.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'AppDrawer.dart';
@@ -11,7 +14,7 @@ class UserProfile extends StatefulWidget {
 class _UserProfileState extends State<UserProfile> {
   bool enable = false;
   bool visible = true;
-  String studentId;
+  String patientId;
   String name;
   String birthday;
   String sex;
@@ -362,21 +365,11 @@ class _UserProfileState extends State<UserProfile> {
                             } else {
                               visible = true;
                             }
-                            /*
-                            UpdateProfileApi(
-                                    studentId,
-                                    name,
-                                    email,
-                                    phone,
-                                    birthday,
-                                    sex,
-                                    religion,
-                                    address,
-                                    bloodGroup)
+
+                            UpdateProfileApi()
                                 .updateData()
                                 .whenComplete(showToastForUser);
-                            getData(studentId);
-                            */
+                            //getData(studentId);
                           });
                         },
                         child: Material(
@@ -497,12 +490,22 @@ class _UserProfileState extends State<UserProfile> {
   getValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
-
     setState(() {
-      studentId = prefs.getString('STUDENT_ID');
+      parentId = prefs.getString('userId');
+      name = prefs.getString('userName');
+      email = prefs.getString('userEmail');
+      phone = prefs.getString('userPhone');
+
+      //prefs.getString('userRoleId');
+      //prefs.getString('userMailverfiy');
+      //prefs.getString('userIamge');
+      //token=prefs.getString('userToken');
     });
 
-    print('Studen Id:$studentId');
+    print('userId:$parentId');
+    print('userName:$name');
+    print('userEmail:$email');
+    print('userPhone:$phone');
     // getData(studentId);
   }
 
@@ -510,7 +513,7 @@ class _UserProfileState extends State<UserProfile> {
     Navigator.popAndPushNamed(context, '/dashboard');
     return null;
   }
-/*
+
   showToastForPassword() async {
     setState(() {
       textController1.clear();
@@ -556,7 +559,7 @@ class _UserProfileState extends State<UserProfile> {
       );
     }
   }
-*/
+
 /*
   getData(String id) async {
     await UserAccountApi(id)

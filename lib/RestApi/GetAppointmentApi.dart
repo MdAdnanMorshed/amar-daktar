@@ -11,8 +11,7 @@ class GetAppointmentApi {
   String problems = "";
   String doctorFees = "";
   static bool status = false;
-  String token;
-  static String userType;
+  static String token;
 
   Future fetchData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
