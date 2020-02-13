@@ -44,18 +44,21 @@ class MenuItemCard extends StatelessWidget {
     // TODO: implement build
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(5.0),
         child: Card(
+          color: Colors.red,
           child: InkWell(
             // onTap pass
-
             child: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
+                  Image.network(''
+                      // 'http://amardaktar24.com/uploads/profile/2020-01-23-5e293d67f372b.png',
+                      ),
                   Icon(iCon, size: 30.0),
-                  Text(title, style: TextStyle(fontSize: 15.3)),
-                  Text("1250")
+                  Text(title,
+                      style: TextStyle(fontSize: 15.3, color: Colors.white)),
                 ],
               ),
             ),

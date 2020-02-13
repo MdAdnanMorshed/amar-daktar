@@ -26,6 +26,7 @@ class UserLoginApi {
       print(status);
       print('name' + jsonData['response']['name']);
       print('Email:' + jsonData['response']['email']);
+      print('image name:' + jsonData['response']['pro_img']);
       LoginDataLocalSave.fromJson(jsonData['response']);
       print('success');
       return jsonData;

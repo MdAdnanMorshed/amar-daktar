@@ -45,7 +45,7 @@ class _LoginPageState extends State<UserLogin> {
             children: <Widget>[
               _builLoginHeader(),
               Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 50),
+                padding: const EdgeInsets.only(left: 50, right: 50, top: 40),
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
@@ -82,8 +82,8 @@ class _LoginPageState extends State<UserLogin> {
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: ButtonTheme(
-                  minWidth: 270,
-                  height: 45,
+                  minWidth: 250,
+                  height: 50,
                   child: RaisedButton(
                     onPressed: () async {
                       //  pr.show();
@@ -96,7 +96,10 @@ class _LoginPageState extends State<UserLogin> {
                     color: Colors.blue,
                     child: Text(
                       "Login",
-                      style: TextStyle(fontSize: 18.0),
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                   ),
                 ),
@@ -113,6 +116,7 @@ class _LoginPageState extends State<UserLogin> {
   _goToDashboard() async {
     if (UserLoginApi.status == true) {
       print(UserLoginApi.status);
+
       print("Login is successfull!");
       //  pr.hide();
       Navigator.push(
@@ -121,6 +125,7 @@ class _LoginPageState extends State<UserLogin> {
       );
     } else {
       print(UserLoginApi.status);
+      // Dailog  successful
       print("login is not successfull!");
     }
   }
@@ -130,7 +135,7 @@ class _LoginPageState extends State<UserLogin> {
 Widget _builLoginHeader() {
   return Image.asset(
     'images/amardaktar_logo.png',
-    width: 220,
+    width: 250,
   );
 }
 
@@ -143,7 +148,10 @@ Widget _builRegister(BuildContext context) {
       );
       print("Register Here");
     },
-    padding: const EdgeInsets.only(left: 60, right: 60, top: 5),
-    child: Text("If you are not register? Register here"),
+    padding: const EdgeInsets.only(left: 40, right: 40, top: 8),
+    child: Text(
+      "If you are not register? Register here",
+      style: TextStyle(fontSize: 12),
+    ),
   );
 }

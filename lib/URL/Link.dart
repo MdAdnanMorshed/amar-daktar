@@ -38,4 +38,7 @@ class Links {
   // Doctor Contact done
   static String getContactDoctorApiUrl =
       'http://amardaktar24.com/api/contact-with-doctor';
+
+  // profile Iamge Path
+  static String profilePath = "http://amardaktar24.com/uploads/profile/";
 }

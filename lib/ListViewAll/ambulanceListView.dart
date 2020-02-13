@@ -1,49 +1,43 @@
 import 'package:amar_daktar/RestApi/AmbulancesListApi.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'ambulanceListViewDetails.dart';
 
 Widget ambulanceListView(BuildContext context, String searchTxt) {
-  return Container(
-    color: Colors.white,
-    child: Container(
-      child: FutureBuilder(
-        future: AmbulancesListApi().fetchData(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          print(snapshot.toString());
+  return FutureBuilder(
+    future: AmbulancesListApi().fetchData(),
+    builder: (BuildContext context, AsyncSnapshot snapshot) {
+      print(snapshot.toString());
 
-          if (snapshot.connectionState == ConnectionState.done) {
-            print('snapshot.data.length' + snapshot.data.length.toString());
-            if (snapshot.hasData) {
-              return Expanded(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      print('index' + index.toString());
-                      String ambulance = snapshot.data[index].ambulanceName;
-                      if (searchTxt == ambulance) {
-                        print('null');
-                        return listItem(context, snapshot, index);
-                      } else if (ambulance
-                          .toLowerCase()
-                          .contains(searchTxt.toLowerCase())) {
-                        print('match');
-                        return listItem(context, snapshot, index);
-                      } else {
-                        return Container();
-                      }
-                    }),
-              );
-            } else {
-              return CircularProgressIndicator();
-            }
-          } else {
-            return CircularProgressIndicator();
-          }
-        },
-      ),
-    ),
+      if (snapshot.connectionState == ConnectionState.done) {
+        print('snapshot.data.length' + snapshot.data.length.toString());
+        if (snapshot.hasData) {
+          return Expanded(
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  print('index' + index.toString());
+                  String ambulance = snapshot.data[index].ambulanceName;
+                  if (searchTxt == ambulance) {
+                    print('null');
+                    return listItem(context, snapshot, index);
+                  } else if (ambulance
+                      .toLowerCase()
+                      .contains(searchTxt.toLowerCase())) {
+                    print('match');
+                    return listItem(context, snapshot, index);
+                  } else {
+                    return Container();
+                  }
+                }),
+          );
+        } else {
+          return CircularProgressIndicator();
+        }
+      } else {
+        return CircularProgressIndicator();
+      }
+    },
   );
 }
 

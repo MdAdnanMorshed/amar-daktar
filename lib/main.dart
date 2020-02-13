@@ -29,7 +29,7 @@ class MyDoctorApps extends StatelessWidget {
         '/ambulanceList': (context) => AmbulanceListUI(),
         '/bloodDonor': (context) => BloodDonorUI(),
         '/About': (context) => About(),
-        '/contact': (context) => Contact(),
+        '/Contact': (context) => Contact(),
         '/': (context) => SplashScreen(),
       },
     );

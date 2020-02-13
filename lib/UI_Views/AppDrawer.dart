@@ -1,3 +1,4 @@
+import 'package:amar_daktar/URL/Link.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +15,8 @@ class _AppDrawerState extends State<AppDrawer> {
   String name = 'demo';
   String mail = 'demo@gmail.com';
   String phone = '018';
-  String profileIamge = 'spk45546';
+  String profileIamge = '';
+  String profilePicUrl = '';
   String version;
   _AppDrawerState({this.current});
 
@@ -163,7 +165,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   fit: BoxFit.fill,
-                  image: AssetImage('images/profile.png'),
+                  image: NetworkImage(profilePicUrl),
                 ),
 //                userPhoto ??
               ),
@@ -294,6 +296,12 @@ class _AppDrawerState extends State<AppDrawer> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       name = prefs.getString('userName');
+      profileIamge = prefs.getString('userIamge');
+      mail = prefs.getString('userEmail');
+
+      String profilePicUrl =
+          'http://amardaktar24.com/uploads/profile/${profileIamge}';
+      print("Image " + profilePicUrl);
       print('SFname:' + name);
       // mail = prefs.getString('userEmail');
       // print('SFmail:' + mail);
