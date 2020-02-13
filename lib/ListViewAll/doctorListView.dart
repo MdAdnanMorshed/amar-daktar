@@ -10,24 +10,26 @@ Widget doctorListView(BuildContext context, String searchTxt) {
       if (snapshot.connectionState == ConnectionState.done) {
         print('snapshot.data.length' + snapshot.data.length.toString());
         if (snapshot.hasData) {
-          return ListView.builder(
-              shrinkWrap: true,
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index) {
-                print('index' + index.toString());
-                String doctorName = snapshot.data[index].doctorName;
-                if (searchTxt == doctorName) {
-                  print('null');
-                  return listItem(context, snapshot, index);
-                } else if (doctorName
-                    .toLowerCase()
-                    .contains(searchTxt.toLowerCase())) {
-                  print('match');
-                  return listItem(context, snapshot, index);
-                } else {
-                  return Container();
-                }
-              });
+          return Expanded(
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  print('index' + index.toString());
+                  String doctorName = snapshot.data[index].doctorName;
+                  if (searchTxt == doctorName) {
+                    print('null');
+                    return listItem(context, snapshot, index);
+                  } else if (doctorName
+                      .toLowerCase()
+                      .contains(searchTxt.toLowerCase())) {
+                    print('match');
+                    return listItem(context, snapshot, index);
+                  } else {
+                    return Container();
+                  }
+                }),
+          );
         } else {
           return CircularProgressIndicator();
         }

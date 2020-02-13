@@ -38,7 +38,7 @@ class BloodDonorListPage extends State<BloodDonorUI> {
                   }),
             ),
           ),
-          Expanded(
+          Container(
             child: bloodDonarListView(context, searchTxt),
           ),
         ]),

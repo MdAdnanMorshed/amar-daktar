@@ -10,24 +10,27 @@ Widget hospitalListView(BuildContext context, String searchtxt) {
       if (snapshot.connectionState == ConnectionState.done) {
         print('snapshot.data.length' + snapshot.data.length.toString());
         if (snapshot.hasData) {
-          return ListView.builder(
-              shrinkWrap: true,
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index) {
-                print('index' + index.toString());
-                String hospitalName = snapshot.data[index].hospitalChamberName;
-                if (searchtxt == hospitalName) {
-                  print('null');
-                  return listItem(context, snapshot, index);
-                } else if (hospitalName
-                    .toLowerCase()
-                    .contains(searchtxt.toLowerCase())) {
-                  print('match');
-                  return listItem(context, snapshot, index);
-                } else {
-                  return Container();
-                }
-              });
+          return Expanded(
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  print('index' + index.toString());
+                  String hospitalName =
+                      snapshot.data[index].hospitalChamberName;
+                  if (searchtxt == hospitalName) {
+                    print('null');
+                    return listItem(context, snapshot, index);
+                  } else if (hospitalName
+                      .toLowerCase()
+                      .contains(searchtxt.toLowerCase())) {
+                    print('match');
+                    return listItem(context, snapshot, index);
+                  } else {
+                    return Container();
+                  }
+                }),
+          );
         } else {
           return CircularProgressIndicator();
         }

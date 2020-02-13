@@ -39,7 +39,7 @@ class DoctorListPage extends State<DoctorListUI> {
                   }),
             ),
           ),
-          Expanded(
+          Container(
             child: doctorListView(context, searchTxt),
           ),
         ]),

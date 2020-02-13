@@ -15,7 +15,8 @@ Widget ambulanceListView(BuildContext context, String searchTxt) {
           if (snapshot.connectionState == ConnectionState.done) {
             print('snapshot.data.length' + snapshot.data.length.toString());
             if (snapshot.hasData) {
-              return ListView.builder(
+              return Expanded(
+                  child:ListView.builder(
                   shrinkWrap: true,
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {

@@ -11,24 +11,26 @@ Widget bloodDonarListView(BuildContext context, String searchtxt) {
       if (snapshot.connectionState == ConnectionState.done) {
         print('snapshot.data.length' + snapshot.data.length.toString());
         if (snapshot.hasData) {
-          return ListView.builder(
-              shrinkWrap: true,
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index) {
-                print('index' + index.toString());
-                String bloodName = snapshot.data[index].bloodGroup;
-                if (searchtxt == bloodName) {
-                  print('null');
-                  return listItem(context, snapshot, index);
-                } else if (bloodName
-                    .toLowerCase()
-                    .contains(searchtxt.toLowerCase())) {
-                  print('match');
-                  return listItem(context, snapshot, index);
-                } else {
-                  return Container();
-                }
-              });
+          return Expanded(
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  print('index' + index.toString());
+                  String bloodName = snapshot.data[index].bloodGroup;
+                  if (searchtxt == bloodName) {
+                    print('null');
+                    return listItem(context, snapshot, index);
+                  } else if (bloodName
+                      .toLowerCase()
+                      .contains(searchtxt.toLowerCase())) {
+                    print('match');
+                    return listItem(context, snapshot, index);
+                  } else {
+                    return Container();
+                  }
+                }),
+          );
         } else {
           return CircularProgressIndicator();
         }

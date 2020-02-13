@@ -36,7 +36,7 @@ class AmbulanceListPage extends State<AmbulanceListUI> {
                   }),
             ),
           ),
-          Expanded(
+          Container(
             child: ambulanceListView(context, searchTxt),
           ),
         ]),

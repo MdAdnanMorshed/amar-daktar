@@ -39,7 +39,7 @@ class HospitalListPage extends State<HospitalListUI> {
                   }),
             ),
           ),
-          Expanded(
+          Container(
             child: hospitalListView(context, searchTxt),
           ),
         ]),
