@@ -25,18 +25,21 @@ class HospitalListPage extends State<HospitalListUI> {
       ),
       body: Container(
         child: Column(children: <Widget>[
-          Container(
-            color: Colors.green,
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: TextField(
-                  decoration: InputDecoration(hintText: "Doctor Searching "),
-                  onChanged: (text) {
-                    print(text);
-                    setState(() {
-                      searchTxt = text;
-                    });
-                  }),
+          Center(
+            child: Container(
+              color: Colors.green,
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: TextField(
+                    decoration:
+                        InputDecoration(hintText: "Hospital Searching "),
+                    onChanged: (text) {
+                      print(text);
+                      setState(() {
+                        searchTxt = text;
+                      });
+                    }),
+              ),
             ),
           ),
           Container(

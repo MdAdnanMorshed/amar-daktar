@@ -24,12 +24,12 @@ class BlooddonarlistViewDetails extends StatelessWidget {
               10.0,
             ),
             child: Container(
-              margin: EdgeInsets.only(top: 50),
-              width: 150.0,
-              height: 150.0,
+              margin: EdgeInsets.only(top: 10),
+              width: 120.0,
+              height: 120.0,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.grey,
+                  color: Colors.indigo,
                   width: 1,
                 ),
                 shape: BoxShape.circle,
@@ -49,19 +49,69 @@ class BlooddonarlistViewDetails extends StatelessWidget {
                   flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 5.0, top: 7, right: 0, bottom: 7),
+                        left: 10.0, top: 5, right: 0, bottom: 7),
                     child: Text("Blood Donar :",
-                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 14.5)),
                   ),
                 ),
                 Expanded(
                   flex: 4,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
+                    padding: EdgeInsets.symmetric(vertical: 10),
                     child: Text(
                         bloodDonarList.donarfastName +
                             " " +
                             bloodDonarList.donarlastName,
+                        style: TextStyle(color: Colors.white, fontSize: 15.5)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+            color: Colors.blueGrey,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 7, right: 0, bottom: 7),
+                    child: Text("Mobile :",
+                        style: TextStyle(color: Colors.white, fontSize: 14.5)),
+                  ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Text(bloodDonarList.donarPhone,
+                        style: TextStyle(color: Colors.white, fontSize: 15.5)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+            color: Colors.blueGrey,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 5, right: 0, bottom: 7),
+                    child: Text("Email Address:",
+                        style: TextStyle(color: Colors.white, fontSize: 14.5)),
+                  ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Text(bloodDonarList.donarEmail,
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
                 ),
@@ -77,40 +127,15 @@ class BlooddonarlistViewDetails extends StatelessWidget {
                   flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 5.0, top: 7, right: 0, bottom: 7),
-                    child: Text("Mobile :",
-                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
-                  ),
-                ),
-                Expanded(
-                  flex: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
-                    child: Text(bloodDonarList.donarPhone,
-                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Card(
-            margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-            color: Colors.blueGrey,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 5.0, top: 7, right: 0, bottom: 7),
+                        left: 10.0, top: 5, right: 0, bottom: 7),
                     child: Text("Country:",
-                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 14.5)),
                   ),
                 ),
                 Expanded(
                   flex: 4,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
+                    padding: EdgeInsets.symmetric(vertical: 10),
                     child: Text(bloodDonarList.donarConutry,
                         style: TextStyle(color: Colors.white, fontSize: 18.5)),
                   ),
@@ -119,7 +144,7 @@ class BlooddonarlistViewDetails extends StatelessWidget {
             ),
           ),
           Card(
-            margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 5),
+            margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
             color: Colors.blueGrey,
             child: Row(
               children: <Widget>[
@@ -127,20 +152,49 @@ class BlooddonarlistViewDetails extends StatelessWidget {
                   flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 5.0, top: 7, right: 0, bottom: 7),
+                        left: 10.0, top: 5, right: 0, bottom: 5),
                     child: Text(
                       "Blood Group :",
-                      style: TextStyle(color: Colors.white, fontSize: 12.5),
+                      style: TextStyle(color: Colors.white, fontSize: 14.5),
                     ),
                   ),
                 ),
                 Expanded(
                   flex: 4,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
+                    padding: EdgeInsets.symmetric(vertical: 10),
                     child: Text(
                       bloodDonarList.bloodGroup,
-                      style: TextStyle(color: Colors.white, fontSize: 18.5),
+                      style: TextStyle(color: Colors.white, fontSize: 15.5),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+            color: Colors.blueGrey,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 5, right: 0, bottom: 5),
+                    child: Text(
+                      "Blood Donar Address :",
+                      style: TextStyle(color: Colors.white, fontSize: 14.5),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Text(
+                      bloodDonarList.bloodDonarAddress,
+                      style: TextStyle(color: Colors.white, fontSize: 15.5),
                     ),
                   ),
                 ),
@@ -160,7 +214,7 @@ class BlooddonarlistViewDetails extends StatelessWidget {
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(7),
                     ),
                     padding: EdgeInsets.symmetric(vertical: 12),
                     onPressed: () {

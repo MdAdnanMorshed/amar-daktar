@@ -21,16 +21,14 @@ class DoctorlistViewDetails extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(
-              10.0,
-            ),
+            padding: const EdgeInsets.all(10.0),
             child: Container(
-              margin: EdgeInsets.only(top: 20),
-              width: 120.0,
-              height: 120.0,
+              margin: EdgeInsets.only(top: 5),
+              width: 110.0,
+              height: 110.0,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.grey,
+                  color: Colors.blue,
                   width: 1,
                 ),
                 shape: BoxShape.circle,
@@ -50,24 +48,24 @@ class DoctorlistViewDetails extends StatelessWidget {
                   flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 5.0, top: 7, right: 0, bottom: 7),
+                        left: 10.0, top: 7, right: 0, bottom: 7),
                     child: Text("Doctor Name  :",
-                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 14.5)),
                   ),
                 ),
                 Expanded(
                   flex: 4,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
+                    padding: EdgeInsets.symmetric(vertical: 12),
                     child: Text(doctorsList.doctorName,
-                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 15.5)),
                   ),
                 ),
               ],
             ),
           ),
           Card(
-            margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+            margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
             color: Colors.blueGrey,
             child: Row(
               children: <Widget>[
@@ -75,24 +73,49 @@ class DoctorlistViewDetails extends StatelessWidget {
                   flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 5.0, top: 7, right: 0, bottom: 7),
+                        left: 10.0, top: 7, right: 0, bottom: 7),
+                    child: Text("Doctor Gender  :",
+                        style: TextStyle(color: Colors.white, fontSize: 14.5)),
+                  ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    child: Text(doctorsList.doctorGender,
+                        style: TextStyle(color: Colors.white, fontSize: 15.5)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
+            color: Colors.blueGrey,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 7, right: 0, bottom: 7),
                     child: Text("Designation  :",
-                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 14.5)),
                   ),
                 ),
                 Expanded(
                   flex: 4,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
+                    padding: EdgeInsets.symmetric(vertical: 12),
                     child: Text(doctorsList.doctorDesignation,
-                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
+                        style: TextStyle(color: Colors.white, fontSize: 15.5)),
                   ),
                 ),
               ],
             ),
           ),
           Card(
-            margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+            margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
             color: Colors.blueGrey,
             child: Row(
               children: <Widget>[
@@ -100,45 +123,49 @@ class DoctorlistViewDetails extends StatelessWidget {
                   flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 5.0, top: 7, right: 0, bottom: 7),
-                    child: Text("Register No:",
-                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
-                  ),
-                ),
-                Expanded(
-                  flex: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
-                    child: Text(doctorsList.doctorRegNo,
-                        style: TextStyle(color: Colors.white, fontSize: 12.5)),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Card(
-            margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 5),
-            color: Colors.blueGrey,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 5.0, top: 7, right: 0, bottom: 7),
+                        left: 10.0, top: 10, right: 0, bottom: 7),
                     child: Text(
-                      "Specification :",
-                      style: TextStyle(color: Colors.white, fontSize: 12.5),
+                      "Register No :",
+                      style: TextStyle(color: Colors.white, fontSize: 14.5),
                     ),
                   ),
                 ),
                 Expanded(
                   flex: 4,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    child: Text(
+                      doctorsList.doctorRegNo,
+                      style: TextStyle(color: Colors.white, fontSize: 15.5),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
+            color: Colors.blueGrey,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 10, right: 0, bottom: 7),
+                    child: Text(
+                      "Specification :",
+                      style: TextStyle(color: Colors.white, fontSize: 14.5),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12),
                     child: Text(
                       doctorsList.doctorSpecification,
-                      style: TextStyle(color: Colors.white, fontSize: 12.5),
+                      style: TextStyle(color: Colors.white, fontSize: 15.5),
                     ),
                   ),
                 ),
@@ -149,17 +176,18 @@ class DoctorlistViewDetails extends StatelessWidget {
             children: <Widget>[
               //Appointment
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.only(
+                    left: 10.0, top: 2, right: 10, bottom: 5),
                 child: SizedBox(
                   width: double.infinity,
                   child: RaisedButton(
-                    color: Colors.green,
+                    color: Colors.indigo,
                     child: Text(
                       "Get Appointment",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(7),
                     ),
                     padding: EdgeInsets.symmetric(vertical: 12),
                     onPressed: () {
@@ -171,17 +199,18 @@ class DoctorlistViewDetails extends StatelessWidget {
               ),
               // Contact
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.only(
+                    left: 10.0, top: 2, right: 10, bottom: 5),
                 child: SizedBox(
                   width: double.infinity,
                   child: RaisedButton(
-                    color: Colors.green,
+                    color: Colors.indigo,
                     child: Text(
                       "Contact",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(7),
                     ),
                     padding: EdgeInsets.symmetric(vertical: 12),
                     onPressed: () {
