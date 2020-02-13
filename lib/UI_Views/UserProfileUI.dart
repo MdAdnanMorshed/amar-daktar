@@ -16,6 +16,7 @@ class _UserProfileState extends State<UserProfile> {
   bool visible = true;
   String patientId;
   String name;
+  String profile;
   String birthday;
   String sex;
   String religion;
@@ -50,7 +51,7 @@ class _UserProfileState extends State<UserProfile> {
       onWillPop: _onBackPressed,
       child: Scaffold(
         drawer: AppDrawer(currentRoute: '/dashboard'),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.cyan,
         appBar: AppBar(
           title: Text('User Profile'),
         ),
@@ -73,8 +74,8 @@ class _UserProfileState extends State<UserProfile> {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: NetworkImage(userPhoto ??
-                            'https://image.flaticon.com/icons/png/512/149/149071.png'),
+                        image: NetworkImage(
+                            'http://amardaktar24.com/uploads/profile/${profile}'),
                       ),
                     ),
                   ),
@@ -491,18 +492,15 @@ class _UserProfileState extends State<UserProfile> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     setState(() {
-      parentId = prefs.getString('userId');
+      //parentId = prefs.getString('userId');
       name = prefs.getString('userName');
       email = prefs.getString('userEmail');
       phone = prefs.getString('userPhone');
-
-      //prefs.getString('userRoleId');
-      //prefs.getString('userMailverfiy');
-      //prefs.getString('userIamge');
+      profile = prefs.getString('userIamge');
       //token=prefs.getString('userToken');
     });
 
-    print('userId:$parentId');
+    //print('userId:$parentId');
     print('userName:$name');
     print('userEmail:$email');
     print('userPhone:$phone');
