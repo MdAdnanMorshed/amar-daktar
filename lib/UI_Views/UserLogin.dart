@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'DashboardUI.dart';
 
+ProgressDialog pr;
+
 class UserLogin extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -14,13 +16,12 @@ class _LoginPageState extends State<UserLogin> {
   static String uEmail = '';
   static String uPassword = '';
   bool visible = false;
-  //ProgressDialog pr;
+  ProgressDialog pr;
 
   @override
   Widget build(BuildContext context) {
-    // pr = new ProgressDialog(context);
+    pr = new ProgressDialog(context);
 
-    /*
     pr.style(
         message: 'Please Waiting...',
         borderRadius: 10.0,
@@ -34,7 +35,7 @@ class _LoginPageState extends State<UserLogin> {
             color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
         messageTextStyle: TextStyle(
             color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600));
-*/
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -86,7 +87,7 @@ class _LoginPageState extends State<UserLogin> {
                   height: 50,
                   child: RaisedButton(
                     onPressed: () async {
-                      //  pr.show();
+                      pr.show();
                       UserLoginApi(uEmail, uPassword)
                           .fetchData()
                           .whenComplete(_goToDashboard);

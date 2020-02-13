@@ -24,7 +24,11 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             Padding(
                 padding: EdgeInsets.only(top: 50),
-                child: Container(width: 100, child: LinearProgressIndicator()))
+                child: Container(
+                    width: 100,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+                    )))
           ],
         ),
       ),
@@ -45,31 +49,28 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     bool userId = prefs.containsKey('userId');
-    bool role=prefs.containsKey('userRoleId');
+    bool role = prefs.containsKey('userRoleId');
     bool name = prefs.containsKey('userName');
 
     print('UserName');
     print(name);
-    String mail =prefs.getString('userEmail');
+    String mail = prefs.getString('userEmail');
     print(mail);
 
-    bool phone =prefs.containsKey('userPhone');
+    bool phone = prefs.containsKey('userPhone');
     //prefs.containsKey('userMailverfiy');
-   // prefs.containsKey('userIamge');
+    // prefs.containsKey('userIamge');
 
     bool token = prefs.containsKey('userToken');
 
     if (token) {
       print('Deshboard session');
       print(token);
-        Navigator.pushReplacementNamed(context, '/dashboard');
+      Navigator.pushReplacementNamed(context, '/dashboard');
     } else {
       print('login session');
       Navigator.pushReplacementNamed(context, '/user_login');
       print(" go to the login Page ");
     }
-
-
-
   }
 }
