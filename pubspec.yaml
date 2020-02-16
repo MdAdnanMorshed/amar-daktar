@@ -25,11 +25,7 @@ flutter:
   uses-material-design: true
 
   assets:
-   - images/amardaktar_logo.png
-   - images/profile.png
-   - images/bg.jpg
-   - images/pencil.png
-   - images/doctorpic.jpg
+  - images/
 
 
   # fonts:

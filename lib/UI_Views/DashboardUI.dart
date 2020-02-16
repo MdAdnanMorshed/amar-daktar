@@ -1,7 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'AmbulancesListUI.dart';
 import 'AppDrawer.dart';
+import 'BloodDonorListUI.dart';
+import 'DoctorListUI.dart';
+import 'HospitalsListUI.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -11,22 +17,27 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      drawer: AppDrawer(currentRoute: '/dashboard'),
-      appBar: AppBar(
-        title: Text("DeshBoard"),
-        backgroundColor: Colors.blue,
-      ),
-      body: Container(
-        child: GridView.count(
-          crossAxisCount: 2,
-          children: <Widget>[
-            MenuItemCard('Doctors', Icons.home),
-            MenuItemCard('Hospitals', Icons.home),
-            MenuItemCard('Blood Donars', Icons.home),
-            MenuItemCard('Ambulances', Icons.home),
-          ],
+    return WillPopScope(
+      onWillPop: () {
+        return null;
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        drawer: AppDrawer(currentRoute: '/dashboard'),
+        appBar: AppBar(
+          title: Text("DeshBoard"),
+          backgroundColor: Colors.blue,
+        ),
+        body: Container(
+          child: GridView.count(
+            crossAxisCount: 2,
+            children: <Widget>[
+              MenuItemCard('Doctors', Image.asset('images/doctorpic.png')),
+              MenuItemCard('Hospitals', Image.asset('images/hospitalpic.png')),
+              MenuItemCard('Blood Donars', Image.asset('images/bloodpic.png')),
+              MenuItemCard('Ambulances', Image.asset('images/ambulances.png')),
+            ],
+          ),
         ),
       ),
     );
@@ -35,9 +46,9 @@ class _DashboardState extends State<Dashboard> {
 
 // ignore: must_be_immutable
 class MenuItemCard extends StatelessWidget {
-  MenuItemCard(this.title, this.iCon);
+  MenuItemCard(this.title, this.pic);
   String title;
-  IconData iCon;
+  Image pic;
 
   @override
   Widget build(BuildContext context) {
@@ -48,15 +59,26 @@ class MenuItemCard extends StatelessWidget {
         child: Card(
           color: Colors.red,
           child: InkWell(
-            // onTap pass
+            onTap: () {
+              if (title == 'Doctors') {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DoctorListUI()));
+              } else if (title == 'Hospitals') {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HospitalListUI()));
+              } else if (title == 'Blood Donars') {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => BloodDonorUI()));
+              } else {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AmbulanceListUI()));
+              }
+            },
             child: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Image.network(''
-                      // 'http://amardaktar24.com/uploads/profile/2020-01-23-5e293d67f372b.png',
-                      ),
-                  Icon(iCon, size: 30.0),
+                  SizedBox(width: 120, height: 120, child: pic),
                   Text(title,
                       style: TextStyle(fontSize: 15.3, color: Colors.white)),
                 ],
