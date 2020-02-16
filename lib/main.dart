@@ -18,6 +18,7 @@ class MyDoctorApps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primaryColor: Colors.red),
       debugShowCheckedModeBanner: false,
       routes: {
         '/user_login': (context) => UserLogin(),
