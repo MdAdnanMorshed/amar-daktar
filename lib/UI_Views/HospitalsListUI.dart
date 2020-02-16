@@ -1,7 +1,4 @@
 import 'package:amar_daktar/ListViewAll/hospitalListView.dart';
-import 'package:amar_daktar/ListViewAll/hospitalListViewDetails.dart';
-import 'package:amar_daktar/Models/HospitalsList.dart';
-import 'package:amar_daktar/RestApi/HospitalListApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,10 +24,11 @@ class HospitalListPage extends State<HospitalListUI> {
         child: Column(children: <Widget>[
           Center(
             child: Container(
-              color: Colors.green,
+              color: Colors.greenAccent,
               child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: TextField(
+                    textAlign: TextAlign.center,
                     decoration:
                         InputDecoration(hintText: "Hospital Searching "),
                     onChanged: (text) {

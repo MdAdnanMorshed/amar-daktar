@@ -4,10 +4,10 @@ import 'package:amar_daktar/URL/Link.dart';
 import 'dart:convert';
 
 class AmbulancesListApi {
-  List getAmbulancesList = [];
+  List<AmbulanceList> getAmbulancesList = [];
   bool status = false;
 
-  Future fetchData() async {
+  Future<List<AmbulanceList>> fetchData() async {
     try {
       final data = await http.get(
         Links.getambulanceslistApiUrl,
@@ -38,13 +38,15 @@ class AmbulancesListApi {
           );
           getAmbulancesList.add(getambulanceslist);
         }
+        print('retrun');
         print(getAmbulancesList);
-
         return getAmbulancesList;
       } else {
+        print('ammbualnce error:');
         throw Exception('Error');
       }
     } catch (e) {
+      print('ammbualnce error:' + e.toString());
       throw Exception(e.toString());
     }
   }

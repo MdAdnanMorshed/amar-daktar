@@ -8,7 +8,8 @@ Widget hospitalListView(BuildContext context, String searchtxt) {
     future: HospitalListApi().fetchDataHospital(),
     builder: (BuildContext context, AsyncSnapshot snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
-        print('snapshot.data.length' + snapshot.data.length.toString());
+        print(
+            'hospital snapshot.data.length' + snapshot.data.length.toString());
         if (snapshot.hasData) {
           return Expanded(
             child: ListView.builder(
@@ -19,7 +20,7 @@ Widget hospitalListView(BuildContext context, String searchtxt) {
                   String hospitalName =
                       snapshot.data[index].hospitalChamberName;
                   if (searchtxt == hospitalName) {
-                    print('null');
+                    print('hos_null');
                     return listItem(context, snapshot, index);
                   } else if (hospitalName
                       .toLowerCase()
@@ -35,6 +36,7 @@ Widget hospitalListView(BuildContext context, String searchtxt) {
           return CircularProgressIndicator();
         }
       } else {
+        print('length null!');
         return CircularProgressIndicator();
       }
     },
@@ -49,10 +51,8 @@ listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
         leading:
             // path Name
             CircleAvatar(backgroundImage: AssetImage('images/profile.png')),
-        title: Text(snapshot.data[index].ambulanceName +
-            "\n" +
-            snapshot.data[index].ambulanceType),
-        subtitle: Text(snapshot.data[index].ambulanceService),
+        title: Text(snapshot.data[index].hospitalChamberName),
+        subtitle: Text(snapshot.data[index].hospitalChamberAddress),
         onTap: () {
           Navigator.push(
             context,

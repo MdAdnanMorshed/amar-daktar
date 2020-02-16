@@ -9,7 +9,7 @@ class HospitalList {
   String hospitalChamberAddress;
   String hospitalService;
   String hospitalLicenseNo;
-  //String hospitalImage;
+  String hospitalImage;
   String hospitalStatus;
 
   HospitalList(
@@ -23,5 +23,6 @@ class HospitalList {
       this.hospitalChamberAddress,
       this.hospitalService,
       this.hospitalLicenseNo,
+      this.hospitalImage,
       this.hospitalStatus);
 }

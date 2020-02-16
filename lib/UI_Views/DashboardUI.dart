@@ -34,7 +34,8 @@ class _DashboardState extends State<Dashboard> {
             children: <Widget>[
               MenuItemCard('Doctors', Image.asset('images/doctorpic.png')),
               MenuItemCard('Hospitals', Image.asset('images/hospitalpic.png')),
-              MenuItemCard('Blood Donars', Image.asset('images/bloodpic.png')),
+              MenuItemCard(
+                  'Blood Donars', Image.asset('images/bloodpicture.png')),
               MenuItemCard('Ambulances', Image.asset('images/ambulances.png')),
             ],
           ),

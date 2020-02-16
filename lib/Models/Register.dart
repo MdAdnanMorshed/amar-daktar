@@ -1,4 +1,15 @@
 class Register {
+  /*
+  name,
+  email,
+  password,
+  role_id
+  city_id,
+  pro_img,
+  gender,
+  phone
+   */
+
   String uName;
   String uPhone;
   String uEmail;

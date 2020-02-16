@@ -4,26 +4,32 @@ import 'package:amar_daktar/URL/Link.dart';
 import 'package:http/http.dart' as http;
 
 class UserRegisterApi {
-  String uName = "";
-  String uPhone = "";
-  String uEmail = "";
-  String uPassword = "";
-  String uGender = "";
+  String uName = " ";
+  String uEmail = " ";
+  String uPassword = " ";
+  String roleId = "4";
+  String cityId = " ";
   String uImage = "";
+  String uGender = "";
+  String uPhone = " ";
+
   static bool status = false;
 
-  UserRegisterApi(this.uName, this.uPhone, this.uEmail); // constructor
+  UserRegisterApi(this.uName, this.uEmail, this.uPassword, this.roleId,
+      this.cityId, this.uImage, this.uGender, this.uPhone);
 
   Future fetchData() async {
     final response = await http.post(Links.getRegisterApiUrl, headers: {
       "Accept": "application/json"
     }, body: {
       'name': uName,
-      'phone': uPhone,
       'email': uEmail,
+      'password': uPassword,
+      'role_id': roleId,
+      'city_id': cityId,
+      'pro_img': uImage,
       'gender': uGender,
-      'password': uPassword
-      //'pro_img': uImage
+      'phone': uPhone,
     });
 
     final jsonData = json.decode(response.body);

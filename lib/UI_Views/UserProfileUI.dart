@@ -51,7 +51,7 @@ class _UserProfileState extends State<UserProfile> {
       onWillPop: _onBackPressed,
       child: Scaffold(
         drawer: AppDrawer(currentRoute: '/dashboard'),
-        backgroundColor: Colors.cyan,
+        backgroundColor: Colors.blueGrey,
         appBar: AppBar(
           title: Text('User Profile'),
         ),
@@ -471,7 +471,7 @@ class _UserProfileState extends State<UserProfile> {
                     */
                   },
                   textColor: Colors.white,
-                  color: Colors.lightBlue,
+                  color: Colors.red,
                   child: Container(
                     padding: EdgeInsets.all(10),
                     child: Text(

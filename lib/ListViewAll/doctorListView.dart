@@ -8,7 +8,7 @@ Widget doctorListView(BuildContext context, String searchTxt) {
     future: DoctorsListApi().fetchData(),
     builder: (BuildContext context, AsyncSnapshot snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
-        print('snapshot.data.length' + snapshot.data.length.toString());
+        print(' doctor snapshot.data.length' + snapshot.data.length.toString());
         if (snapshot.hasData) {
           return Expanded(
             child: ListView.builder(

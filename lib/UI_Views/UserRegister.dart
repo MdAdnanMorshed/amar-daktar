@@ -14,7 +14,15 @@ class UserRegister extends StatefulWidget {
 class _RegisterPageState extends State<UserRegister> {
   var _formKey = GlobalKey<FormState>();
 
-  var nameName, email, phone;
+  String nameName;
+  String email;
+  String phone;
+  String password;
+  String role_id = "4";
+  String city_id;
+  String pro_img;
+  String gender;
+
   var imageURI;
   var image;
   String item;
@@ -336,7 +344,8 @@ class _RegisterPageState extends State<UserRegister> {
                           padding: EdgeInsets.symmetric(vertical: 12),
                           onPressed: () {
                             print("Register is Click Button");
-                            UserRegisterApi(nameName, phone, email)
+                            UserRegisterApi(nameName, email, password, role_id,
+                                    city_id, imageURI, gender, phone)
                                 .fetchData()
                                 .whenComplete(Register);
                             print("I am signup button !");

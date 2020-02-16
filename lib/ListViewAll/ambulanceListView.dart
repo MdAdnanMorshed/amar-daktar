@@ -9,7 +9,8 @@ Widget ambulanceListView(BuildContext context, String searchTxt) {
       print(snapshot.toString());
 
       if (snapshot.connectionState == ConnectionState.done) {
-        print('snapshot.data.length' + snapshot.data.length.toString());
+        print('Ambulances snapshot.data.length :' +
+            snapshot.data.length.toString());
         if (snapshot.hasData) {
           return Expanded(
             child: ListView.builder(
@@ -49,10 +50,8 @@ listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
         leading:
             // path Name
             CircleAvatar(backgroundImage: AssetImage('images/profile.png')),
-        title: Text(snapshot.data[index].ambulanceName +
-            "\n" +
-            snapshot.data[index].ambulanceType),
-        subtitle: Text(snapshot.data[index].ambulanceService),
+        title: Text(snapshot.data[index].ambulanceName),
+        subtitle: Text(snapshot.data[index].ambulanceType),
         onTap: () {
           Navigator.push(
             context,

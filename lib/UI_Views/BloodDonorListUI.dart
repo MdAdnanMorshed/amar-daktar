@@ -15,10 +15,10 @@ class BloodDonorListPage extends State<BloodDonorUI> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white,
       drawer: AppDrawer(currentRoute: '/dashboard'),
       appBar: AppBar(
-        title: Text('Blood Donor List'),
+        title: Text('Blood Donar List'),
       ),
       body: Container(
         color: Colors.black12,
@@ -28,6 +28,7 @@ class BloodDonorListPage extends State<BloodDonorUI> {
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
+                  textAlign: TextAlign.center,
                   decoration:
                       InputDecoration(hintText: "Blood Group Searching "),
                   onChanged: (text) {
