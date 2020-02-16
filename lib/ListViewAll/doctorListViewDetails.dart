@@ -188,7 +188,7 @@ class DoctorlistViewDetails extends StatelessWidget {
                   child: SizedBox(
                     width: double.infinity,
                     child: RaisedButton(
-                      color: Colors.indigo,
+                      color: Colors.red,
                       child: Text(
                         "Get Appointment",
                         style: TextStyle(color: Colors.white, fontSize: 20),
@@ -211,7 +211,7 @@ class DoctorlistViewDetails extends StatelessWidget {
                   child: SizedBox(
                     width: double.infinity,
                     child: RaisedButton(
-                      color: Colors.indigo,
+                      color: Colors.red,
                       child: Text(
                         "Contact",
                         style: TextStyle(color: Colors.white, fontSize: 20),

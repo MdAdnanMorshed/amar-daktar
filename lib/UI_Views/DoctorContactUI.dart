@@ -185,6 +185,7 @@ class _ContactPageState extends State<ContactDoctor> {
   }
 
   FutureOr confimMsg() {
+    // SnackBarPage();
     print('confirm Msg');
 //    Navigator.push(
 //      context,

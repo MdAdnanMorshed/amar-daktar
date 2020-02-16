@@ -14,6 +14,7 @@ class UserRegister extends StatefulWidget {
 class _RegisterPageState extends State<UserRegister> {
   var _formKey = GlobalKey<FormState>();
 
+  var nameName, email, phone;
   var imageURI;
   var image;
   String item;
@@ -58,7 +59,7 @@ class _RegisterPageState extends State<UserRegister> {
                           if (value.isEmpty) return ("This is Required");
                           return null;
                         },
-                        onSaved: (value) => print(value),
+                        onSaved: (value) => nameName = value,
                       ),
                       SizedBox(height: 15),
                       // Email
@@ -81,7 +82,7 @@ class _RegisterPageState extends State<UserRegister> {
                           if (value.isEmpty) return ("This is Required");
                           return null;
                         },
-                        onSaved: (value) => print(value),
+                        onSaved: (value) => email = value,
                       ),
                       SizedBox(height: 15),
                       // Phone Number
@@ -104,7 +105,7 @@ class _RegisterPageState extends State<UserRegister> {
                           if (value.isEmpty) return ("This is Required");
                           return null;
                         },
-                        onSaved: (value) => print(value),
+                        onSaved: (value) => phone = value,
                       ),
                       SizedBox(height: 15),
                       // Sign Up Type
@@ -324,7 +325,7 @@ class _RegisterPageState extends State<UserRegister> {
                       SizedBox(
                         width: double.infinity,
                         child: RaisedButton(
-                          color: Colors.green,
+                          color: Colors.red,
                           child: Text(
                             "Sign Me Up",
                             style: TextStyle(color: Colors.white, fontSize: 20),
@@ -335,7 +336,7 @@ class _RegisterPageState extends State<UserRegister> {
                           padding: EdgeInsets.symmetric(vertical: 12),
                           onPressed: () {
                             print("Register is Click Button");
-                            UserRegisterApi("Rocky", "0183", "rocky@gmail.com")
+                            UserRegisterApi(nameName, phone, email)
                                 .fetchData()
                                 .whenComplete(Register);
                             print("I am signup button !");

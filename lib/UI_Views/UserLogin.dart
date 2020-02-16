@@ -32,9 +32,9 @@ class _LoginPageState extends State<UserLogin> {
         progress: 0.0,
         maxProgress: 100.0,
         progressTextStyle: TextStyle(
-            color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+            color: Colors.black, fontSize: 10.0, fontWeight: FontWeight.w400),
         messageTextStyle: TextStyle(
-            color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600));
+            color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.w600));
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -94,7 +94,7 @@ class _LoginPageState extends State<UserLogin> {
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
-                    color: Colors.blue,
+                    color: Colors.red,
                     child: Text(
                       "Login",
                       style: TextStyle(
@@ -119,7 +119,7 @@ class _LoginPageState extends State<UserLogin> {
       print(UserLoginApi.status);
 
       print("Login is successfull!");
-      //  pr.hide();
+      pr.hide();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Dashboard()),
@@ -127,6 +127,7 @@ class _LoginPageState extends State<UserLogin> {
     } else {
       print(UserLoginApi.status);
       // Dailog  successful
+
       print("login is not successfull!");
     }
   }

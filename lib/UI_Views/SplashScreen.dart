@@ -25,7 +25,8 @@ class _SplashScreenState extends State<SplashScreen> {
             Padding(
                 padding: EdgeInsets.only(top: 50),
                 child: Container(
-                    width: 100,
+                    width: 70,
+                    height: 70,
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
                     )))
