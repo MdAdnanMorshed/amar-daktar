@@ -164,7 +164,8 @@ class _AppDrawerState extends State<AppDrawer> {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   fit: BoxFit.fill,
-                  image: NetworkImage(profilePicUrl),
+                  image: NetworkImage(
+                      'http://amardaktar24.com/uploads/profile/${profileIamge}'),
                 ),
 //                userPhoto ??
               ),

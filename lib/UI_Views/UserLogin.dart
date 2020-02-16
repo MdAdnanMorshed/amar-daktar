@@ -127,7 +127,7 @@ class _LoginPageState extends State<UserLogin> {
     } else {
       print(UserLoginApi.status);
       // Dailog  successful
-
+      pr.hide();
       print("login is not successfull!");
     }
   }
