@@ -46,7 +46,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 onTap: () {
                   print('dashboard');
                   print(current);
-                  if (current != '/dashboard') {
+                  if (current == '/dashboard') {
                     Navigator.popAndPushNamed(context, '/dashboard');
                   } else {
                     Navigator.of(context).pop();

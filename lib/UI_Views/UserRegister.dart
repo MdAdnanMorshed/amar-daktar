@@ -23,6 +23,8 @@ class _RegisterPageState extends State<UserRegister> {
   String pro_img;
   String gender;
 
+  var selectedCity;
+
   var imageURI;
   var image;
   String item;
@@ -68,7 +70,10 @@ class _RegisterPageState extends State<UserRegister> {
                           print('NameTF:' + nameName);
                         },
                         validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
+                          if (value.isEmpty)
+                            return ("This is Required");
+                          else if (value.length == 5)
+                            return ("Length should be 4");
                           return null;
                         },
                       ),
@@ -271,8 +276,11 @@ class _RegisterPageState extends State<UserRegister> {
                           ),
                         ],
                         // value: "Doctor",
-                        onChanged: (type) {
-                          print(type);
+                        value: selectedCity,
+                        onChanged: (city) {
+                          setState(() {
+                            selectedCity = city;
+                          });
                         },
                         validator: (value) {
                           if (value.isEmpty) return ("This is Required");
@@ -350,28 +358,6 @@ class _RegisterPageState extends State<UserRegister> {
                           padding: EdgeInsets.symmetric(vertical: 12),
                           onPressed: () {
                             print("Register is Click Button");
-                            print('name:' +
-                                nameName +
-                                "\n" +
-                                'mail:' +
-                                email +
-                                "\n" +
-                                'password:' +
-                                password +
-                                "\n" +
-                                'role id:' +
-                                role_id +
-                                "\n" +
-                                'city:' +
-                                city_id +
-                                "\n" +
-                                'gender:' +
-                                gender +
-                                "\n" +
-                                'phone:' +
-                                phone +
-                                "\n");
-
                             UserRegisterApi(nameName, email, password, role_id,
                                     city_id, imageURI, gender, phone)
                                 .fetchData()
@@ -402,6 +388,7 @@ class _RegisterPageState extends State<UserRegister> {
   // Camera
   Future getImageFromCamera() async {
     image = await ImagePicker.pickImage(source: ImageSource.camera);
+    _showImage(image, context);
     setState(() {
       imageURI = image;
     });
@@ -410,10 +397,54 @@ class _RegisterPageState extends State<UserRegister> {
   //Gallery
   Future getImageFromGallery() async {
     image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    _showImage(image, context);
     setState(() {
       imageURI = image;
       print(imageURI);
     });
+  }
+
+  _showImage(var image, BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return Container(
+            margin: EdgeInsets.all(20),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              appBar: AppBar(
+                backgroundColor: Colors.white,
+                automaticallyImplyLeading: false,
+                title:
+                    Text("Preview...", style: TextStyle(color: Colors.black)),
+                actions: <Widget>[
+                  // OK Button
+                  IconButton(
+                    icon:
+                        Icon(Icons.check_circle, color: Colors.green, size: 30),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  // Cancle Button
+                  IconButton(
+                    icon: Icon(Icons.cancel, color: Colors.red, size: 30),
+                    onPressed: () {
+                      // setState(() {
+                      //   _image = null;
+                      //   imageName = null;
+                      // });
+
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+              body: SingleChildScrollView(
+                  child: Container(child: Image.file(image))),
+            ),
+          );
+        });
   }
 
   FutureOr Register() {
