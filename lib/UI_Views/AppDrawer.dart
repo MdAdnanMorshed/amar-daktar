@@ -1,3 +1,4 @@
+import 'package:amar_daktar/RestApi/UserLoginApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -122,6 +123,8 @@ class _AppDrawerState extends State<AppDrawer> {
                 icon: Icons.exit_to_app,
                 text: 'Log Out',
                 onTap: () {
+                  UserLoginApi.status = false;
+                  print('flag' + UserLoginApi.status.toString());
                   // removeShared();
                   logut();
                   Navigator.of(context).pushNamedAndRemoveUntil(

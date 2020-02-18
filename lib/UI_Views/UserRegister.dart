@@ -63,11 +63,14 @@ class _RegisterPageState extends State<UserRegister> {
                           border: OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.text,
+                        onSaved: (value) {
+                          nameName = value;
+                          print('NameTF:' + nameName);
+                        },
                         validator: (value) {
                           if (value.isEmpty) return ("This is Required");
                           return null;
                         },
-                        onSaved: (value) => nameName = value,
                       ),
                       SizedBox(height: 15),
                       // Email
@@ -86,11 +89,14 @@ class _RegisterPageState extends State<UserRegister> {
                           border: OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.emailAddress,
+                        onSaved: (value) {
+                          email = value;
+                          print('emailTF:' + email);
+                        },
                         validator: (value) {
                           if (value.isEmpty) return ("This is Required");
                           return null;
                         },
-                        onSaved: (value) => email = value,
                       ),
                       SizedBox(height: 15),
                       // Phone Number
@@ -166,11 +172,11 @@ class _RegisterPageState extends State<UserRegister> {
                         ),
                         keyboardType: TextInputType.text,
                         obscureText: true,
+                        onSaved: (value) => print(value),
                         validator: (value) {
                           if (value.isEmpty) return ("This is Required");
                           return null;
                         },
-                        onSaved: (value) => print(value),
                       ),
                       SizedBox(height: 15),
                       // Confirm Password
@@ -344,6 +350,28 @@ class _RegisterPageState extends State<UserRegister> {
                           padding: EdgeInsets.symmetric(vertical: 12),
                           onPressed: () {
                             print("Register is Click Button");
+                            print('name:' +
+                                nameName +
+                                "\n" +
+                                'mail:' +
+                                email +
+                                "\n" +
+                                'password:' +
+                                password +
+                                "\n" +
+                                'role id:' +
+                                role_id +
+                                "\n" +
+                                'city:' +
+                                city_id +
+                                "\n" +
+                                'gender:' +
+                                gender +
+                                "\n" +
+                                'phone:' +
+                                phone +
+                                "\n");
+
                             UserRegisterApi(nameName, email, password, role_id,
                                     city_id, imageURI, gender, phone)
                                 .fetchData()

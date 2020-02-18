@@ -1,5 +1,8 @@
 import 'package:amar_daktar/UI_Views/AboutComapnyUI.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'InternetCheck/InterntCheckConection.dart';
 import 'UI_Views/AmbulancesListUI.dart';
 import 'UI_Views/BloodDonorListUI.dart';
 import 'UI_Views/ContactUI.dart';
@@ -16,22 +19,42 @@ void main() => runApp(MyDoctorApps());
 class MyDoctorApps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.red),
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/user_login': (context) => UserLogin(),
-        '/user_register': (context) => UserRegister(),
-        '/dashboard': (context) => Dashboard(),
-        '/user_profile': (context) => UserProfile(),
-        '/hospitalList': (context) => HospitalListUI(),
-        '/doctorList': (context) => DoctorListUI(),
-        '/ambulanceList': (context) => AmbulanceListUI(),
-        '/bloodDonor': (context) => BloodDonorUI(),
-        '/About': (context) => About(),
-        '/Contact': (context) => Contact(),
-        '/': (context) => SplashScreen(),
-      },
+    return StreamProvider<ConnectivityResult>.value(
+      value: CheckInternet().connectivityResult.stream,
+      child: MaterialApp(
+        theme: ThemeData(primaryColor: Colors.red),
+        debugShowCheckedModeBanner: false,
+        routes: {
+          '/user_login': (context) => UserLogin(),
+          '/user_register': (context) => UserRegister(),
+          '/dashboard': (context) => Dashboard(),
+          '/user_profile': (context) => UserProfile(),
+          '/hospitalList': (context) => HospitalListUI(),
+          '/doctorList': (context) => DoctorListUI(),
+          '/ambulanceList': (context) => AmbulanceListUI(),
+          '/bloodDonor': (context) => BloodDonorUI(),
+          '/About': (context) => About(),
+          '/Contact': (context) => Contact(),
+          '/': (context) => SplashScreen(),
+        },
+      ),
     );
+    // return MaterialApp(
+    //   theme: ThemeData(primaryColor: Colors.red),
+    //   debugShowCheckedModeBanner: false,
+    //   routes: {
+    //     '/user_login': (context) => UserLogin(),
+    //     '/user_register': (context) => UserRegister(),
+    //     '/dashboard': (context) => Dashboard(),
+    //     '/user_profile': (context) => UserProfile(),
+    //     '/hospitalList': (context) => HospitalListUI(),
+    //     '/doctorList': (context) => DoctorListUI(),
+    //     '/ambulanceList': (context) => AmbulanceListUI(),
+    //     '/bloodDonor': (context) => BloodDonorUI(),
+    //     '/About': (context) => About(),
+    //     '/Contact': (context) => Contact(),
+    //     '/': (context) => SplashScreen(),
+    //   },
+    // );
   }
 }
