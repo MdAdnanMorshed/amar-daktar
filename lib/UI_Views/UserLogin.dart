@@ -72,15 +72,6 @@ class _LoginPageState extends State<UserLogin> {
                           if (value.isEmpty) return ("This is Required");
                           return null;
                         },
-
-//                  onChanged: (text) {
-//                    uEmail = text;
-//                  },
-//                  validator: (value) {
-//                    if (value.isEmpty) {
-//                      return 'Please enter some text';
-//                    }
-//                    return null;
 //                  },
                       ),
                     ),
@@ -105,19 +96,10 @@ class _LoginPageState extends State<UserLogin> {
                         validator: (value) {
                           if (value.isEmpty)
                             return ("This is Required");
-                          else if (value.length == 5)
-                            return ("Length should be 4");
+                          else if (value.length > 6)
+                            return ("password should be min 6 Digit");
                           return null;
                         },
-//                  onChanged: (passwordValue) {
-//                    uPassword = passwordValue;
-//                  },
-//                  validator: (value) {
-//                    if (value.isEmpty) {
-//                      return 'Please enter some text';
-//                    }
-//                    return null;
-//                  },
                       ),
                     ),
                     Padding(
@@ -127,10 +109,8 @@ class _LoginPageState extends State<UserLogin> {
                         height: 50,
                         child: RaisedButton(
                           onPressed: () {
-                            print('onclick');
-                            print('formKeyLogin');
-                            print('mail:' + uEmail);
-                            print('passowrd:' + uPassword);
+                            // print('mail:' + uEmail);
+                            // print('passowrd:' + uPassword);
                             _submit();
                           },
                           shape: RoundedRectangleBorder(
@@ -161,9 +141,7 @@ class _LoginPageState extends State<UserLogin> {
   _goToDashboard() async {
     if (UserLoginApi.status == true) {
       print(UserLoginApi.status);
-
       print("Login is successfull!");
-
       pr.hide();
       Navigator.push(
         context,
@@ -171,7 +149,6 @@ class _LoginPageState extends State<UserLogin> {
       );
     } else {
       print(UserLoginApi.status);
-      // Dailog  successful
       pr.hide();
       print("login is not successfull!");
     }

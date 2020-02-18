@@ -41,4 +41,7 @@ class Links {
 
   // profile Iamge Path
   static String profilePath = "http://amardaktar24.com/uploads/profile/";
+
+  // Change Password
+  static String changePassowrd = "http://amardaktar24.com/api/change-password";
 }

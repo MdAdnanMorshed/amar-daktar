@@ -135,30 +135,30 @@ class _RegisterPageState extends State<UserRegister> {
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
-                      SizedBox(height: 10),
-                      DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(vertical: 3, horizontal: 15),
-                          border: OutlineInputBorder(),
-                        ),
-                        hint: Text("Please Choose One"),
-                        items: [
-                          DropdownMenuItem(
-                            child: Text("Patient"),
-                            value: "Patient",
-                          ),
-                        ],
-                        // value: "Doctor",
-                        onChanged: (type) {
-                          print(type);
-                        },
-                        validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
-                          return null;
-                        },
-                        onSaved: (value) => print(value),
-                      ),
+                      //  SizedBox(height: 10),
+//                      DropdownButtonFormField(
+//                        decoration: InputDecoration(
+//                          contentPadding:
+//                              EdgeInsets.symmetric(vertical: 3, horizontal: 15),
+//                          border: OutlineInputBorder(),
+//                        ),
+//                        hint: Text("Please Choose One"),
+//                        items: [
+//                          DropdownMenuItem(
+//                            child: Text("Patient"),
+//                            value: "Patient",
+//                          ),
+//                        ],
+//                        // value: "Doctor",
+//                        onChanged: (type) {
+//                          print(type);
+//                        },
+//                        validator: (value) {
+//                          if (value.isEmpty) return ("This is Required");
+//                          return null;
+//                        },
+//                        onSaved: (value) => print(value),
+//                      ),
                       SizedBox(height: 15),
                       // Password
                       Align(
@@ -207,8 +207,8 @@ class _RegisterPageState extends State<UserRegister> {
                         ),
                         keyboardType: TextInputType.text,
                         obscureText: true,
-                        onSaved: (password) {
-                          password = password;
+                        onSaved: (loginPass) {
+                          password = loginPass;
                           print('passwordTF:' + password);
                         },
                         validator: (comfirmPassword) {
@@ -330,11 +330,11 @@ class _RegisterPageState extends State<UserRegister> {
                             selectedGender = gender;
                           });
                         },
-                        validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
+                        validator: (gender) {
+                          if (gender.isEmpty) return ("This is Required");
                           return null;
                         },
-                        onSaved: (value) => print(value),
+                        onSaved: (value) => print(gender),
                       ),
                       SizedBox(height: 15),
                       // Area
@@ -410,22 +410,17 @@ class _RegisterPageState extends State<UserRegister> {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
 
+                              print('password' + password);
                               print("nameName : " + nameName);
                               print("phone :" + phone);
                               print("selectCity :" + selectedCity);
-                              print('select Gender: ' + gender);
+                              //    print('select Gender: ' + gender);
 
                               _register(nameName, email, password, role_id,
-                                  cityId, imageURI, gender, phone);
+                                  cityId, 'testing.jpg', 'male', phone);
                             }
-
                             /*
-                            UserRegisterApi(nameName, email, password, role_id,
-                                    cityId, imageURI, gender, phone)
-                                .fetchData()
-                                .whenComplete(Register);
                             print("I am signup button !");
-
                              */
                           },
                         ),
@@ -511,14 +506,6 @@ class _RegisterPageState extends State<UserRegister> {
         });
   }
 
-  //Validator
-  _Validator(value) {
-    if (value.isEmpty)
-      return ("This is Required");
-    else if (value.length == 5) return ("Length should be 4");
-    return null;
-  }
-
   FutureOr Register() {
     print('Register is done ');
     Navigator.push(
@@ -527,11 +514,11 @@ class _RegisterPageState extends State<UserRegister> {
     );
   }
 
-  void _register(String nameName, String email, String password, String roleId,
+  _register(String nameName, String email, String password, String roleId,
       String cityId, var imageURI, String gender, String phone) {
     print('register starting ....');
     UserRegisterApi(
-            nameName, email, password, '4', '1', 'testing.jpg', 'male', phone)
+            nameName, email, password, '4', '1', 'testing.jpg', gender, phone)
         .fetchData()
         .whenComplete(Register);
     print("register End >>>>");

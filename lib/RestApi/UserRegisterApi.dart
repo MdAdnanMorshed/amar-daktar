@@ -4,14 +4,14 @@ import 'package:amar_daktar/URL/Link.dart';
 import 'package:http/http.dart' as http;
 
 class UserRegisterApi {
-  String uName = " ";
-  String uEmail = " ";
-  String uPassword = " ";
+  String uName = "testingName";
+  String uEmail = "testingMail";
+  String uPassword = "123456";
   String roleId = "4";
   String cityId = " ";
   var uImage;
-  String uGender = "";
-  String uPhone = " ";
+  String uGender = "Male";
+  String uPhone = "01888888888";
 
   static bool status = false;
 
@@ -25,10 +25,10 @@ class UserRegisterApi {
       'name': uName,
       'email': uEmail,
       'password': uPassword,
-      'role_id': roleId,
-      'city_id': cityId,
-      'pro_img': uImage,
-      'gender': uGender,
+      //'role_id': roleId,
+      //'city_id': cityId,
+      //'pro_img': uImage,
+      //'gender': uGender,
       'phone': uPhone,
     });
 
@@ -40,7 +40,7 @@ class UserRegisterApi {
       status = jsonData['success'];
       print('status' + status.toString());
       print(jsonData['response']['name']);
-      LoginDataLocalSave.fromJson(jsonData['response']);
+      //LoginDataLocalSave.fromJson(jsonData['response']);
       print('Register is successfull');
       return jsonData;
     } else {
