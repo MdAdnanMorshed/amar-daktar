@@ -13,6 +13,8 @@ class UserLogin extends StatefulWidget {
 }
 
 class _LoginPageState extends State<UserLogin> {
+  var _formKey = GlobalKey<FormState>();
+
   static String uEmail = '';
   static String uPassword = '';
   bool visible = false;
@@ -44,69 +46,111 @@ class _LoginPageState extends State<UserLogin> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _builLoginHeader(),
-              Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 40),
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    labelText: 'Enter your Email',
-                    prefixIcon: Icon(Icons.email),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(width: 10),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    _builLoginHeader(),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 50, right: 50, top: 40),
+                      child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          labelText: 'Enter your Email',
+                          prefixIcon: Icon(Icons.email),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(width: 10),
+                          ),
+                        ),
+                        onSaved: (value) {
+                          uEmail = value;
+                          print('NameTF:' + uEmail);
+                        },
+                        validator: (value) {
+                          if (value.isEmpty) return ("This is Required");
+                          return null;
+                        },
+
+//                  onChanged: (text) {
+//                    uEmail = text;
+//                  },
+//                  validator: (value) {
+//                    if (value.isEmpty) {
+//                      return 'Please enter some text';
+//                    }
+//                    return null;
+//                  },
+                      ),
                     ),
-                  ),
-                  onChanged: (text) {
-                    uEmail = text;
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 20),
-                child: TextField(
-                  obscureText: true,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    labelText: 'Enter your Password',
-                    prefixIcon: Icon(Icons.lock),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(width: 10),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 50, right: 50, top: 20),
+                      child: TextFormField(
+                        obscureText: true,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          labelText: 'Enter your Password',
+                          prefixIcon: Icon(Icons.lock),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(width: 10),
+                          ),
+                        ),
+                        onSaved: (value) {
+                          uPassword = value;
+                          print('NameTF:' + uPassword);
+                        },
+                        validator: (value) {
+                          if (value.isEmpty)
+                            return ("This is Required");
+                          else if (value.length == 5)
+                            return ("Length should be 4");
+                          return null;
+                        },
+//                  onChanged: (passwordValue) {
+//                    uPassword = passwordValue;
+//                  },
+//                  validator: (value) {
+//                    if (value.isEmpty) {
+//                      return 'Please enter some text';
+//                    }
+//                    return null;
+//                  },
+                      ),
                     ),
-                  ),
-                  onChanged: (passwordValue) {
-                    uPassword = passwordValue;
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: ButtonTheme(
-                  minWidth: 250,
-                  height: 50,
-                  child: RaisedButton(
-                    onPressed: () async {
-                      pr.show();
-                      UserLoginApi(uEmail, uPassword)
-                          .fetchData()
-                          .whenComplete(_goToDashboard);
-                    },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    color: Colors.red,
-                    child: Text(
-                      "Login",
-                      style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: ButtonTheme(
+                        minWidth: 250,
+                        height: 50,
+                        child: RaisedButton(
+                          onPressed: () {
+                            print('onclick');
+                            print('formKeyLogin');
+                            print('mail:' + uEmail);
+                            print('passowrd:' + uPassword);
+                            _submit();
+                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          color: Colors.red,
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      // _buildButtonLogin(context, uEmail, uPassword),
                     ),
-                  ),
+                    _builRegister(context),
+                  ],
                 ),
-                // _buildButtonLogin(context, uEmail, uPassword),
-              ),
-              _builRegister(context),
+              )
             ],
           ),
         ),
@@ -131,6 +175,22 @@ class _LoginPageState extends State<UserLogin> {
       pr.hide();
       print("login is not successfull!");
     }
+  }
+
+  void _submit() {
+    print('submit');
+    final form = _formKey.currentState;
+    print(form);
+
+    if (form.validate()) {
+      form.save();
+      signIn(uEmail, uPassword);
+    }
+  }
+
+  void signIn(String uEmail, String uPassword) async {
+    pr.show();
+    UserLoginApi(uEmail, uPassword).fetchData().whenComplete(_goToDashboard);
   }
 }
 // ------------------- Login UI ---------------------------

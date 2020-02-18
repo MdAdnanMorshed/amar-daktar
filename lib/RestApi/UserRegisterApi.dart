@@ -9,7 +9,7 @@ class UserRegisterApi {
   String uPassword = " ";
   String roleId = "4";
   String cityId = " ";
-  String uImage = "";
+  var uImage;
   String uGender = "";
   String uPhone = " ";
 
@@ -38,7 +38,7 @@ class UserRegisterApi {
 
     if (response.statusCode == 200) {
       status = jsonData['success'];
-      print(status);
+      print('status' + status.toString());
       print(jsonData['response']['name']);
       LoginDataLocalSave.fromJson(jsonData['response']);
       print('Register is successfull');

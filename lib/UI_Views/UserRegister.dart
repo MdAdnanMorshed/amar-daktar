@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:amar_daktar/RestApi/UserRegisterApi.dart';
 import 'package:amar_daktar/UI_Views/UserLogin.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,19 +13,11 @@ class UserRegister extends StatefulWidget {
 class _RegisterPageState extends State<UserRegister> {
   var _formKey = GlobalKey<FormState>();
 
-  String nameName;
-  String email;
-  String phone;
-  String password;
+  String nameName, email, phone, password, cityId, selectedCountry, gender;
   String role_id = "4";
-  String city_id;
   String pro_img;
-  String gender;
 
-  var selectedCity;
-
-  var imageURI;
-  var image;
+  var selectedCity, selectedGender, imageURI, image;
   String item;
 
   @override
@@ -99,7 +90,10 @@ class _RegisterPageState extends State<UserRegister> {
                           print('emailTF:' + email);
                         },
                         validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
+                          if (value.isEmpty)
+                            return ("This is Required");
+                          else if (value.length == 5)
+                            return ("Length should be 4");
                           return null;
                         },
                       ),
@@ -120,11 +114,17 @@ class _RegisterPageState extends State<UserRegister> {
                           border: OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.phone,
+                        onSaved: (value) {
+                          phone = value;
+                          print('PhoneTF:' + phone);
+                        },
                         validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
+                          if (value.isEmpty)
+                            return ("This is Required");
+                          else if (value.length > 11)
+                            return ("Length should be 11");
                           return null;
                         },
-                        onSaved: (value) => phone = value,
                       ),
                       SizedBox(height: 15),
                       // Sign Up Type
@@ -177,9 +177,15 @@ class _RegisterPageState extends State<UserRegister> {
                         ),
                         keyboardType: TextInputType.text,
                         obscureText: true,
-                        onSaved: (value) => print(value),
+                        onSaved: (password) {
+                          password = password;
+                          print('passwordTF:' + password);
+                        },
                         validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
+                          if (value.isEmpty)
+                            return ("This is Required");
+                          else if (value.length > 11)
+                            return ("Length should be 11");
                           return null;
                         },
                       ),
@@ -201,11 +207,19 @@ class _RegisterPageState extends State<UserRegister> {
                         ),
                         keyboardType: TextInputType.text,
                         obscureText: true,
-                        validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
+                        onSaved: (password) {
+                          password = password;
+                          print('passwordTF:' + password);
+                        },
+                        validator: (comfirmPassword) {
+                          if (comfirmPassword.isEmpty)
+                            return ("This is Required");
+                          // else if (password != comfirmPassword)
+                          //   return ("you must be password and confim password are same");
+                          else if (comfirmPassword.length > 11)
+                            return ("Length should be 11");
                           return null;
                         },
-                        onSaved: (value) => print(value),
                       ),
                       SizedBox(height: 15),
                       // Country
@@ -235,8 +249,11 @@ class _RegisterPageState extends State<UserRegister> {
                           ),
                         ],
                         // value: "Doctor",
-                        onChanged: (type) {
-                          print(type);
+                        value: selectedCountry,
+                        onChanged: (city) {
+                          setState(() {
+                            selectedCountry = city;
+                          });
                         },
                         validator: (value) {
                           if (value.isEmpty) return ("This is Required");
@@ -280,6 +297,37 @@ class _RegisterPageState extends State<UserRegister> {
                         onChanged: (city) {
                           setState(() {
                             selectedCity = city;
+                          });
+                        },
+                        validator: (value) {
+                          if (value.isEmpty) return ("This is Required");
+                          return null;
+                        },
+                        onSaved: (value) => print(value),
+                      ),
+                      SizedBox(height: 15),
+                      DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: 3, horizontal: 15),
+                          border: OutlineInputBorder(),
+                        ),
+                        hint: Text("Please Select Gender"),
+                        items: [
+                          DropdownMenuItem(
+                            child: Text("Male"),
+                            value: "male",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("Female"),
+                            value: "Female",
+                          ),
+                        ],
+                        // value: "Doctor",
+                        value: selectedGender,
+                        onChanged: (gender) {
+                          setState(() {
+                            selectedGender = gender;
                           });
                         },
                         validator: (value) {
@@ -358,11 +406,27 @@ class _RegisterPageState extends State<UserRegister> {
                           padding: EdgeInsets.symmetric(vertical: 12),
                           onPressed: () {
                             print("Register is Click Button");
+
+                            if (_formKey.currentState.validate()) {
+                              _formKey.currentState.save();
+
+                              print("nameName : " + nameName);
+                              print("phone :" + phone);
+                              print("selectCity :" + selectedCity);
+                              print('select Gender: ' + gender);
+
+                              _register(nameName, email, password, role_id,
+                                  cityId, imageURI, gender, phone);
+                            }
+
+                            /*
                             UserRegisterApi(nameName, email, password, role_id,
-                                    city_id, imageURI, gender, phone)
+                                    cityId, imageURI, gender, phone)
                                 .fetchData()
                                 .whenComplete(Register);
                             print("I am signup button !");
+
+                             */
                           },
                         ),
                       ),
@@ -387,7 +451,7 @@ class _RegisterPageState extends State<UserRegister> {
 
   // Camera
   Future getImageFromCamera() async {
-    image = await ImagePicker.pickImage(source: ImageSource.camera);
+    image = (await ImagePicker.pickImage(source: ImageSource.camera));
     _showImage(image, context);
     setState(() {
       imageURI = image;
@@ -396,7 +460,7 @@ class _RegisterPageState extends State<UserRegister> {
 
   //Gallery
   Future getImageFromGallery() async {
-    image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    image = (await ImagePicker.pickImage(source: ImageSource.gallery));
     _showImage(image, context);
     setState(() {
       imageURI = image;
@@ -447,10 +511,29 @@ class _RegisterPageState extends State<UserRegister> {
         });
   }
 
+  //Validator
+  _Validator(value) {
+    if (value.isEmpty)
+      return ("This is Required");
+    else if (value.length == 5) return ("Length should be 4");
+    return null;
+  }
+
   FutureOr Register() {
+    print('Register is done ');
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => UserLogin()),
     );
+  }
+
+  void _register(String nameName, String email, String password, String roleId,
+      String cityId, var imageURI, String gender, String phone) {
+    print('register starting ....');
+    UserRegisterApi(
+            nameName, email, password, '4', '1', 'testing.jpg', 'male', phone)
+        .fetchData()
+        .whenComplete(Register);
+    print("register End >>>>");
   }
 }
