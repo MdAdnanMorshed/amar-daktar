@@ -67,12 +67,19 @@ searchbar(AsyncSnapshot snapshot, int index) {
 
 listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(12.0),
     child: Card(
+      elevation: 6,
       child: ListTile(
         leading:
             // path Name
-            CircleAvatar(backgroundImage: AssetImage('images/profile.png')),
+
+            CircleAvatar(
+                radius: 20.0,
+                backgroundColor: Colors.transparent,
+                backgroundImage: NetworkImage(
+                    'http://amardaktar24.com/uploads/profile/' +
+                        snapshot.data[index].doctorImage)),
         title: Text(snapshot.data[index].doctorName),
         subtitle: Text(snapshot.data[index].doctorDesignation),
         onTap: () {

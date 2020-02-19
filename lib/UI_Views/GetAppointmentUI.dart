@@ -6,6 +6,8 @@ import 'package:amar_daktar/UI_Views/UserLogin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:progress_dialog/progress_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GetAppointment extends StatefulWidget {
   @override
@@ -15,8 +17,9 @@ class GetAppointment extends StatefulWidget {
 class _AppointmentPageState extends State<GetAppointment> {
   var _formKey = GlobalKey<FormState>();
 
-  var imageURI;
-  var image;
+  ProgressDialog pr;
+
+  var imageURI, image;
   // time picker
   DateTime _dateTime = new DateTime.now();
   TimeOfDay _time = new TimeOfDay.now();
@@ -42,6 +45,22 @@ class _AppointmentPageState extends State<GetAppointment> {
 
   @override
   Widget build(BuildContext context) {
+    pr = new ProgressDialog(context);
+
+    pr.style(
+        message: 'Please Waiting...',
+        borderRadius: 8.0,
+        backgroundColor: Colors.white,
+        progressWidget: CircularProgressIndicator(),
+        elevation: 10.0,
+        insetAnimCurve: Curves.easeInOut,
+        progress: 0.0,
+        maxProgress: 100.0,
+        progressTextStyle: TextStyle(
+            color: Colors.black, fontSize: 8.0, fontWeight: FontWeight.w400),
+        messageTextStyle: TextStyle(
+            color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.w600));
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -246,9 +265,8 @@ class _AppointmentPageState extends State<GetAppointment> {
                           padding: EdgeInsets.symmetric(vertical: 12),
                           onPressed: () {
                             print("I am send button !");
-                            GetAppointmentApi()
-                                .fetchData()
-                                .whenComplete(confimMsg);
+
+                            _submit();
                           },
                         ),
                       ),
@@ -270,7 +288,24 @@ class _AppointmentPageState extends State<GetAppointment> {
     );
   }
 
+  void _submit() {
+    print('submit');
+    final form = _formKey.currentState;
+    print(form);
+
+    if (form.validate()) {
+      form.save();
+      _getAppointment();
+    }
+  }
+
+  _getAppointment() {
+    pr.show();
+    GetAppointmentApi().fetchData().whenComplete(confimMsg);
+  }
+
   FutureOr confimMsg() {
+    pr.hide();
     // Dailog Successful Masseage
     print('Get Appointment Done');
   }

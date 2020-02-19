@@ -11,6 +11,7 @@ class DoctorsList {
   String doctorSpecification;
   String doctorRegNo;
   String doctorDescription;
+  String doctorImage;
 
   DoctorsList(
       this.doctorid,
@@ -24,5 +25,6 @@ class DoctorsList {
       this.doctorAreaId,
       this.doctorSpecification,
       this.doctorRegNo,
-      this.doctorDescription);
+      this.doctorDescription,
+      this.doctorImage);
 }

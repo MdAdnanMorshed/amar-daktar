@@ -21,19 +21,19 @@ class DoctorsListApi {
         getDoctorsList.clear();
         for (var item in jsonData['response']) {
           DoctorsList getdoctorlist = DoctorsList(
-            item['user_id'],
-            item['doctor_name'],
-            item['department_id'],
-            item['title_or_designation'],
-            item['doctor_fees'],
-            item['gender'],
-            item['country_id'],
-            item['city_id'],
-            item['area_id'],
-            item['degree_and_other_specification'],
-            item['bmdc_reg_no'],
-            item['description'],
-          );
+              item['user_id'],
+              item['doctor_name'],
+              item['department_id'],
+              item['title_or_designation'],
+              item['doctor_fees'],
+              item['gender'],
+              item['country_id'],
+              item['city_id'],
+              item['area_id'],
+              item['degree_and_other_specification'],
+              item['bmdc_reg_no'],
+              item['description'],
+              item['pro_img']);
           getDoctorsList.add(getdoctorlist);
         }
         return getDoctorsList;
