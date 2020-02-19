@@ -7,7 +7,6 @@ class BlooddonarlistViewDetails extends StatelessWidget {
   final BloodDonarList bloodDonarList;
 
   BlooddonarlistViewDetails(this.bloodDonarList);
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -181,6 +180,36 @@ class BlooddonarlistViewDetails extends StatelessWidget {
                 ],
               ),
             ),
+
+            Card(
+              margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+              color: Colors.blueGrey,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, top: 5, right: 0, bottom: 5),
+                      child: Text(
+                        "Last donate :",
+                        style: TextStyle(color: Colors.white, fontSize: 14.5),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        bloodDonarList.lastdonateDate,
+                        style: TextStyle(color: Colors.white, fontSize: 15.5),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Card(
               margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
               color: Colors.blueGrey,
@@ -210,31 +239,31 @@ class BlooddonarlistViewDetails extends StatelessWidget {
                 ],
               ),
             ),
-            Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: RaisedButton(
-                      color: Colors.red,
-                      child: Text(
-                        "Blood Donar Sign Up",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7),
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                      onPressed: () {
-                        // _SendMessage(context);
-                        print("I am Blood Donar Sign Up button !");
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
+//            Column(
+//              children: <Widget>[
+//                Padding(
+//                  padding: const EdgeInsets.all(10.0),
+//                  child: SizedBox(
+//                    width: double.infinity,
+//                    child: RaisedButton(
+//                      color: Colors.red,
+//                      child: Text(
+//                        "Blood Donar Sign Up",
+//                        style: TextStyle(color: Colors.white, fontSize: 20),
+//                      ),
+//                      shape: RoundedRectangleBorder(
+//                        borderRadius: BorderRadius.circular(7),
+//                      ),
+//                      padding: EdgeInsets.symmetric(vertical: 12),
+//                      onPressed: () {
+//                        // _SendMessage(context);
+//                        print("I am Blood Donar Sign Up button !");
+//                      },
+//                    ),
+//                  ),
+//                ),
+//              ],
+//            ),
           ],
         ),
       ),

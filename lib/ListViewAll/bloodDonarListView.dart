@@ -56,6 +56,7 @@ listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
   return Padding(
     padding: const EdgeInsets.all(5.0),
     child: Card(
+      elevation: 5,
       child: ListTile(
         leading: CircleAvatar(
             backgroundImage: AssetImage(snapshot.data[index].DonarImage)),

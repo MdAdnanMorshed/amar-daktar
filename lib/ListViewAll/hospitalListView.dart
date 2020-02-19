@@ -59,12 +59,25 @@ listItem(BuildContext context, AsyncSnapshot snapshot, int index) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Card(
+      elevation: 5,
       child: ListTile(
-        leading:
-            // path Name
-            CircleAvatar(backgroundImage: AssetImage('images/profile.png')),
-        title: Text(snapshot.data[index].hospitalChamberName),
-        subtitle: Text(snapshot.data[index].hospitalChamberAddress),
+        leading: CircleAvatar(
+            radius: 30.0,
+            backgroundColor: Colors.transparent,
+            backgroundImage: NetworkImage(
+                'http://amardaktar24.com/uploads/hospital/' +
+                    snapshot.data[index].hospitalImage)),
+        // path Name
+        //  CircleAvatar(backgroundImage: AssetImage('images/profile.png')),
+        title: Text(
+          snapshot.data[index].hospitalChamberName,
+          textAlign: TextAlign.center,
+          style: TextStyle(height: 2, fontSize: 12),
+        ),
+        subtitle: Text(
+          snapshot.data[index].hospitalChamberAddress,
+          style: TextStyle(height: 2, fontSize: 8),
+        ),
         onTap: () {
           Navigator.push(
             context,
