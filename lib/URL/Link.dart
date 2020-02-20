@@ -42,6 +42,13 @@ class Links {
   // profile Iamge Path
   static String profilePath = "http://amardaktar24.com/uploads/profile/";
 
+  //---------------- Location --------------------------------
+  // city Location
+  static String cityLocationApi =
+      "http://amardaktar24.com/api/get/all/districts/";
+  // Area Location
+  static String areaLocationApi = "http://amardaktar24.com/api/get-location";
+
   // Change Password
   static String changePassowrd = "http://amardaktar24.com/api/change-password";
 }
