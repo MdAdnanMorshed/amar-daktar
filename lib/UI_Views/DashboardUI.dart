@@ -7,6 +7,7 @@ import 'AmbulancesListUI.dart';
 import 'AppDrawer.dart';
 import 'BloodDonorListUI.dart';
 import 'DoctorListUI.dart';
+import 'FindDoctorUI.dart';
 import 'HospitalsListUI.dart';
 
 class Dashboard extends StatefulWidget {
@@ -62,8 +63,10 @@ class MenuItemCard extends StatelessWidget {
           child: InkWell(
             onTap: () {
               if (title == 'Doctors') {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DoctorListUI()));
+                Navigator.push(
+                    context,
+                    //MaterialPageRoute(builder: (context) => DoctorListUI()));
+                    MaterialPageRoute(builder: (context) => FindDoctorUI()));
               } else if (title == 'Hospitals') {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => HospitalListUI()));

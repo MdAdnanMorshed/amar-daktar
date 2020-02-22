@@ -1,9 +1,15 @@
 import 'dart:async';
+import 'package:amar_daktar/Models/CityLocationList.dart';
+import 'package:amar_daktar/RestApi/CityListApi.dart';
 import 'package:amar_daktar/RestApi/UserRegisterApi.dart';
 import 'package:amar_daktar/UI_Views/UserLogin.dart';
+import 'package:amar_daktar/URL/Link.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
 
 class UserRegister extends StatefulWidget {
   @override
@@ -16,9 +22,112 @@ class _RegisterPageState extends State<UserRegister> {
   String nameName, email, phone, password, cityId, selectedCountry, gender;
   String role_id = "4";
   String pro_img;
+  String _mySelection;
+  bool status = false;
+  List<CityList> getCity = [];
+  CityList cityList;
 
   var selectedCity, selectedGender, imageURI, image;
   String item;
+
+  var _selectedCountryItem,
+      _selectedCityItem,
+      _selectedAreaItem,
+      _cityId,
+      _countryId;
+
+  //------------------------------ testing ----------------------
+
+  // city done
+  Future<Widget> _cityList() async {
+    final url = "http://amardaktar24.com/public/api/get/all/districts";
+    List<DropdownMenuItem> list = [];
+
+//    if (_countryId == null) {
+//      _countryId = 0;
+//    }
+//    print("_countryId: " + _countryId.toString());
+
+    await http.get(url).then((response) {
+      Map data = jsonDecode(response.body);
+      List city = data["response"];
+
+      print("City List: " + data["response"].toString());
+
+      for (var i = 0; i < city.length; i++) {
+//        if (_countryId != 0) {
+//          print("_countryId != 0");
+        //if (_countryId == city[i]["division_id"]) {
+        // print("_countryId == city[i]['division_id']");
+        var item = DropdownMenuItem(
+          child: Text(city[i]["name"]),
+          value: city[i]["id"].toString(),
+        );
+        list.add(item);
+      }
+      //}
+      //  }
+    });
+
+    return DropdownButtonFormField(
+      hint: Text("Select Your City..."),
+      items: list,
+      value: _selectedCityItem,
+      onChanged: (id) {
+        setState(() {
+          _selectedCityItem = id;
+          _cityId = id;
+        });
+        print("City Id: " + id);
+      },
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
+        border: OutlineInputBorder(),
+      ),
+    );
+  }
+
+  // area done
+  Future<Widget> _areaList() async {
+    final url = "http://amardaktar24.com/api/get-location";
+    List<DropdownMenuItem> list = [];
+
+    if (_cityId == null) {
+      _cityId = 0;
+    }
+    print("_cityId: " + _cityId.toString());
+
+    await http.post(url, body: {"city_id": "$_cityId"}).then((response) {
+      Map data = jsonDecode(response.body);
+      List area = data["response"];
+
+      //print(data["response"]);
+
+      for (var i = 0; i < area.length; i++) {
+        var item = DropdownMenuItem(
+          child: Text(area[i]["name"]),
+          value: area[i]["id"].toString(),
+        );
+        list.add(item);
+      }
+    });
+
+    return DropdownButtonFormField(
+      hint: Text("Select Your Area..."),
+      items: list,
+      value: _selectedAreaItem,
+      onChanged: (id) {
+        setState(() {
+          _selectedAreaItem = id;
+        });
+        print("Area Id: " + id);
+      },
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
+        border: OutlineInputBorder(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,30 +244,6 @@ class _RegisterPageState extends State<UserRegister> {
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
-                      //  SizedBox(height: 10),
-//                      DropdownButtonFormField(
-//                        decoration: InputDecoration(
-//                          contentPadding:
-//                              EdgeInsets.symmetric(vertical: 3, horizontal: 15),
-//                          border: OutlineInputBorder(),
-//                        ),
-//                        hint: Text("Please Choose One"),
-//                        items: [
-//                          DropdownMenuItem(
-//                            child: Text("Patient"),
-//                            value: "Patient",
-//                          ),
-//                        ],
-//                        // value: "Doctor",
-//                        onChanged: (type) {
-//                          print(type);
-//                        },
-//                        validator: (value) {
-//                          if (value.isEmpty) return ("This is Required");
-//                          return null;
-//                        },
-//                        onSaved: (value) => print(value),
-//                      ),
                       SizedBox(height: 15),
                       // Password
                       Align(
@@ -265,46 +350,33 @@ class _RegisterPageState extends State<UserRegister> {
                       // City
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          "City",
-                          style: TextStyle(fontSize: 15),
+                        child: Form(
+                          child: Column(
+                            children: [
+                              FutureBuilder<Widget>(
+                                  future: _cityList(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return snapshot.data;
+                                    } else {
+                                      return CircularProgressIndicator();
+                                    }
+                                  }),
+                              SizedBox(height: 15),
+                              FutureBuilder<Widget>(
+                                  future: _areaList(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return snapshot.data;
+                                    } else {
+                                      return CircularProgressIndicator();
+                                    }
+                                  }),
+                            ],
+                          ),
                         ),
                       ),
-                      SizedBox(height: 10),
-                      DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(vertical: 3, horizontal: 15),
-                          border: OutlineInputBorder(),
-                        ),
-                        hint: Text("Please Select Your City"),
-                        items: [
-                          DropdownMenuItem(
-                            child: Text("Dhaka"),
-                            value: "Dhaka",
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Noakhali"),
-                            value: "Noakhali",
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Chandpur"),
-                            value: "Chandpur",
-                          ),
-                        ],
-                        // value: "Doctor",
-                        value: selectedCity,
-                        onChanged: (city) {
-                          setState(() {
-                            selectedCity = city;
-                          });
-                        },
-                        validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
-                          return null;
-                        },
-                        onSaved: (value) => print(value),
-                      ),
+                      //---------------------------
                       SizedBox(height: 15),
                       DropdownButtonFormField(
                         decoration: InputDecoration(
@@ -335,30 +407,6 @@ class _RegisterPageState extends State<UserRegister> {
                           return null;
                         },
                         onSaved: (value) => print(gender),
-                      ),
-                      SizedBox(height: 15),
-                      // Area
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Area",
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(15),
-                          hintText: "Enter Your Area",
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.text,
-                        maxLines: 3,
-                        validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
-                          return null;
-                        },
-                        onSaved: (value) => print(value),
                       ),
                       SizedBox(height: 15),
                       // Image

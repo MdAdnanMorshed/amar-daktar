@@ -31,6 +31,7 @@ class CityListApi {
           );
           getCityList.add(cityList);
         }
+
         print(getCityList);
         return getCityList;
       } else {
@@ -39,5 +40,9 @@ class CityListApi {
     } catch (e) {
       throw Exception(e.toString());
     }
+  }
+
+  List<CityList> getCity() {
+    return getCityList;
   }
 }
