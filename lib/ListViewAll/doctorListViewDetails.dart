@@ -1,4 +1,5 @@
 import 'package:amar_daktar/Models/DoctorsList.dart';
+import 'package:amar_daktar/Models/findDoctorList.dart';
 import 'package:amar_daktar/UI_Views/AppDrawer.dart';
 import 'package:amar_daktar/UI_Views/DoctorContactUI.dart';
 import 'package:amar_daktar/UI_Views/GetAppointmentUI.dart';
@@ -7,11 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DoctorlistViewDetails extends StatefulWidget {
-  DoctorsList doctorsList;
+  // DoctorsList doctorsList1;
+  FindDoctor doctorsList;
 
-  DoctorlistViewDetails(DoctorsList doctorsList) {
-    this.doctorsList = doctorsList;
-  }
+  DoctorlistViewDetails(this.doctorsList);
 
   @override
   _DoctorlistViewDetailsState createState() =>
@@ -19,24 +19,36 @@ class DoctorlistViewDetails extends StatefulWidget {
 }
 
 class _DoctorlistViewDetailsState extends State<DoctorlistViewDetails> {
-  DoctorsList doctorsList;
-  String profileIamge;
+  FindDoctor doctorsList;
+
+  _DoctorlistViewDetailsState(this.doctorsList); //String profileIamge;
 
   @override
   void initState() {
     print('init');
-    doctorInfoToSF(doctorsList);
+    print("<<<<<<<<<<<<<<< Details  doctor Information  >>>>>>>>>>>>>>>>>>>>>");
+    print('Doctor Name Details  : ' + doctorsList.doctorName.toString());
+    print('doctor Gender Details  : ' + doctorsList.doctorGender.toString());
+    print('Doctor Name Details  : ' + doctorsList.doctorName.toString());
+    print('Doctor Name Details  : ' + doctorsList.doctorName.toString());
+    print('Doctor Name Details  : ' + doctorsList.doctorName.toString());
+    print('Doctor Name Details  : ' + doctorsList.doctorName.toString());
+    print('Doctor Name Details  : ' + doctorsList.doctorName.toString());
+    print('Doctor Name Details  : ' + doctorsList.doctorName.toString());
+    print('Doctor Name Details  : ' + doctorsList.doctorName.toString());
+    print('Doctor Name Details  : ' + doctorsList.doctorName.toString());
+    print('Doctor Name Details  : ' + doctorsList.doctorName.toString());
+    print('dfdfdf');
+    // doctorInfoToSF(doctorsList);
     super.initState();
   }
-
-  _DoctorlistViewDetailsState(this.doctorsList);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: AppDrawer(currentRoute: '/dashboard'),
       appBar: AppBar(
-        title: Text(doctorsList.doctorName),
+        title: Text("testing Doctor "),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -56,11 +68,12 @@ class _DoctorlistViewDetailsState extends State<DoctorlistViewDetails> {
                   image: DecorationImage(
                     fit: BoxFit.fill,
                     image: NetworkImage(
-                        'http://amardaktar24.com/uploads/profile/${profileIamge}'),
+                        'http://amardaktar24.com/uploads/profile/${doctorsList.doctorImage}'),
                   ),
                 ),
               ),
             ),
+            // doctorName
             Card(
               margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
               color: Colors.blueGrey,
@@ -73,7 +86,7 @@ class _DoctorlistViewDetailsState extends State<DoctorlistViewDetails> {
                           left: 10.0, top: 7, right: 0, bottom: 7),
                       child: Text("Doctor Name  :",
                           style:
-                          TextStyle(color: Colors.white, fontSize: 12.5)),
+                              TextStyle(color: Colors.white, fontSize: 12.5)),
                     ),
                   ),
                   Expanded(
@@ -82,12 +95,13 @@ class _DoctorlistViewDetailsState extends State<DoctorlistViewDetails> {
                       padding: EdgeInsets.symmetric(vertical: 12),
                       child: Text(doctorsList.doctorName,
                           style:
-                          TextStyle(color: Colors.white, fontSize: 15.5)),
+                              TextStyle(color: Colors.white, fontSize: 15.5)),
                     ),
                   ),
                 ],
               ),
             ),
+            //doctor Gender
             Card(
               margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
               color: Colors.blueGrey,
@@ -115,6 +129,7 @@ class _DoctorlistViewDetailsState extends State<DoctorlistViewDetails> {
                 ],
               ),
             ),
+            // doctor Designation
             Card(
               margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
               color: Colors.blueGrey,
@@ -142,6 +157,35 @@ class _DoctorlistViewDetailsState extends State<DoctorlistViewDetails> {
                 ],
               ),
             ),
+            // doctor department
+            Card(
+              margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
+              color: Colors.blueGrey,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, top: 7, right: 0, bottom: 7),
+                      child: Text("Department  :",
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 12.5)),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: Text(doctorsList.doctorDptId,
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 15.5)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            //doctor frees
             Card(
               margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
               color: Colors.blueGrey,
@@ -154,7 +198,7 @@ class _DoctorlistViewDetailsState extends State<DoctorlistViewDetails> {
                           left: 10.0, top: 7, right: 0, bottom: 7),
                       child: Text("Doctor Frees  :",
                           style:
-                          TextStyle(color: Colors.white, fontSize: 12.5)),
+                              TextStyle(color: Colors.white, fontSize: 12.5)),
                     ),
                   ),
                   Expanded(
@@ -163,12 +207,97 @@ class _DoctorlistViewDetailsState extends State<DoctorlistViewDetails> {
                       padding: EdgeInsets.symmetric(vertical: 12),
                       child: Text(doctorsList.doctorFees,
                           style:
-                          TextStyle(color: Colors.white, fontSize: 15.5)),
+                              TextStyle(color: Colors.white, fontSize: 15.5)),
                     ),
                   ),
                 ],
               ),
             ),
+            //doctor Country
+            Card(
+              margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+              color: Colors.blueGrey,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, top: 7, right: 0, bottom: 7),
+                      child: Text("Country   :",
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 12.5)),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: Text(doctorsList.doctorCountryId,
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 15.5)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            //doctor City
+            Card(
+              margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+              color: Colors.blueGrey,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, top: 7, right: 0, bottom: 7),
+                      child: Text("City  :",
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 12.5)),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: Text(doctorsList.doctorCityId,
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 15.5)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            //doctor Area
+            Card(
+              margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+              color: Colors.blueGrey,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, top: 7, right: 0, bottom: 7),
+                      child: Text("Area  :",
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 12.5)),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: Text(doctorsList.doctorAreaId,
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 15.5)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            //Register
             Card(
               margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
               color: Colors.blueGrey,
@@ -198,6 +327,7 @@ class _DoctorlistViewDetailsState extends State<DoctorlistViewDetails> {
                 ],
               ),
             ),
+            //Specification
             Card(
               margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
               color: Colors.blueGrey,
@@ -227,6 +357,7 @@ class _DoctorlistViewDetailsState extends State<DoctorlistViewDetails> {
                 ],
               ),
             ),
+
             Column(
               children: <Widget>[
                 //Appointment
@@ -287,7 +418,7 @@ class _DoctorlistViewDetailsState extends State<DoctorlistViewDetails> {
   _doctorAppointment(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => GetAppointment()),
+      MaterialPageRoute(builder: (context) => GetAppointment(doctorsList)),
     );
   }
 
@@ -358,7 +489,7 @@ class _DoctorlistViewDetailsState extends State<DoctorlistViewDetails> {
       print('doctorAreaId :' + prefs.getString('doctorAreaId'));
 
       print('doctorImage:' + prefs.getString('doctorImage'));
-      profileIamge = prefs.getString('doctorImage');
+      //profileIamge = prefs.getString('doctorImage');
     });
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:amar_daktar/Models/findDoctorList.dart';
 import 'package:amar_daktar/RestApi/GetAppointmentApi.dart';
 import 'package:amar_daktar/RestApi/UserRegisterApi.dart';
 import 'package:amar_daktar/UI_Views/UserLogin.dart';
@@ -10,13 +11,18 @@ import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GetAppointment extends StatefulWidget {
+  FindDoctor doctorsList;
+  GetAppointment(this.doctorsList);
+
   @override
-  _AppointmentPageState createState() => _AppointmentPageState();
+  _AppointmentPageState createState() =>
+      _AppointmentPageState(this.doctorsList);
 }
 
 class _AppointmentPageState extends State<GetAppointment> {
   var _formKey = GlobalKey<FormState>();
-
+  FindDoctor doctorsList;
+  _AppointmentPageState(this.doctorsList);
   ProgressDialog pr;
 
   var imageURI, image;
@@ -41,6 +47,13 @@ class _AppointmentPageState extends State<GetAppointment> {
     } else {
       print('else');
     }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    print('Get Appointment ::');
+    super.initState();
   }
 
   @override
@@ -89,18 +102,20 @@ class _AppointmentPageState extends State<GetAppointment> {
                       ),
                       SizedBox(height: 10),
                       TextFormField(
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(15),
-                          hintText: "Name of Doctor",
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.text,
-                        validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
-                          return null;
-                        },
-                        onSaved: (value) => print(value),
-                      ),
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(15),
+                            hintText: doctorsList.doctorName,
+                            border: OutlineInputBorder(),
+                          ),
+                          keyboardType: TextInputType.text,
+                          validator: (value) {
+                            if (value.isEmpty) return ("This is Required");
+                            return null;
+                          },
+                          onSaved: (value) {
+                            value = doctorsList.doctorName.toString();
+                            print(value);
+                          }),
                       SizedBox(height: 15),
                       // Email
                       Align(
@@ -114,7 +129,7 @@ class _AppointmentPageState extends State<GetAppointment> {
                       TextFormField(
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(15),
-                          hintText: "Doctor fees",
+                          hintText: doctorsList.doctorFees,
                           border: OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.emailAddress,

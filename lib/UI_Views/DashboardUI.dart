@@ -8,6 +8,7 @@ import 'AppDrawer.dart';
 import 'BloodDonorListUI.dart';
 import 'DoctorListUI.dart';
 import 'FindDoctorUI.dart';
+import 'FindHospitalUI.dart';
 import 'HospitalsListUI.dart';
 
 class Dashboard extends StatefulWidget {
@@ -68,8 +69,10 @@ class MenuItemCard extends StatelessWidget {
                     //MaterialPageRoute(builder: (context) => DoctorListUI()));
                     MaterialPageRoute(builder: (context) => FindDoctorUI()));
               } else if (title == 'Hospitals') {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HospitalListUI()));
+                Navigator.push(
+                    context,
+                    //MaterialPageRoute(builder: (context) => HospitalListUI()));
+                    MaterialPageRoute(builder: (context) => FindHospitalUI()));
               } else if (title == 'Blood Donars') {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => BloodDonorUI()));
