@@ -102,6 +102,7 @@ class _HomeState extends State<Home> {
       _selectedAreaItem,
       _selectedSpecialistItem;
   int _countryId, _cityId, _areaId, _specialistId = 0;
+  String _service = "doctor";
 
   Future<Widget> _countryList() async {
     final url = "url";
@@ -159,7 +160,7 @@ class _HomeState extends State<Home> {
 
     await http.get(url).then((response) {
       Map data = jsonDecode(response.body);
-      print('city :' + data.toString());
+      //  print('city :' + data.toString());
 
       Map data1 = {
         "success": true,
@@ -197,7 +198,6 @@ class _HomeState extends State<Home> {
           _selectedSpecialistItem = null;
         });
         print("City Id: " + id);
-        print("_selectedCityItem Id: " + _selectedCityItem);
       },
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
@@ -219,7 +219,7 @@ class _HomeState extends State<Home> {
         headers: {"Accept": "application/json"},
         body: {"city_id": "$_cityId"}).then((response) {
       Map data = jsonDecode(response.body);
-      print('area' + data.toString());
+      // print('area' + data.toString());
 
       List area = data["response"];
 
@@ -242,7 +242,7 @@ class _HomeState extends State<Home> {
         setState(() {
           _selectedAreaItem = id;
           _areaId = int.parse(id);
-          //_selectedSpecialistItem = null;
+          _selectedSpecialistItem = null;
         });
         print("Area Id: " + id);
       },
@@ -254,35 +254,22 @@ class _HomeState extends State<Home> {
   }
 
   Future<Widget> _speciaList() async {
-    final url = "API";
+    final url = "http://amardaktar24.com/api/get/all/speciality";
     List<DropdownMenuItem> list = [];
+    await http.get(url).then((response) {
+      Map data = jsonDecode(response.body);
+      List specialist = data["response"];
 
-    //await http.get(url).then((response) {
-    // Map data = jsonDecode(response.body);
-    Map data = {
-      "success": true,
-      "response": [
-        {"areaId": 1, "id": 1, "name": "Medicine"},
-        {"areaId": 1, "id": 2, "name": "Cardiology"},
-        {"areaId": 1, "id": 3, "name": "Neuro"},
-        {"areaId": 2, "id": 4, "name": "Urology"},
-        {"areaId": 2, "id": 5, "name": "Orthopedic"},
-        {"areaId": 7, "id": 6, "name": "Diabetes"},
-        {"areaId": 7, "id": 7, "name": "Skin"}
-      ]
-    };
-    List specialist = data["response"];
-
-    for (var i = 0; i < specialist.length; i++) {
-      //if (_areaId.toString() == specialist[i]["areaId"]) {
-      var item = DropdownMenuItem(
-        child: Text(specialist[i]["name"]),
-        value: specialist[i]["id"].toString(),
-      );
-      list.add(item);
-      //}
-    }
-    //});
+      for (var i = 0; i < specialist.length; i++) {
+        //if (_areaId.toString() == specialist[i]["areaId"]) {
+        var item = DropdownMenuItem(
+          child: Text(specialist[i]["name"].toString()),
+          value: specialist[i]["id"].toString(),
+        );
+        list.add(item);
+        //}
+      }
+    });
 
     return DropdownButtonFormField(
       hint: Text("Select Your Specialist..."),
@@ -293,7 +280,7 @@ class _HomeState extends State<Home> {
           _selectedSpecialistItem = id;
           _specialistId = int.parse(id);
         });
-        print("Specialist Id: " + id);
+        print("Speciality Id: " + id);
       },
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
@@ -303,80 +290,56 @@ class _HomeState extends State<Home> {
   }
 
   Future<Widget> _daktarList() async {
-    final url = "url";
+    final url = "http://amardaktar24.com/api/search";
     List<ListTile> list = [];
-    //await http.get(url).then((response) {
-    // Map data = jsonDecode(response.body);
-    Map data = {
-      "success": true,
-      "response": [
-        {
-          "countryId": 1,
-          "cityId": 1,
-          "areaId": 1,
-          "specialistId": 1,
-          "id": 1,
-          "name": "Prof. Md. Adnan Morsha"
-        },
-        {
-          "countryId": 1,
-          "cityId": 1,
-          "areaId": 1,
-          "specialistId": 1,
-          "id": 2,
-          "name": "Dr. Shamsul Alam Rocky"
-        },
-        {
-          "countryId": 1,
-          "cityId": 1,
-          "areaId": 1,
-          "specialistId": 1,
-          "id": 3,
-          "name": "Dr. Sufia Jannat"
-        },
-        {
-          "countryId": 2,
-          "cityId": 4,
-          "areaId": 7,
-          "specialistId": 6,
-          "id": 4,
-          "name": "Prof. Dr. Md. Sagor Jahan"
-        },
-        {
-          "countryId": 2,
-          "cityId": 4,
-          "areaId": 7,
-          "specialistId": 6,
-          "id": 5,
-          "name": "Dr. Md. Saifur Rahman Patwary"
+
+    print('-----------Doctor  Searching --------------');
+    print('Searching Country Id :' + _countryId.toString());
+    print('Searching City Id :' + _cityId.toString());
+    print('Searching Area Id :' + _areaId.toString());
+    print('Searching Speciality Id :' + _specialistId.toString());
+    print('Searching Service :' + _service.toString());
+
+    await http.post(url, headers: {
+      "Accept": "application/json"
+    }, body: {
+      "county_id": "$_countryId",
+      "city_id": "$_cityId",
+      "area_id": "$_areaId",
+      "speciality_id": "$_specialistId",
+      "service": "$_service"
+    }).then((response) {
+      Map data = jsonDecode(response.body);
+      List daktar = data["response"];
+      print('["Doctor Name"]' + daktar[0]["doctor_name"].toString());
+      for (var i = 0; i < daktar.length; i++) {
+        print('searching doctor loop>>>>>>>>');
+
+        if (_countryId.toString() == "1" ||
+            _cityId.toString() == daktar[i]["city_id"].toString() ||
+            _areaId.toString() == daktar[i]["area_id"].toString() ||
+            _specialistId.toString() == daktar[i]["department_id"].toString()) {
+          print('match');
+
+          var item = ListTile(
+            leading: CircleAvatar(
+                radius: 20.0,
+                backgroundColor: Colors.transparent,
+                backgroundImage: NetworkImage(
+                    'http://amardaktar24.com/uploads/profile/' +
+                        daktar[i]["pro_img"].toString())),
+            //leading: CircleAvatar(child: Text("${daktarCount++}")),
+            title: Text(daktar[i]["doctor_name"].toString() +
+                "\n" +
+                daktar[i]["title_or_designation"].toString()),
+            onTap: () => print('click :' + daktar[i]["doctor_name"].toString()),
+          );
+          list.add(item);
+        } else {
+          print('not match');
         }
-      ]
-    };
-    List daktar = data["response"];
-
-    for (var i = 0, daktarCount = 1; i < daktar.length; i++) {
-      if (_countryId == daktar[i]["countryId"] &&
-          _cityId == daktar[i]["cityId"] &&
-          _areaId == daktar[i]["areaId"] &&
-          _specialistId == daktar[i]["specialistId"]) {
-        var item = ListTile(
-          leading: CircleAvatar(child: Text("${daktarCount++}")),
-          title: Text(daktar[i]["name"]),
-        );
-        list.add(item);
-      } else {
-        // data not found
       }
-      if (notfoundStatus == false) {
-        var item = ListTile(
-          leading: CircleAvatar(child: Text("0")),
-          title: Text('Data Not Found '),
-        );
-        list.add(item);
-      }
-    }
-    //});
-
+    });
     return Wrap(children: list);
   }
 }

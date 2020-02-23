@@ -24,6 +24,10 @@ class Links {
   static String getBloodDonarListApiUrl =
       'http://amardaktar24.com/api/get-blood-donor';
 
+  // Speciality List done
+  static String getSpecialityListApiUrl =
+      'http://amardaktar24.com/api/get/all/speciality';
+
   // Change password List
   static String getChangePasswordApiUrl =
       'http://amardaktar24.com/api/change-password';
@@ -51,4 +55,7 @@ class Links {
 
   // Change Password
   static String changePassowrd = "http://amardaktar24.com/api/change-password";
+
+  // Doctor Search
+  static String doctorSearchApi = "http://amardaktar24.com/api/search";
 }
