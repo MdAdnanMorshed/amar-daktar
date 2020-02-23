@@ -243,6 +243,7 @@ class _HomeState extends State<Home> {
       "service": "$_service"
     }).then((response) {
       Map data = jsonDecode(response.body);
+      print('Hospital Info :' + data.toString());
       List daktar = data["response"];
       print('["Doctor Name"]' + daktar[0]["doctor_name"].toString());
       for (var i = 0; i < daktar.length; i++) {
@@ -259,12 +260,13 @@ class _HomeState extends State<Home> {
                 backgroundColor: Colors.transparent,
                 backgroundImage: NetworkImage(
                     'http://amardaktar24.com/uploads/hospital/' +
-                        daktar[i]["pro_img"].toString())),
+                        daktar[i]["image"].toString())),
             //leading: CircleAvatar(child: Text("${daktarCount++}")),
-            title: Text(daktar[i]["doctor_name"].toString() +
+            title: Text(daktar[i]["hospital_chamber_name"].toString() +
                 "\n" +
-                daktar[i]["title_or_designation"].toString()),
-            onTap: () => print('click :' + daktar[i]["doctor_name"].toString()),
+                daktar[i]["license_no"].toString()),
+            onTap: () => print(
+                'click :' + daktar[i]["hospital_chamber_name"].toString()),
           );
           list.add(item);
         } else {
