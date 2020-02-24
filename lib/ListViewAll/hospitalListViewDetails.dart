@@ -1,4 +1,3 @@
-import 'package:amar_daktar/Models/DoctorsList.dart';
 import 'package:amar_daktar/Models/HospitalsList.dart';
 import 'package:amar_daktar/UI_Views/AppDrawer.dart';
 import 'package:flutter/cupertino.dart';
@@ -108,7 +107,7 @@ class HospitallistViewDetails extends StatelessWidget {
                   flex: 4,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
-                    child: Text(hospitalList.hospitalStatus,
+                    child: Text(hospitalList.hospitalChamberName,
                         style: TextStyle(color: Colors.white, fontSize: 12.5)),
                   ),
                 ),

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:amar_daktar/ListViewAll/hospitalListViewDetails.dart';
+import 'package:amar_daktar/Models/HospitalsList.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -244,30 +246,60 @@ class _HomeState extends State<Home> {
     }).then((response) {
       Map data = jsonDecode(response.body);
       print('Hospital Info :' + data.toString());
-      List daktar = data["response"];
-      print('["Doctor Name"]' + daktar[0]["doctor_name"].toString());
-      for (var i = 0; i < daktar.length; i++) {
+      List hospital = data["response"];
+      print('["Doctor Name"]' + hospital[0]["doctor_name"].toString());
+      for (var i = 0; i < hospital.length; i++) {
         print('searching Hospital loop>>>>>>>>');
 
         if (_countryId.toString() == "1" ||
-            _cityId.toString() == daktar[i]["city_id"].toString() ||
-            _areaId.toString() == daktar[i]["area_id"].toString()) {
+            _cityId.toString() == hospital[i]["city_id"].toString() ||
+            _areaId.toString() == hospital[i]["area_id"].toString()) {
           print('match');
 
           var item = ListTile(
-            leading: CircleAvatar(
-                radius: 20.0,
-                backgroundColor: Colors.transparent,
-                backgroundImage: NetworkImage(
-                    'http://amardaktar24.com/uploads/hospital/' +
-                        daktar[i]["image"].toString())),
-            //leading: CircleAvatar(child: Text("${daktarCount++}")),
-            title: Text(daktar[i]["hospital_chamber_name"].toString() +
-                "\n" +
-                daktar[i]["license_no"].toString()),
-            onTap: () => print(
-                'click :' + daktar[i]["hospital_chamber_name"].toString()),
-          );
+              leading: CircleAvatar(
+                  radius: 20.0,
+                  backgroundColor: Colors.transparent,
+                  backgroundImage: NetworkImage(
+                      'http://amardaktar24.com/uploads/hospital/' +
+                          hospital[i]["image"].toString())),
+              //leading: CircleAvatar(child: Text("${daktarCount++}")),
+              title: Text(hospital[i]["hospital_chamber_name"].toString() +
+                  "\n" +
+                  hospital[i]["license_no"].toString()),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HospitallistViewDetails(
+                          HospitalList(
+                              hospital[i]["id"].toString(),
+                              hospital[i]["hospital_chamber_name"].toString(),
+                              hospital[i]["about_hospital"].toString(),
+                              hospital[i]["city"].toString(),
+                              hospital[i]["area"].toString(),
+                              hospital[i]["hospital_chamber_address"]
+                                  .toString(),
+                              hospital[i]["service_details"].toString(),
+                              hospital[i]["license_no"].toString(),
+                              hospital[i]["image"].toString()))),
+                );
+                print("------------- Pass Data Doctor ---------------");
+                print('id :' + hospital[i]["id"].toString());
+                print('doctor_name :' + hospital[i]["doctor_name"].toString());
+                print('title_or_designation :' +
+                    hospital[i]["title_or_designation"].toString());
+                print('gender :' + hospital[i]["gender"].toString());
+                print('doctor_name :' + hospital[i]["doctor_name"].toString());
+                print('city :' + hospital[i]["city"].toString());
+                print('area :' + hospital[i]["area"].toString());
+                print('bmdc_reg_no :' + hospital[i]["bmdc_reg_no"].toString());
+                print('description :' + hospital[i]["description"].toString());
+                print('pro_img :' + hospital[i]["pro_img"].toString());
+                print('click :');
+                print('click :' +
+                    hospital[i]["hospital_chamber_name"].toString());
+              });
           list.add(item);
         } else {
           print('not match');

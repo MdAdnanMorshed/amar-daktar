@@ -25,22 +25,22 @@ class HospitalListApi {
         getHospitalListClass.clear();
         for (var item in jsonData['response']) {
           print('hospital');
-          HospitalList gethospitallist = HospitalList(
-            item['user_id'],
-            item['hospital_chamber_name'],
-            item['about_hospital'],
-            item['mission_vision'],
-            item['country_id'],
-            item['city_id'],
-            item['area_id'],
-            item['hospital_chamber_address'],
-            item['service_details'],
-            item['license_no'],
-            item['image'],
-            item['status'],
-          );
-          getHospitalListClass.add(gethospitallist);
-          print('Hospital Address:' + gethospitallist.hospitalAbout);
+//          HospitalList gethospitallist = HospitalList(
+//            item['user_id'],
+//            item['hospital_chamber_name'],
+//            item['about_hospital'],
+//            item['mission_vision'],
+//            item['country_id'],
+//            item['city_id'],
+//            item['area_id'],
+//            item['hospital_chamber_address'],
+//            item['service_details'],
+//            item['license_no'],
+//            item['image'],
+//            item['status'],
+//          );
+//          getHospitalListClass.add(gethospitallist);
+//          print('Hospital Address:' + gethospitallist.hospitalAbout);
         }
         print('before');
         return getHospitalListClass;

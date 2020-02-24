@@ -64,7 +64,7 @@ class _RegisterPageState extends State<UserRegister> {
           _selectedCityItem = id;
           _cityId = id;
         });
-       // print("City Id: " + _cityId);
+        // print("City Id: " + _cityId);
       },
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
@@ -107,7 +107,7 @@ class _RegisterPageState extends State<UserRegister> {
                         keyboardType: TextInputType.text,
                         onSaved: (value) {
                           nameName = value;
-                          print('NameTF:' + nameName);
+                          //print('NameTF:' + nameName);
                         },
 //                        validator: (value) {
 //                          if (value.isEmpty) return ("This is Required");
@@ -133,7 +133,7 @@ class _RegisterPageState extends State<UserRegister> {
                         keyboardType: TextInputType.emailAddress,
                         onSaved: (value) {
                           email = value;
-                          print('emailTF:' + email);
+                          // print('emailTF:' + email);
                         },
                         validator: (value) {
                           if (value.isEmpty) return ("This is Required");
