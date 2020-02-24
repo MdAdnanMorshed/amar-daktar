@@ -228,7 +228,7 @@ class _HomeState extends State<Home> {
     final url = "http://amardaktar24.com/api/search";
     List<ListTile> list = [];
 
-    print('-----------Doctor  Searching --------------');
+    print('-----------Hospital   Searching --------------');
     print('Searching Country Id :' + _countryId.toString());
     print('Searching City Id :' + _cityId.toString());
     print('Searching Area Id :' + _areaId.toString());

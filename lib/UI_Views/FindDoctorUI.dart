@@ -167,17 +167,6 @@ class _HomeState extends State<Home> {
       Map data = jsonDecode(response.body);
       //  print('city :' + data.toString());
 
-      Map data1 = {
-        "success": true,
-        "response": [
-          {"countryId": 1, "id": 1, "name": "Dhaka"},
-          {"countryId": 1, "id": 2, "name": "Chandpur"},
-          {"countryId": 1, "id": 3, "name": "Noakhali"},
-          {"countryId": 2, "id": 4, "name": "Kolkata"},
-          {"countryId": 2, "id": 5, "name": "Mumbai"}
-        ]
-      };
-
       List city = data["response"];
 
       for (var i = 0; i < city.length; i++) {
@@ -224,7 +213,7 @@ class _HomeState extends State<Home> {
         headers: {"Accept": "application/json"},
         body: {"city_id": "$_cityId"}).then((response) {
       Map data = jsonDecode(response.body);
-      // print('area' + data.toString());
+      print('area' + data.toString());
 
       List area = data["response"];
 
@@ -302,7 +291,7 @@ class _HomeState extends State<Home> {
     print('Searching Country Id :' + _countryId.toString());
     print('Searching City Id :' + _cityId.toString());
     print('Searching Area Id :' + _areaId.toString());
-    print('Searching Speciality Id :' + _specialistId.toString());
+    print('Searching Speciality ' + _specialistId.toString());
     print('Searching Service :' + _service.toString());
 
     await http.post(url, headers: {
@@ -315,17 +304,17 @@ class _HomeState extends State<Home> {
       "service": "$_service"
     }).then((response) {
       Map data = jsonDecode(response.body);
-      List daktar = data["response"];
 
+      List daktar = data["response"];
+      print('doctor data lenght :' + daktar.length.toString());
+      print('doctor Data  :' + data.toString());
       for (var i = 0; i < daktar.length; i++) {
         print('searching doctor loop>>>>>>>>');
 
-        if (_countryId.toString() == "1" ||
-            _cityId.toString() == daktar[i]["city_id"].toString() ||
-            _areaId.toString() == daktar[i]["area_id"].toString() ||
+        if (_countryId.toString() == "1" &&
+            _cityId.toString() == daktar[i]["city_id"].toString() &&
+            _areaId.toString() == daktar[i]["area_id"].toString() &&
             _specialistId.toString() == daktar[i]["department_id"].toString()) {
-          //FindDoctor doctorlist = FindDoctor("Adnan", "Engr.");
-          // doctorFindlist.add(doctorlist);
           var item = ListTile(
             leading: CircleAvatar(
                 radius: 20.0,
@@ -356,10 +345,8 @@ class _HomeState extends State<Home> {
                         daktar[i]["description"].toString(),
                         daktar[i]["pro_img"].toString()))),
               );
-              //  DoctorlistViewDetails(doctorlist);
               print("------------- Pass Data Doctor ---------------");
               print('id :' + daktar[i]["id"].toString());
-
               print('doctor_name :' + daktar[i]["doctor_name"].toString());
               print('title_or_designation :' +
                   daktar[i]["title_or_designation"].toString());
@@ -370,7 +357,6 @@ class _HomeState extends State<Home> {
               print('bmdc_reg_no :' + daktar[i]["bmdc_reg_no"].toString());
               print('description :' + daktar[i]["description"].toString());
               print('pro_img :' + daktar[i]["pro_img"].toString());
-
               print('click :');
             },
           );

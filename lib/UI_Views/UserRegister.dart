@@ -19,8 +19,14 @@ class UserRegister extends StatefulWidget {
 class _RegisterPageState extends State<UserRegister> {
   var _formKey = GlobalKey<FormState>();
 
-  String nameName, email, phone, password, cityId, selectedCountry, gender;
-  String role_id = "4";
+  String nameName = '',
+      email = '',
+      phone = '',
+      password = '',
+      cityId,
+      selectedCountry,
+      gender;
+  String role_id = "3";
   String pro_img;
   String _mySelection;
   bool status = false;
@@ -30,43 +36,23 @@ class _RegisterPageState extends State<UserRegister> {
   var selectedCity, selectedGender, imageURI, image;
   String item;
 
-  var _selectedCountryItem,
-      _selectedCityItem,
-      _selectedAreaItem,
-      _cityId,
-      _countryId;
-
-  //------------------------------ testing ----------------------
+  var _selectedCityItem, _cityId;
 
   // city done
   Future<Widget> _cityList() async {
     final url = "http://amardaktar24.com/public/api/get/all/districts";
     List<DropdownMenuItem> list = [];
-
-//    if (_countryId == null) {
-//      _countryId = 0;
-//    }
-//    print("_countryId: " + _countryId.toString());
-
     await http.get(url).then((response) {
       Map data = jsonDecode(response.body);
       List city = data["response"];
 
-      print("City List: " + data["response"].toString());
-
       for (var i = 0; i < city.length; i++) {
-//        if (_countryId != 0) {
-//          print("_countryId != 0");
-        //if (_countryId == city[i]["division_id"]) {
-        // print("_countryId == city[i]['division_id']");
         var item = DropdownMenuItem(
           child: Text(city[i]["name"]),
           value: city[i]["id"].toString(),
         );
         list.add(item);
       }
-      //}
-      //  }
     });
 
     return DropdownButtonFormField(
@@ -78,49 +64,7 @@ class _RegisterPageState extends State<UserRegister> {
           _selectedCityItem = id;
           _cityId = id;
         });
-        print("City Id: " + id);
-      },
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
-        border: OutlineInputBorder(),
-      ),
-    );
-  }
-
-  // area done
-  Future<Widget> _areaList() async {
-    final url = "http://amardaktar24.com/api/get-location";
-    List<DropdownMenuItem> list = [];
-
-    if (_cityId == null) {
-      _cityId = 0;
-    }
-    print("_cityId: " + _cityId.toString());
-
-    await http.post(url, body: {"city_id": "$_cityId"}).then((response) {
-      Map data = jsonDecode(response.body);
-      List area = data["response"];
-
-      //print(data["response"]);
-
-      for (var i = 0; i < area.length; i++) {
-        var item = DropdownMenuItem(
-          child: Text(area[i]["name"]),
-          value: area[i]["id"].toString(),
-        );
-        list.add(item);
-      }
-    });
-
-    return DropdownButtonFormField(
-      hint: Text("Select Your Area..."),
-      items: list,
-      value: _selectedAreaItem,
-      onChanged: (id) {
-        setState(() {
-          _selectedAreaItem = id;
-        });
-        print("Area Id: " + id);
+       // print("City Id: " + _cityId);
       },
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
@@ -141,10 +85,6 @@ class _RegisterPageState extends State<UserRegister> {
             margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             child: Column(
               children: <Widget>[
-                Align(
-                    //  child: Text("Registration", style: TextStyle(fontSize: 30)),
-                    ),
-                SizedBox(height: 20),
                 Form(
                   key: _formKey,
                   child: Column(
@@ -169,13 +109,10 @@ class _RegisterPageState extends State<UserRegister> {
                           nameName = value;
                           print('NameTF:' + nameName);
                         },
-                        validator: (value) {
-                          if (value.isEmpty)
-                            return ("This is Required");
-                          else if (value.length == 5)
-                            return ("Length should be 4");
-                          return null;
-                        },
+//                        validator: (value) {
+//                          if (value.isEmpty) return ("This is Required");
+//                          return null;
+//                        },
                       ),
                       SizedBox(height: 15),
                       // Email
@@ -199,10 +136,7 @@ class _RegisterPageState extends State<UserRegister> {
                           print('emailTF:' + email);
                         },
                         validator: (value) {
-                          if (value.isEmpty)
-                            return ("This is Required");
-                          else if (value.length == 5)
-                            return ("Length should be 4");
+                          if (value.isEmpty) return ("This is Required");
                           return null;
                         },
                       ),
@@ -224,25 +158,18 @@ class _RegisterPageState extends State<UserRegister> {
                         ),
                         keyboardType: TextInputType.phone,
                         onSaved: (value) {
-                          phone = value;
-                          print('PhoneTF:' + phone);
+                          setState(() {
+                            phone = value;
+                            print('PhoneTF:' + phone);
+                          });
                         },
                         validator: (value) {
                           if (value.isEmpty)
                             return ("This is Required");
-                          else if (value.length > 11)
+                          else if (value.length == 11)
                             return ("Length should be 11");
                           return null;
                         },
-                      ),
-                      SizedBox(height: 15),
-                      // Sign Up Type
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Select Your Sign Up Type",
-                          style: TextStyle(fontSize: 15),
-                        ),
                       ),
                       SizedBox(height: 15),
                       // Password
@@ -257,37 +184,7 @@ class _RegisterPageState extends State<UserRegister> {
                       TextFormField(
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(15),
-                          hintText: "Enter Your Password",
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.text,
-                        obscureText: true,
-                        onSaved: (password) {
-                          password = password;
-                          print('passwordTF:' + password);
-                        },
-                        validator: (value) {
-                          if (value.isEmpty)
-                            return ("This is Required");
-                          else if (value.length > 11)
-                            return ("Length should be 11");
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: 15),
-                      // Confirm Password
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Confirm",
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(15),
-                          hintText: "Repeat Password",
+                          hintText: "Password",
                           border: OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.text,
@@ -296,13 +193,11 @@ class _RegisterPageState extends State<UserRegister> {
                           password = loginPass;
                           print('passwordTF:' + password);
                         },
-                        validator: (comfirmPassword) {
-                          if (comfirmPassword.isEmpty)
+                        validator: (value) {
+                          if (value.isEmpty)
                             return ("This is Required");
-                          // else if (password != comfirmPassword)
-                          //   return ("you must be password and confim password are same");
-                          else if (comfirmPassword.length > 11)
-                            return ("Length should be 11");
+                          else if (value.length > 6)
+                            return ("password should be min 6 Digit");
                           return null;
                         },
                       ),
@@ -311,40 +206,9 @@ class _RegisterPageState extends State<UserRegister> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Country",
+                          "Location :",
                           style: TextStyle(fontSize: 15),
                         ),
-                      ),
-                      SizedBox(height: 10),
-                      DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(vertical: 3, horizontal: 15),
-                          border: OutlineInputBorder(),
-                        ),
-                        hint: Text("Please Select Your Country"),
-                        items: [
-                          DropdownMenuItem(
-                            child: Text("Bangladesh"),
-                            value: "Bangladesh",
-                          ),
-                          DropdownMenuItem(
-                            child: Text("India"),
-                            value: "India",
-                          ),
-                        ],
-                        // value: "Doctor",
-                        value: selectedCountry,
-                        onChanged: (city) {
-                          setState(() {
-                            selectedCountry = city;
-                          });
-                        },
-                        validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
-                          return null;
-                        },
-                        onSaved: (value) => print(value),
                       ),
                       SizedBox(height: 15),
                       // City
@@ -363,15 +227,6 @@ class _RegisterPageState extends State<UserRegister> {
                                     }
                                   }),
                               SizedBox(height: 15),
-                              FutureBuilder<Widget>(
-                                  future: _areaList(),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-                                      return snapshot.data;
-                                    } else {
-                                      return CircularProgressIndicator();
-                                    }
-                                  }),
                             ],
                           ),
                         ),
@@ -401,6 +256,7 @@ class _RegisterPageState extends State<UserRegister> {
                           setState(() {
                             selectedGender = gender;
                           });
+                          print('gender :' + selectedGender);
                         },
                         validator: (gender) {
                           if (gender.isEmpty) return ("This is Required");
@@ -413,7 +269,7 @@ class _RegisterPageState extends State<UserRegister> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Profile Image",
+                          "",
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
@@ -457,19 +313,17 @@ class _RegisterPageState extends State<UserRegister> {
 
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
-
-                              print('password' + password);
-                              print("nameName : " + nameName);
-                              print("phone :" + phone);
-                              print("selectCity :" + selectedCity);
-                              //    print('select Gender: ' + gender);
-
+                              print("nameName : " + nameName.toString());
+                              print('Mail Address :' + email.toString());
+                              print('password' + password.toString());
+                              print('Role Id :' + role_id.toString());
+                              print("phone :" + phone.toString());
+                              print("selectCity :" + _cityId.toString());
+                              print('select Gender: ' +
+                                  selectedGender.toString());
                               _register(nameName, email, password, role_id,
-                                  cityId, 'testing.jpg', 'male', phone);
+                                  cityId, 'testing.jpg', selectedGender, phone);
                             }
-                            /*
-                            print("I am signup button !");
-                             */
                           },
                         ),
                       ),
@@ -541,7 +395,6 @@ class _RegisterPageState extends State<UserRegister> {
                       //   _image = null;
                       //   imageName = null;
                       // });
-
                       Navigator.of(context).pop();
                     },
                   ),
@@ -554,21 +407,26 @@ class _RegisterPageState extends State<UserRegister> {
         });
   }
 
+  _register(String nameName, String email, String password, String roleId,
+      String cityId, var imageURI, String gender, String phone) {
+    print('register starting ....');
+    print('name:' + nameName);
+    print('mail:' + email);
+    print('password:' + password);
+    print('phone:' + phone);
+    print('gender:' + gender);
+    UserRegisterApi(nameName, email, password, '4', cityId, 'testing.jpg',
+            gender, phone)
+        .fetchData()
+        .whenComplete(Register);
+    print("<<----------- register End ------------------->>>>");
+  }
+
   FutureOr Register() {
     print('Register is done ');
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => UserLogin()),
     );
-  }
-
-  _register(String nameName, String email, String password, String roleId,
-      String cityId, var imageURI, String gender, String phone) {
-    print('register starting ....');
-    UserRegisterApi(
-            nameName, email, password, '4', '1', 'testing.jpg', gender, phone)
-        .fetchData()
-        .whenComplete(Register);
-    print("register End >>>>");
   }
 }

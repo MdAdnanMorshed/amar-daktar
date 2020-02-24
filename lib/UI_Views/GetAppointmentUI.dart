@@ -84,61 +84,68 @@ class _AppointmentPageState extends State<GetAppointment> {
             margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             child: Column(
               children: <Widget>[
-                Align(
-                    //  child: Text("Registration", style: TextStyle(fontSize: 30)),
-                    ),
+                Card(
+                  margin:
+                      EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                  color: Colors.blueGrey,
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 10.0, top: 7, right: 0, bottom: 7),
+                          child: Text("Doctor Name  :",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 12.5)),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12),
+                          child: Text(doctorsList.doctorName,
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 15.5)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Card(
+                  margin:
+                      EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                  color: Colors.blueGrey,
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 10.0, top: 7, right: 0, bottom: 7),
+                          child: Text("Doctor Frees  :",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 12.5)),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12),
+                          child: Text(doctorsList.doctorFees,
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 15.5)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(height: 20),
                 Form(
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      // Full Name
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Name of Doctor",
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(15),
-                            hintText: doctorsList.doctorName,
-                            border: OutlineInputBorder(),
-                          ),
-                          keyboardType: TextInputType.text,
-                          validator: (value) {
-                            if (value.isEmpty) return ("This is Required");
-                            return null;
-                          },
-                          onSaved: (value) {
-                            value = doctorsList.doctorName.toString();
-                            print(value);
-                          }),
-                      SizedBox(height: 15),
-                      // Email
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Doctor fees",
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(15),
-                          hintText: doctorsList.doctorFees,
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                        validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
-                          return null;
-                        },
-                        onSaved: (value) => print(value),
-                      ),
                       SizedBox(height: 15),
                       // Phone Number
                       Align(
@@ -149,38 +156,6 @@ class _AppointmentPageState extends State<GetAppointment> {
                         ),
                       ),
                       SizedBox(height: 10),
-                      DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(vertical: 3, horizontal: 15),
-                          border: OutlineInputBorder(),
-                        ),
-                        hint: Text("Please Choose One"),
-                        items: [
-                          DropdownMenuItem(
-                            child: Text("Dhaka Medical Hospital"),
-                            value: "Dhaka Medical Hospital",
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Islamic Hospital"),
-                            value: "Islamic Hospital",
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Bangadesh Specilized Hospital"),
-                            value: "Bangadesh Specilized Hospital",
-                          ),
-                        ],
-                        // value: "Doctor",
-                        onChanged: (type) {
-                          print(type);
-                        },
-                        validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
-                          return null;
-                        },
-                        onSaved: (value) => print(value),
-                      ),
-                      SizedBox(height: 15),
                       //Patients Status
                       Row(
                         children: <Widget>[
