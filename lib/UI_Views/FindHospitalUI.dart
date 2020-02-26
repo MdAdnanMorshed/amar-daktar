@@ -239,7 +239,7 @@ class _HomeState extends State<Home> {
     await http.post(url, headers: {
       "Accept": "application/json"
     }, body: {
-      "county_id": "$_countryId",
+      "country_id": "$_countryId",
       "city_id": "$_cityId",
       "area_id": "$_areaId",
       "service": "$_service"

@@ -39,22 +39,5 @@ class MyDoctorApps extends StatelessWidget {
         },
       ),
     );
-    // return MaterialApp(
-    //   theme: ThemeData(primaryColor: Colors.red),
-    //   debugShowCheckedModeBanner: false,
-    //   routes: {
-    //     '/user_login': (context) => UserLogin(),
-    //     '/user_register': (context) => UserRegister(),
-    //     '/dashboard': (context) => Dashboard(),
-    //     '/user_profile': (context) => UserProfile(),
-    //     '/hospitalList': (context) => HospitalListUI(),
-    //     '/doctorList': (context) => DoctorListUI(),
-    //     '/ambulanceList': (context) => AmbulanceListUI(),
-    //     '/bloodDonor': (context) => BloodDonorUI(),
-    //     '/About': (context) => About(),
-    //     '/Contact': (context) => Contact(),
-    //     '/': (context) => SplashScreen(),
-    //   },
-    // );
   }
 }

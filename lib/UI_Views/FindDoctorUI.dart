@@ -287,17 +287,17 @@ class _HomeState extends State<Home> {
     final url = "http://amardaktar24.com/api/search";
     List<ListTile> list = [];
 
-    print('-----------Doctor  Searching --------------');
-    print('Searching Country Id :' + _countryId.toString());
-    print('Searching City Id :' + _cityId.toString());
-    print('Searching Area Id :' + _areaId.toString());
-    print('Searching Speciality ' + _specialistId.toString());
-    print('Searching Service :' + _service.toString());
+//    print('-----------Doctor  Searching --------------');
+//    print('Searching Country Id :' + _countryId.toString());
+//    print('Searching City Id :' + _cityId.toString());
+//    print('Searching Area Id :' + _areaId.toString());
+//    print('Searching Speciality ' + _specialistId.toString());
+//    print('Searching Service :' + _service.toString());
 
     await http.post(url, headers: {
       "Accept": "application/json"
     }, body: {
-      "county_id": "$_countryId",
+      "country_id": "$_countryId",
       "city_id": "$_cityId",
       "area_id": "$_areaId",
       "speciality_id": "$_specialistId",
@@ -346,23 +346,11 @@ class _HomeState extends State<Home> {
                         daktar[i]["pro_img"].toString()))),
               );
               print("------------- Pass Data Doctor ---------------");
-              print('id :' + daktar[i]["id"].toString());
-              print('doctor_name :' + daktar[i]["doctor_name"].toString());
-              print('title_or_designation :' +
-                  daktar[i]["title_or_designation"].toString());
-              print('gender :' + daktar[i]["gender"].toString());
-              print('doctor_name :' + daktar[i]["doctor_name"].toString());
-              print('city :' + daktar[i]["city"].toString());
-              print('area :' + daktar[i]["area"].toString());
-              print('bmdc_reg_no :' + daktar[i]["bmdc_reg_no"].toString());
-              print('description :' + daktar[i]["description"].toString());
-              print('pro_img :' + daktar[i]["pro_img"].toString());
-              print('click :');
             },
           );
           list.add(item);
         } else {
-          print('not match');
+//          print('not match');
         }
       }
     });
