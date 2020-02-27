@@ -13,6 +13,9 @@ class GetAppointmentApi {
   static bool status = false;
   static String token;
 
+  GetAppointmentApi(this.doctorId, this.hospitalId, this.dateOfAppointment,
+      this.patientStatus, this.problems, this.doctorFees);
+
   Future fetchData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     token = prefs.getString('userToken');

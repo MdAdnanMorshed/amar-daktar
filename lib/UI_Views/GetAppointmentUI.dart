@@ -1,5 +1,6 @@
 import 'dart:async';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:amar_daktar/Models/findDoctorList.dart';
 import 'package:amar_daktar/RestApi/GetAppointmentApi.dart';
 import 'package:amar_daktar/RestApi/UserRegisterApi.dart';
@@ -49,11 +50,23 @@ class _AppointmentPageState extends State<GetAppointment> {
     }
   }
 
+  int selectedRadio;
   @override
   void initState() {
     // TODO: implement initState
     print('Get Appointment ::');
     super.initState();
+    selectedRadio = 0;
+  }
+
+  var _selectedCityItem;
+
+  int _hospitalId = 0;
+
+  setSelectedRadio(int val) {
+    setState(() {
+      selectedRadio = val;
+    });
   }
 
   @override
@@ -155,11 +168,22 @@ class _AppointmentPageState extends State<GetAppointment> {
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
+                      // Hospital List
+                      SizedBox(height: 20),
+                      FutureBuilder<Widget>(
+                        future: _hospital(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return snapshot.data;
+                          } else {
+                            return CircularProgressIndicator();
+                          }
+                        },
+                      ),
                       SizedBox(height: 10),
                       //Patients Status
                       Row(
                         children: <Widget>[
-                          /*
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
@@ -167,98 +191,116 @@ class _AppointmentPageState extends State<GetAppointment> {
                               style: TextStyle(fontSize: 15),
                             ),
                           ),
+
                           ButtonBar(
                             children: <Widget>[
-                              //Male
-                              ListTile(
-                                title: Text("Male"),
-                                leading: Radio(
-                                    value: 1,
-                                    groupValue: 1,
-                                    activeColor: Colors.green,
-                                    onChanged: (val) {
-                                      print('');
-                                    }),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  " New :",
+                                  style: TextStyle(fontSize: 15),
+                                ),
                               ),
-                              //Female
+                              Radio(
+                                value: 1,
+                                groupValue: selectedRadio,
+                                activeColor: Colors.green,
+                                onChanged: (val) {
+                                  print("Radio $val");
+                                  setSelectedRadio(val);
+                                },
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  " Old :",
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                              ),
+                              Radio(
+                                value: 2,
+                                groupValue: selectedRadio,
+                                activeColor: Colors.blue,
+                                onChanged: (val) {
+                                  print("Radio $val");
+                                  setSelectedRadio(val);
+                                },
+                              )
                             ],
                           ),
+                          // Appointment Date
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Appointment Date",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          TextFormField(
+                            onTap: () {
+                              selectDate(context);
+                              print("get Appointment Date here");
+                            },
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(15),
+                              hintText: '${_dateTime.toString()}',
+                              border: OutlineInputBorder(),
+                            ),
+                            //  keyboardType: TextInputType.emailAddress,
+                            validator: (value) {
+                              if (value.isEmpty) return ("This is Required");
+                              return null;
+                            },
+                            onSaved: (value) => print(value),
+                          ),
+                          SizedBox(height: 15),
 
-                          */
+                          // Problem Description
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Problems",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(15),
+                              hintText: "Enter Your Problems",
+                              border: OutlineInputBorder(),
+                            ),
+                            keyboardType: TextInputType.text,
+                            maxLines: 3,
+                            validator: (value) {
+                              if (value.isEmpty) return ("This is Required");
+                              return null;
+                            },
+                            onSaved: (value) => print(value),
+                          ),
+                          SizedBox(height: 15),
+                          // SignUp Button
+                          SizedBox(
+                            width: double.infinity,
+                            child: RaisedButton(
+                              color: Colors.green,
+                              child: Text(
+                                "Send",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              onPressed: () {
+                                print("I am send button !");
+                                _submit();
+                              },
+                            ),
+                          ),
                         ],
-                      ),
-
-                      // Appointment Date
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Appointment Date",
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        onTap: () {
-                          selectDate(context);
-                          print("get Appointment Date here");
-                        },
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(15),
-                          hintText: '${_dateTime.toString()}',
-                          border: OutlineInputBorder(),
-                        ),
-                        //  keyboardType: TextInputType.emailAddress,
-                        validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
-                          return null;
-                        },
-                        onSaved: (value) => print(value),
-                      ),
-                      SizedBox(height: 15),
-
-                      // Problem Description
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Problems",
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(15),
-                          hintText: "Enter Your Problems",
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.text,
-                        maxLines: 3,
-                        validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
-                          return null;
-                        },
-                        onSaved: (value) => print(value),
-                      ),
-                      SizedBox(height: 15),
-                      // SignUp Button
-                      SizedBox(
-                        width: double.infinity,
-                        child: RaisedButton(
-                          color: Colors.green,
-                          child: Text(
-                            "Send",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          padding: EdgeInsets.symmetric(vertical: 12),
-                          onPressed: () {
-                            print("I am send button !");
-
-                            _submit();
-                          },
-                        ),
                       ),
                     ],
                   ),
@@ -285,18 +327,58 @@ class _AppointmentPageState extends State<GetAppointment> {
 
     if (form.validate()) {
       form.save();
-      _getAppointment();
+      _getAppointment("", "", "", "", "", "");
     }
   }
 
-  _getAppointment() {
+  _getAppointment(String doctorId, String hospitalId, String paitentSatus,
+      String data, String probkems, String doctorfrees) {
     pr.show();
-    GetAppointmentApi().fetchData().whenComplete(confimMsg);
+    GetAppointmentApi("1", "1", "new", "2/2/2020", "problems ", "500")
+        .fetchData()
+        .whenComplete(confimMsg);
   }
 
   FutureOr confimMsg() {
     pr.hide();
     // Dailog Successful Masseage
     print('Get Appointment Done');
+  }
+
+  Future<Widget> _hospital() async {
+    final url = "http://amardaktar24.com/public/api/get/all/districts";
+    List<DropdownMenuItem> list = [];
+
+    await http.get(url).then((response) {
+      Map data = jsonDecode(response.body);
+      //  print('city :' + data.toString());
+      List city = data["response"];
+      for (var i = 0; i < city.length; i++) {
+        // if (_countryId == city[i]["countryId"]) {
+        var item = DropdownMenuItem(
+          child: Text(city[i]["name"]),
+          value: city[i]["id"].toString(),
+        );
+        list.add(item);
+        // }
+      }
+    });
+
+    return DropdownButtonFormField(
+      hint: Text("Select Your City..."),
+      items: list,
+      value: _selectedCityItem,
+      onChanged: (id) {
+        setState(() {
+          _selectedCityItem = id;
+          _hospitalId = int.parse(id);
+        });
+        print("City Id: " + id);
+      },
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
+        border: OutlineInputBorder(),
+      ),
+    );
   }
 }
