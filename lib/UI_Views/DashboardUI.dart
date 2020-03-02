@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:amar_daktar/widgets/custom_shape.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,12 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  double _height;
+  double _width;
+  double _pixelRatio;
+  bool _large;
+  bool _medium;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
