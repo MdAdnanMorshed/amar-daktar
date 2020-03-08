@@ -1,4 +1,5 @@
 import 'package:amar_daktar/UI_Views/AboutComapnyUI.dart';
+import 'package:amar_daktar/UI_Views/AppDrawer.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,7 @@ class MyDoctorApps extends StatelessWidget {
         routes: {
           '/user_login': (context) => UserLogin(),
           '/user_register': (context) => UserRegister(),
-          '/dashboard': (context) => Dashboard(),
+          '/dashboard': (context) => AppDrawer(),
           '/user_profile': (context) => UserProfile(),
           '/hospitalList': (context) => HospitalListUI(),
           '/doctorList': (context) => DoctorListUI(),

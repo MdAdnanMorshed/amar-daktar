@@ -1,4 +1,5 @@
 import 'package:amar_daktar/RestApi/UserLoginApi.dart';
+import 'package:amar_daktar/UI_Views/AppDrawer.dart';
 import 'package:amar_daktar/UI_Views/UserRegister.dart';
 import 'package:amar_daktar/widgets/custom_shape.dart';
 import 'package:amar_daktar/widgets/responsive_ui.dart';
@@ -324,7 +325,7 @@ class _LoginPageState extends State<UserLogin> {
       pr.hide();
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Dashboard()),
+        MaterialPageRoute(builder: (context) => AppDrawer()),
       );
     } else {
       print(UserLoginApi.status);

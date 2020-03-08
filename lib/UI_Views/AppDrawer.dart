@@ -3,6 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'AmbulancesListUI.dart';
+import 'BloodDonorListUI.dart';
+import 'FindDoctorUI.dart';
+import 'FindHospitalUI.dart';
+
 class AppDrawer extends StatefulWidget {
   final String currentRoute;
   const AppDrawer({Key key, this.currentRoute}) : super(key: key);
@@ -41,7 +46,18 @@ class _AppDrawerState extends State<AppDrawer> {
         appBar: AppBar(
           title: Text("DeshBoard"),
         ),
-        body: Center(),
+        body: Container(
+          child: GridView.count(
+            crossAxisCount: 2,
+            children: <Widget>[
+              MenuItemCard('Doctors', Image.asset('images/doctorpic.png')),
+              MenuItemCard('Hospitals', Image.asset('images/hospitalpic.png')),
+              MenuItemCard(
+                  'Blood Donars', Image.asset('images/bloodpicture.png')),
+              MenuItemCard('Ambulances', Image.asset('images/ambulances.png')),
+            ],
+          ),
+        ),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -211,13 +227,14 @@ class _AppDrawerState extends State<AppDrawer> {
 
   Widget _createDrawerItemThems({IconData icon, String text}) {
     return ListTile(
-      title: Text("Dark Theme"),
+      title: Text("Dark Mode "),
       trailing: Switch(
         value: darkTheme,
         onChanged: (changed) {
           setState(() {
             darkTheme = changed;
-            print('darkThems');
+
+            print(darkTheme);
           });
         },
       ),
@@ -331,5 +348,56 @@ class _AppDrawerState extends State<AppDrawer> {
     prefs1.remove('userToken');
     await prefs1.clear();
     print("Logout");
+  }
+}
+
+// ignore: must_be_immutable
+class MenuItemCard extends StatelessWidget {
+  MenuItemCard(this.title, this.pic);
+  String title;
+  Image pic;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Card(
+          color: Colors.red,
+          child: InkWell(
+            onTap: () {
+              if (title == 'Doctors') {
+                Navigator.push(
+                    context,
+                    //MaterialPageRoute(builder: (context) => DoctorListUI()));
+                    MaterialPageRoute(builder: (context) => FindDoctorUI()));
+              } else if (title == 'Hospitals') {
+                Navigator.push(
+                    context,
+                    //MaterialPageRoute(builder: (context) => HospitalListUI()));
+                    MaterialPageRoute(builder: (context) => FindHospitalUI()));
+              } else if (title == 'Blood Donars') {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => BloodDonorUI()));
+              } else {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AmbulanceListUI()));
+              }
+            },
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  SizedBox(width: 120, height: 120, child: pic),
+                  Text(title,
+                      style: TextStyle(fontSize: 15.3, color: Colors.white)),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
