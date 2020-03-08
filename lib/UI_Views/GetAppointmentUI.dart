@@ -327,10 +327,11 @@ class _AppointmentPageState extends State<GetAppointment> {
 
     if (form.validate()) {
       form.save();
+
       print('doctorId' + doctorsList.doctorid);
       print('hospitalId:');
       print('doctorFrees' + doctorsList.doctorFees);
-      print('date' + doctorsList.doctorFees);
+      print('date' + _dateTime.toString());
       print('patientStatus:' + selectedRadio.toString());
       print('Problems:');
       _getAppointment("", "", "", "", "", "");
@@ -347,7 +348,8 @@ class _AppointmentPageState extends State<GetAppointment> {
 
   FutureOr confimMsg() {
     pr.hide();
-    // Dailog Successful Masseage
+    // Dailog Successful Masseage snackbar
+    SnackBarPage();
     print('Get Appointment Done');
   }
 
@@ -384,6 +386,32 @@ class _AppointmentPageState extends State<GetAppointment> {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
         border: OutlineInputBorder(),
+      ),
+    );
+  }
+}
+
+class SnackBarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: RaisedButton(
+        onPressed: () {
+          final snackBar = SnackBar(
+            content: Text('Yay! A SnackBar!'),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {
+                // Some code to undo the change.
+              },
+            ),
+          );
+
+          // Find the Scaffold in the widget tree and use
+          // it to show a SnackBar.
+          Scaffold.of(context).showSnackBar(snackBar);
+        },
+        child: Text('Show SnackBar'),
       ),
     );
   }

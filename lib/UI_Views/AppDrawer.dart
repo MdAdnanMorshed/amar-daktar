@@ -11,6 +11,7 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
+  bool darkTheme = false;
   String current = '';
   String name = 'demo';
   String mail = 'demo@gmail.com';
@@ -34,114 +35,111 @@ class _AppDrawerState extends State<AppDrawer> {
 //      version = packageInfo.version;
 //    });
 
-    return SafeArea(
-      child: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            _createHeader(),
-            _createDrawerItem(
-                icon: Icons.dashboard,
-                text: 'DashBoard',
-                onTap: () {
-                  print('dashboard');
-                  print(current);
-                  if (current == '/dashboard') {
-                    Navigator.popAndPushNamed(context, '/dashboard');
+    return MaterialApp(
+      theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("DeshBoard"),
+        ),
+        body: Center(),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              _createHeader(),
+              _createDrawerItem(
+                  icon: Icons.dashboard,
+                  text: 'DashBoard',
+                  onTap: () {
+                    print('dashboard');
+                    print(current);
+                    if (current == '/dashboard') {
+                      Navigator.popAndPushNamed(context, '/dashboard');
+                    } else {
+                      Navigator.of(context).pop();
+                    }
+                  }),
+              _createDrawerItem(
+                  icon: Icons.perm_identity,
+                  text: 'Profile Settings',
+                  onTap: () {
+                    if (current != '/user_profile') {
+                      Navigator.popAndPushNamed(context, '/user_profile');
+                    } else {
+                      Navigator.of(context).pop();
+                    }
+                  }),
+              _createDrawerItem2(
+                icon: Icons.settings,
+                text: 'Services',
+                onTap1: () {
+                  if (current != '/doctorList') {
+                    Navigator.popAndPushNamed(context, '/doctorList');
                   } else {
                     Navigator.of(context).pop();
                   }
-                }),
-            _createDrawerItem(
-                icon: Icons.perm_identity,
-                text: 'Profile Settings',
-                onTap: () {
-                  if (current != '/user_profile') {
-                    Navigator.popAndPushNamed(context, '/user_profile');
+                },
+                onTap2: () {
+                  if (current != '/hospitalList') {
+                    Navigator.popAndPushNamed(context, '/hospitalList');
                   } else {
                     Navigator.of(context).pop();
                   }
-                }),
-            _createDrawerItem2(
-              icon: Icons.settings,
-              text: 'Services',
-              onTap1: () {
-                if (current != '/doctorList') {
-                  Navigator.popAndPushNamed(context, '/doctorList');
-                } else {
-                  Navigator.of(context).pop();
-                }
-              },
-              onTap2: () {
-                if (current != '/hospitalList') {
-                  Navigator.popAndPushNamed(context, '/hospitalList');
-                } else {
-                  Navigator.of(context).pop();
-                }
-              },
-              onTap3: () {
-                if (current != '/bloodDonor') {
-                  Navigator.popAndPushNamed(context, '/bloodDonor');
-                } else {
-                  Navigator.of(context).pop();
-                }
-              },
-              onTap4: () {
-                if (current != '/ambulanceList') {
-                  Navigator.popAndPushNamed(context, '/ambulanceList');
-                } else {
-                  Navigator.of(context).pop();
-                }
-              },
-            ),
-            _createDrawerItem(
-                icon: Icons.call,
-                text: 'Contact',
-                onTap: () {
-                  if (current != '/Contact') {
-                    Navigator.popAndPushNamed(context, '/Contact');
-                  } else {
-                    Navigator.of(context).pop();
-                  }
-                }),
-            _createDrawerItem(
-                icon: Icons.info,
-                text: 'About',
-                onTap: () {
-                  if (current != '/About') {
-                    Navigator.popAndPushNamed(context, '/About');
-                  } else {
-                    Navigator.of(context).pop();
-                  }
-                }),
-            Divider(
-              color: Colors.purple,
-              height: 1,
-              thickness: 1,
-            ),
-            _createDrawerItem(
-                icon: Icons.exit_to_app,
-                text: 'Log Out',
-                onTap: () {
-                  UserLoginApi.status = false;
-                  print('flag' + UserLoginApi.status.toString());
-                  // removeShared();
-                  logut();
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/user_login', (Route r) => r == null);
-                }),
-            Divider(
-              color: Colors.purple,
-              height: 1,
-              thickness: 1,
-            ),
-            ListTile(
-              trailing: Text(
-                'Version : 1.0',
-                textScaleFactor: .8,
+                },
               ),
-            )
-          ],
+              _createDrawerItem(
+                  icon: Icons.call,
+                  text: 'Contact',
+                  onTap: () {
+                    if (current != '/Contact') {
+                      Navigator.popAndPushNamed(context, '/Contact');
+                    } else {
+                      Navigator.of(context).pop();
+                    }
+                  }),
+              _createDrawerItem(
+                  icon: Icons.info,
+                  text: 'About',
+                  onTap: () {
+                    if (current != '/About') {
+                      Navigator.popAndPushNamed(context, '/About');
+                    } else {
+                      Navigator.of(context).pop();
+                    }
+                  }),
+              _createDrawerItemThems(
+                icon: Icons.info,
+                text: 'Thems',
+              ),
+              Divider(
+                color: Colors.purple,
+                height: 1,
+                thickness: 1,
+              ),
+              _createDrawerItem(
+                  icon: Icons.exit_to_app,
+                  text: 'Log Out',
+                  onTap: () {
+                    UserLoginApi.status = false;
+                    print('flag' + UserLoginApi.status.toString());
+                    // removeShared();
+                    logut();
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/user_login', (Route r) => r == null);
+                  }),
+              Divider(
+                color: Colors.purple,
+                height: 1,
+                thickness: 1,
+              ),
+              ListTile(
+                trailing: Text(
+                  'Version : 1.0',
+                  textScaleFactor: .8,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -208,6 +206,21 @@ class _AppDrawerState extends State<AppDrawer> {
         ],
       ),
       onTap: onTap,
+    );
+  }
+
+  Widget _createDrawerItemThems({IconData icon, String text}) {
+    return ListTile(
+      title: Text("Dark Theme"),
+      trailing: Switch(
+        value: darkTheme,
+        onChanged: (changed) {
+          setState(() {
+            darkTheme = changed;
+            print('darkThems');
+          });
+        },
+      ),
     );
   }
 

@@ -30,6 +30,7 @@ class _LoginPageState extends State<UserLogin> {
   TextEditingController passwordController = TextEditingController();
   //var _key = GlobalKey();
   var _key = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +56,7 @@ class _LoginPageState extends State<UserLogin> {
     _large = ResponsiveWidget.isScreenLarge(_width, _pixelRatio);
     _medium = ResponsiveWidget.isScreenMedium(_width, _pixelRatio);
     return Material(
+      key: _scaffoldKey,
       child: Container(
         height: _height,
         width: _width,
@@ -312,7 +314,6 @@ class _LoginPageState extends State<UserLogin> {
 
   void signIn(String uEmail, String uPassword) async {
     pr.show();
-
     UserLoginApi(uEmail, uPassword).fetchData().whenComplete(_goToDashboard);
   }
 
@@ -343,11 +344,12 @@ Widget _builLoginHeader() {
 Widget _builRegister(BuildContext context) {
   return FlatButton(
     onPressed: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => UserRegister()),
-      );
-      print("Register Here");
+      SnackBarPage();
+//      Navigator.push(
+//        context,
+//        MaterialPageRoute(builder: (context) => UserRegister()),
+//      );
+      print("SnackBarPage Register Here");
     },
     padding: const EdgeInsets.only(left: 40, right: 40, top: 8),
     child: Text(
@@ -355,4 +357,30 @@ Widget _builRegister(BuildContext context) {
       style: TextStyle(fontSize: 12),
     ),
   );
+}
+
+class SnackBarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: RaisedButton(
+        onPressed: () {
+          final snackBar = SnackBar(
+            content: Text('login is not successfull!'),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {
+                // Some code to undo the change.
+              },
+            ),
+          );
+
+          // Find the Scaffold in the widget tree and use
+          // it to show a SnackBar.
+          Scaffold.of(context).showSnackBar(snackBar);
+        },
+        child: Text('Show SnackBar'),
+      ),
+    );
+  }
 }

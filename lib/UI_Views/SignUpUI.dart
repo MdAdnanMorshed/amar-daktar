@@ -24,16 +24,18 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   var _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   BuildContext context;
   String name = '',
       email = '',
       phone = '',
       password = '',
-      cityId,
+      cityId = '1',
       selectedCountry,
-      gender;
+      gender = 'male';
   String role_id = "3";
-  String pro_img;
+  String pro_img = 'testing.png';
   String _mySelection;
   bool status = false;
   List<CityList> getCity = [];
@@ -91,6 +93,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
+  //Register Successful  Snackber Showen
+  void showInSnackBar(String value) {
+    _scaffoldKey.currentState
+        .showSnackBar(new SnackBar(content: new Text(value)));
+  }
+
   @override
   Widget build(BuildContext context) {
     _height = MediaQuery.of(context).size.height;
@@ -101,6 +109,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     return Material(
       child: Scaffold(
+        key: _scaffoldKey,
         body: Container(
           height: _height,
           width: _width,
@@ -354,28 +363,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       onPressed: () {
-        // Go To the Register Successfull
-
-        print("Register is Click Button");
-
 //        if (_formKey.currentState.validate()) {
 //          _formKey.currentState.save();
         name = nameController.text.toString();
         email = emailController.text.toString();
         password = passwordController.text.toString();
         phone = phoneController.text.toString();
-
-        print("nameName : " + nameController.text.toString());
-        print('Mail Address :' + emailController.text.toString());
-        print('password' + passwordController.text.toString());
-        print('Role Id :' + role_id.toString());
-        print("phone :" + phone.toString());
-        print("selectCity :" + _cityId.toString());
-        print('select Gender: ' + selectedGender.toString());
-        _register(name, email, password, role_id, cityId, 'testing.jpg',
-            selectedGender, phone);
-        print("Routing to your account");
-        //}
+        _register(context, name, email, password, role_id, cityId,
+            'testing.jpg', selectedGender, phone);
+        showInSnackBar("Register is Successfull!");
       },
       textColor: Colors.white,
       padding: EdgeInsets.all(0.0),
@@ -770,25 +766,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 */
 
-_register(String nameName, String email, String password, String roleId,
-    String cityId, var imageURI, String gender, String phone) {
+_register(BuildContext context, String nameName, String email, String password,
+    String roleId, String cityId, var imageURI, String gender, String phone) {
   print('register starting ....');
   print('name:' + nameName);
   print('mail:' + email);
   print('password:' + password);
   print('phone:' + phone);
-  print('gender:' + gender);
+  //print('gender:' + gender);
   UserRegisterApi(
-          nameName, email, password, '4', cityId, 'testing.jpg', gender, phone)
+          nameName, email, password, '4', '1', 'testing.jpg', 'male', phone)
       .fetchData()
-      .whenComplete(Register);
+      .whenComplete(Register(context));
+
   print("<<----------- register End ------------------->>>>");
 }
 
-FutureOr Register() {
+FutureOr Register(BuildContext context) {
   print('Register is done ');
-//    Navigator.push(
-//      context,
-//      MaterialPageRoute(builder: (context) => UserLogin()),
-//    );
+
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Register is Successfull"),
+          content: Text("Dialog Content"),
+        );
+      });
+//  Navigator.push(
+//    context,
+//    MaterialPageRoute(builder: (context) => UserLogin()),
+//  );
 }
