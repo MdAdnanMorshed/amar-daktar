@@ -239,16 +239,16 @@ class _ContactPageState extends State<ContactDoctor> {
     // SnackBarPage();
     pr.hide();
     print('confirm Msg');
-//    Navigator.push(
-//      context,
-//      MaterialPageRoute(builder: (context) => UserLogin()),
-//    );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => UserLogin()),
+    );
   }
 
   getSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     doctorId = prefs.getString('doctorId');
-    print('doctorId :' + doctorId);
+    print('doctorId :' + doctorId.toString());
     return prefs.getString('doctorId');
   }
 }

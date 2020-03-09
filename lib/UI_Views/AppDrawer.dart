@@ -233,7 +233,7 @@ class _AppDrawerState extends State<AppDrawer> {
         onChanged: (changed) {
           setState(() {
             darkTheme = changed;
-
+            _isThems();
             print(darkTheme);
           });
         },
@@ -324,6 +324,13 @@ class _AppDrawerState extends State<AppDrawer> {
       ],
 //    onTap: onTap,
     );
+  }
+
+  _isThems() async {
+    SharedPreferences themsSP = await SharedPreferences.getInstance();
+    setState(() {
+      themsSP.setBool('isThems', darkTheme);
+    });
   }
 
   _getSharedPref() async {
