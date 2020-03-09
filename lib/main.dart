@@ -55,6 +55,7 @@ class MyDoctorApps extends StatelessWidget {
     SharedPreferences themsSP = await SharedPreferences.getInstance();
     print('thems Bool ' + themsSP.getBool('isThems').toString());
     darkTheme = themsSP.getBool('isThems');
-    print('Testing File done ');
+    print('Testing File done fggfggg');
+
   }
 }
