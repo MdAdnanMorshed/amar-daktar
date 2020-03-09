@@ -1,6 +1,7 @@
 import 'package:amar_daktar/RestApi/UserLoginApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'AmbulancesListUI.dart';
@@ -40,124 +41,156 @@ class _AppDrawerState extends State<AppDrawer> {
 //      version = packageInfo.version;
 //    });
 
-    return MaterialApp(
-      theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("DeshBoard"),
-        ),
-        body: Container(
-          child: GridView.count(
-            crossAxisCount: 2,
-            children: <Widget>[
-              MenuItemCard('Doctors', Image.asset('images/doctorpic.png')),
-              MenuItemCard('Hospitals', Image.asset('images/hospitalpic.png')),
-              MenuItemCard(
-                  'Blood Donars', Image.asset('images/bloodpicture.png')),
-              MenuItemCard('Ambulances', Image.asset('images/ambulances.png')),
-            ],
+    return WillPopScope(
+      /*
+
+       */
+      child: MaterialApp(
+        theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text("DeshBoard"),
           ),
-        ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              _createHeader(),
-              _createDrawerItem(
-                  icon: Icons.dashboard,
-                  text: 'DashBoard',
-                  onTap: () {
-                    print('dashboard');
-                    print(current);
-                    if (current == '/dashboard') {
-                      Navigator.popAndPushNamed(context, '/dashboard');
+          body: Container(
+            child: GridView.count(
+              crossAxisCount: 2,
+              children: <Widget>[
+                MenuItemCard('Doctors', Image.asset('images/doctorpic.png')),
+                MenuItemCard(
+                    'Hospitals', Image.asset('images/hospitalpic.png')),
+                MenuItemCard(
+                    'Blood Donars', Image.asset('images/bloodpicture.png')),
+                MenuItemCard(
+                    'Ambulances', Image.asset('images/ambulances.png')),
+              ],
+            ),
+          ),
+          drawer: Drawer(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                _createHeader(),
+                _createDrawerItem(
+                    icon: Icons.dashboard,
+                    text: 'DashBoard',
+                    onTap: () {
+                      print('dashboard');
+                      print(current);
+                      if (current == '/dashboard') {
+                        Navigator.popAndPushNamed(context, '/dashboard');
+                      } else {
+                        Navigator.of(context).pop();
+                      }
+                    }),
+                _createDrawerItem(
+                    icon: Icons.perm_identity,
+                    text: 'Profile Settings',
+                    onTap: () {
+                      if (current != '/user_profile') {
+                        Navigator.popAndPushNamed(context, '/user_profile');
+                      } else {
+                        Navigator.of(context).pop();
+                      }
+                    }),
+                _createDrawerItem2(
+                  icon: Icons.settings,
+                  text: 'Services',
+                  onTap1: () {
+                    if (current != '/doctorList') {
+                      Navigator.popAndPushNamed(context, '/doctorList');
                     } else {
                       Navigator.of(context).pop();
                     }
-                  }),
-              _createDrawerItem(
-                  icon: Icons.perm_identity,
-                  text: 'Profile Settings',
-                  onTap: () {
-                    if (current != '/user_profile') {
-                      Navigator.popAndPushNamed(context, '/user_profile');
+                  },
+                  onTap2: () {
+                    if (current != '/hospitalList') {
+                      Navigator.popAndPushNamed(context, '/hospitalList');
                     } else {
                       Navigator.of(context).pop();
                     }
-                  }),
-              _createDrawerItem2(
-                icon: Icons.settings,
-                text: 'Services',
-                onTap1: () {
-                  if (current != '/doctorList') {
-                    Navigator.popAndPushNamed(context, '/doctorList');
-                  } else {
-                    Navigator.of(context).pop();
-                  }
-                },
-                onTap2: () {
-                  if (current != '/hospitalList') {
-                    Navigator.popAndPushNamed(context, '/hospitalList');
-                  } else {
-                    Navigator.of(context).pop();
-                  }
-                },
-              ),
-              _createDrawerItem(
-                  icon: Icons.call,
-                  text: 'Contact',
-                  onTap: () {
-                    if (current != '/Contact') {
-                      Navigator.popAndPushNamed(context, '/Contact');
-                    } else {
-                      Navigator.of(context).pop();
-                    }
-                  }),
-              _createDrawerItem(
-                  icon: Icons.info,
-                  text: 'About',
-                  onTap: () {
-                    if (current != '/About') {
-                      Navigator.popAndPushNamed(context, '/About');
-                    } else {
-                      Navigator.of(context).pop();
-                    }
-                  }),
-              _createDrawerItemThems(
-                icon: Icons.info,
-                text: 'Thems',
-              ),
-              Divider(
-                color: Colors.purple,
-                height: 1,
-                thickness: 1,
-              ),
-              _createDrawerItem(
-                  icon: Icons.exit_to_app,
-                  text: 'Log Out',
-                  onTap: () {
-                    UserLoginApi.status = false;
-                    print('flag' + UserLoginApi.status.toString());
-                    // removeShared();
-                    logut();
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        '/user_login', (Route r) => r == null);
-                  }),
-              Divider(
-                color: Colors.purple,
-                height: 1,
-                thickness: 1,
-              ),
-              ListTile(
-                trailing: Text(
-                  'Version : 1.0',
-                  textScaleFactor: .8,
+                  },
                 ),
-              )
-            ],
+                _createDrawerItem(
+                    icon: Icons.call,
+                    text: 'Contact',
+                    onTap: () {
+                      if (current != '/Contact') {
+                        Navigator.popAndPushNamed(context, '/Contact');
+                      } else {
+                        Navigator.of(context).pop();
+                      }
+                    }),
+                _createDrawerItem(
+                    icon: Icons.info,
+                    text: 'About',
+                    onTap: () {
+                      if (current != '/About') {
+                        Navigator.popAndPushNamed(context, '/About');
+                      } else {
+                        Navigator.of(context).pop();
+                      }
+                    }),
+                _createDrawerItemThems(
+                  icon: Icons.info,
+                  text: 'Thems',
+                ),
+                Divider(
+                  color: Colors.purple,
+                  height: 1,
+                  thickness: 1,
+                ),
+                _createDrawerItem(
+                    icon: Icons.exit_to_app,
+                    text: 'Log Out',
+                    onTap: () {
+                      UserLoginApi.status = false;
+                      print('flag' + UserLoginApi.status.toString());
+                      // removeShared();
+                      logut();
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/user_login', (Route r) => r == null);
+                    }),
+                Divider(
+                  color: Colors.purple,
+                  height: 1,
+                  thickness: 1,
+                ),
+                ListTile(
+                  trailing: Text(
+                    'Version : 1.0',
+                    textScaleFactor: .8,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
+      onWillPop: () {
+        return showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Confirm Exit"),
+                content: Text("Are you sure you want to exit?"),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text("YES"),
+                    onPressed: () {
+                      SystemNavigator.pop();
+                    },
+                  ),
+                  FlatButton(
+                    child: Text("NO"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              );
+            });
+      },
     );
   }
 

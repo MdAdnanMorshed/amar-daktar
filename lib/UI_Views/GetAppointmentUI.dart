@@ -328,12 +328,12 @@ class _AppointmentPageState extends State<GetAppointment> {
     if (form.validate()) {
       form.save();
 
-      print('doctorId' + doctorsList.doctorid);
-      print('hospitalId:');
-      print('doctorFrees' + doctorsList.doctorFees);
-      print('date' + _dateTime.toString());
-      print('patientStatus:' + selectedRadio.toString());
-      print('Problems:');
+      print('doctorId =>' + doctorsList.doctorid);
+      print('hospitalId=>');
+      print('doctorFrees=>' + doctorsList.doctorFees);
+      print('date=>' + _dateTime.toString());
+      print('patientStatus=>' + selectedRadio.toString());
+      print('Problems=>');
       _getAppointment("", "", "", "", "", "");
     }
   }
