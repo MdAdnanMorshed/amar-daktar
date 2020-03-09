@@ -1,4 +1,5 @@
 import 'package:amar_daktar/RestApi/UserLoginApi.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,10 +42,20 @@ class _AppDrawerState extends State<AppDrawer> {
 //      version = packageInfo.version;
 //    });
 
-    return WillPopScope(
-      /*
+    Widget image_slide_bar = Container(
+      height: 30,
+      child: Carousel(
+        boxFit: BoxFit.fill,
+        images: [
+          AssetImage('images/doctorpic.png'),
+          AssetImage('images/ambulances.png'),
+          AssetImage('images/bloodpicture.png'),
+          AssetImage('images/hospitalpic.png'),
+        ],
+      ),
+    );
 
-       */
+    return WillPopScope(
       child: MaterialApp(
         theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
         home: Scaffold(
@@ -53,8 +64,9 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
           body: Container(
             child: GridView.count(
-              crossAxisCount: 2,
+              crossAxisCount: 1,
               children: <Widget>[
+                image_slide_bar,
                 MenuItemCard('Doctors', Image.asset('images/doctorpic.png')),
                 MenuItemCard(
                     'Hospitals', Image.asset('images/hospitalpic.png')),

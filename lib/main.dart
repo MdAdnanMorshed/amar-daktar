@@ -19,13 +19,20 @@ void main() => runApp(MyDoctorApps());
 
 class MyDoctorApps extends StatelessWidget {
   bool darkTheme = false;
+  @protected
+  @mustCallSuper
+  void initState() {
+    print('thems' + darkTheme.toString());
+    _isThems();
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<ConnectivityResult>.value(
       value: CheckInternet().connectivityResult.stream,
       child: MaterialApp(
-        //theme: _isThems() ? ThemeData.dark() : ThemeData.light(),
-        theme: ThemeData(primaryColor: Colors.red),
+        theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
+        //theme: ThemeData(primaryColor: Colors.red),
         debugShowCheckedModeBanner: false,
         routes: {
           '/user_login': (context) => UserLogin(),
@@ -43,16 +50,10 @@ class MyDoctorApps extends StatelessWidget {
       ),
     );
   }
-}
 
-_isThems() async {
-  SharedPreferences themsSP = await SharedPreferences.getInstance();
-  print('thems Bool ' + themsSP.getBool('isThems').toString());
-  if (themsSP.getBool('isThems')) {
-    print('true');
-    return true;
-  } else {
-    print('false');
-    return false;
+  _isThems() async {
+    SharedPreferences themsSP = await SharedPreferences.getInstance();
+    print('thems Bool ' + themsSP.getBool('isThems').toString());
+    darkTheme = themsSP.getBool('isThems');
   }
 }
