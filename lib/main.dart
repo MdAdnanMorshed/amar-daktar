@@ -14,6 +14,8 @@ import 'UI_Views/SplashScreen.dart';
 import 'UI_Views/UserLogin.dart';
 import 'UI_Views/UserProfileUI.dart';
 import 'UI_Views/UserRegister.dart';
+import 'app_themes/home.dart';
+import 'app_themes/theme_manager.dart';
 
 void main() => runApp(MyDoctorApps());
 
@@ -28,7 +30,7 @@ class MyDoctorApps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<ConnectivityResult>.value(
+    return  StreamProvider<ConnectivityResult>.value(
       value: CheckInternet().connectivityResult.stream,
       child: MaterialApp(
         theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
@@ -47,8 +49,10 @@ class MyDoctorApps extends StatelessWidget {
           '/Contact': (context) => Contact(),
           '/': (context) => SplashScreen(),
         },
+
       ),
     );
+
   }
 
   _isThems() async {
@@ -57,3 +61,4 @@ class MyDoctorApps extends StatelessWidget {
     darkTheme = themsSP.getBool('isThems');
   }
 }
+
