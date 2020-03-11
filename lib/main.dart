@@ -61,4 +61,19 @@ class MyDoctorApps extends StatelessWidget {
     darkTheme = themsSP.getBool('isThems');
   }
 }
+//class ThemeApp extends StatelessWidget {
+//  @override
+//  Widget build(BuildContext context) {
+//    return ChangeNotifierProvider(
+//      builder: (context) => ThemeManager(),
+//      child: Consumer<ThemeManager>(builder: (context, manager,_) {
+//        return MaterialApp(
+//            debugShowCheckedModeBanner: false,
+//            theme: manager.themeData,
+//            title: 'Theme app',
+//            home: Home());
+//      }),
+//    );
+//  }
+//}
 
