@@ -141,7 +141,7 @@ class _LoginPageState extends State<UserLogin> {
             "Amar Daktar ",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: _large ? 40 : (_medium ? 30 : 20),
+              fontSize: _large ? 30 : (_medium ? 20 : 10),
             ),
           ),
         ],

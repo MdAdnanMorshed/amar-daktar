@@ -43,15 +43,25 @@ class _AppDrawerState extends State<AppDrawer> {
 //    });
 
     Widget image_slide_bar = Container(
-      height: 30,
-      child: Carousel(
-        boxFit: BoxFit.fill,
-        images: [
-          AssetImage('images/doctorpic.png'),
-          AssetImage('images/ambulances.png'),
-          AssetImage('images/bloodpicture.png'),
-          AssetImage('images/hospitalpic.png'),
-        ],
+
+      height: 200,
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Carousel(
+          boxFit: BoxFit.fill,
+          images: [
+            AssetImage('images/doctorpic.png'),
+            AssetImage('images/ambulances.png'),
+            AssetImage('images/bloodpicture.png'),
+            AssetImage('images/hospitalpic.png'),
+          ],
+          dotSize: 3.0,
+          dotSpacing: 15.0,
+          dotColor: Colors.lightGreenAccent,
+          indicatorBgPadding: 5.0,
+          dotBgColor: Colors.red.withOpacity(0.5),
+          borderRadius: true,
+        ),
       ),
     );
 
@@ -62,20 +72,12 @@ class _AppDrawerState extends State<AppDrawer> {
           appBar: AppBar(
             title: Text("DeshBoard"),
           ),
-          body: Container(
-            child: GridView.count(
-              crossAxisCount: 1,
-              children: <Widget>[
-                image_slide_bar,
-                MenuItemCard('Doctors', Image.asset('images/doctorpic.png')),
-                MenuItemCard(
-                    'Hospitals', Image.asset('images/hospitalpic.png')),
-                MenuItemCard(
-                    'Blood Donars', Image.asset('images/bloodpicture.png')),
-                MenuItemCard(
-                    'Ambulances', Image.asset('images/ambulances.png')),
+          body: ListView(
+            children: <Widget>[
+            image_slide_bar,
+            DeshboardItemList(),
+              DeshboardItemList02(),
               ],
-            ),
           ),
           drawer: Drawer(
             child: ListView(
@@ -402,6 +404,70 @@ class _AppDrawerState extends State<AppDrawer> {
     print("Logout");
   }
 }
+
+class DeshboardItemList extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+
+    return Container(
+     height: 180.0,
+      width: 180.0,
+      child: Center(
+        child: ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.all(2.0),
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            Align(
+              alignment: Alignment.center,
+              child: MenuItemCard('Doctors', Image.asset('images/doctorpic.png')),
+
+            ),
+            Align(
+              alignment: Alignment.center,
+              child:  MenuItemCard(
+                  'Hospitals', Image.asset('images/hospitalpic.png')),
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DeshboardItemList02 extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+
+    return Container(
+      height: 180.0,
+      width: 180.0,
+      child: Center(
+        child: ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.all(2.0),
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            Align(
+              alignment: Alignment.center,
+              child: MenuItemCard(
+                  'Blood Donars', Image.asset('images/bloodpicture.png')),
+            ),
+            Align(
+              alignment: Alignment.center,
+              child:  MenuItemCard(
+                  'Ambulances', Image.asset('images/ambulances.png')),
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+
+}
+
 
 // ignore: must_be_immutable
 class MenuItemCard extends StatelessWidget {
