@@ -27,7 +27,6 @@ class MyDoctorApps extends StatelessWidget {
     print('thems' + darkTheme.toString());
     _isThems();
   }
-
   @override
   Widget build(BuildContext context) {
     return  StreamProvider<ConnectivityResult>.value(
@@ -49,10 +48,8 @@ class MyDoctorApps extends StatelessWidget {
           '/Contact': (context) => Contact(),
           '/': (context) => SplashScreen(),
         },
-
       ),
     );
-
   }
 
   _isThems() async {

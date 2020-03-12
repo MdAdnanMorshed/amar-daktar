@@ -1,18 +1,15 @@
+import 'package:amar_daktar/Resources/Strings.dart';
 import 'package:amar_daktar/widgets/custom_shape.dart';
 import 'package:amar_daktar/widgets/customappbar.dart';
 import 'package:amar_daktar/widgets/responsive_ui.dart';
 import 'package:amar_daktar/widgets/textformfield.dart';
 import 'package:flutter/material.dart';
-
 import 'UserLogin.dart';
 import 'package:amar_daktar/Models/CityLocationList.dart';
-import 'package:amar_daktar/RestApi/CityListApi.dart';
 import 'package:amar_daktar/RestApi/UserRegisterApi.dart';
 import 'package:amar_daktar/UI_Views/UserLogin.dart';
-import 'package:amar_daktar/URL/Link.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
@@ -244,7 +241,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       keyboardType: TextInputType.text,
       textEditingController: nameController,
       icon: Icons.person,
-      hint: "First Name",
+      hint: Strings.fristName,
     );
   }
 
@@ -253,7 +250,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       keyboardType: TextInputType.emailAddress,
       textEditingController: emailController,
       icon: Icons.email,
-      hint: "Email ID",
+      hint: Strings.emailId,
     );
   }
 
@@ -262,7 +259,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       keyboardType: TextInputType.number,
       textEditingController: phoneController,
       icon: Icons.phone,
-      hint: "Mobile Number",
+      hint: Strings.mobile,
     );
   }
 
@@ -272,7 +269,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       textEditingController: passwordController,
       obscureText: true,
       icon: Icons.lock,
-      hint: "Password",
+      hint: Strings.password,
     );
   }
 
@@ -306,14 +303,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
         border: OutlineInputBorder(),
       ),
-      hint: Text("Please Select Gender"),
+      hint: Text(Strings.selectGender),
       items: [
         DropdownMenuItem(
-          child: Text("Male"),
+          child: Text(Strings.male),
           value: "male",
         ),
         DropdownMenuItem(
-          child: Text("Female"),
+          child: Text(Strings.female),
           value: "Female",
         ),
       ],
@@ -348,7 +345,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 });
               }),
           Text(
-            "I accept all terms and conditions",
+            Strings.acceptedCheck,
             style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: _large ? 12 : (_medium ? 11 : 10)),

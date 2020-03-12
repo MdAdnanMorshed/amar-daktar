@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:amar_daktar/Resources/Strings.dart';
 import 'package:amar_daktar/RestApi/GetContactDoctorApi.dart';
 import 'package:amar_daktar/RestApi/UserRegisterApi.dart';
 import 'package:amar_daktar/UI_Views/UserLogin.dart';
@@ -42,7 +43,7 @@ class _ContactPageState extends State<ContactDoctor> {
     pr = new ProgressDialog(context);
 
     pr.style(
-        message: 'Please Waiting...',
+        message: Strings.progressText,
         borderRadius: 8.0,
         backgroundColor: Colors.white,
         progressWidget: CircularProgressIndicator(),
@@ -94,7 +95,7 @@ class _ContactPageState extends State<ContactDoctor> {
                           print('NameTF:' + uName);
                         },
                         validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
+                          if (value.isEmpty) return (Strings.regquiredValitationTxt);
                           return null;
                         },
                       ),
@@ -116,7 +117,7 @@ class _ContactPageState extends State<ContactDoctor> {
                         ),
                         keyboardType: TextInputType.phone,
                         validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
+                          if (value.isEmpty) return (Strings.regquiredValitationTxt);
                           uPhone = value;
                           return null;
                         },
@@ -144,7 +145,7 @@ class _ContactPageState extends State<ContactDoctor> {
                           print('MailTF:' + uMail);
                         },
                         validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
+                          if (value.isEmpty) return (Strings.regquiredValitationTxt);
                           return null;
                         },
                       ),
@@ -172,7 +173,7 @@ class _ContactPageState extends State<ContactDoctor> {
                           print('MsgTF:' + uMsg);
                         },
                         validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
+                          if (value.isEmpty) return (Strings.regquiredValitationTxt);
                           return null;
                         },
                       ),

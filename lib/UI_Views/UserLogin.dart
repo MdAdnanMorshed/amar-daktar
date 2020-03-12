@@ -1,13 +1,13 @@
+import 'package:amar_daktar/Resources/Strings.dart';
 import 'package:amar_daktar/RestApi/UserLoginApi.dart';
 import 'package:amar_daktar/UI_Views/AppDrawer.dart';
-import 'package:amar_daktar/UI_Views/UserRegister.dart';
 import 'package:amar_daktar/widgets/custom_shape.dart';
 import 'package:amar_daktar/widgets/responsive_ui.dart';
 import 'package:amar_daktar/widgets/textformfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_dialog/progress_dialog.dart';
-import 'DashboardUI.dart';
+
 import 'SignUpUI.dart';
 
 ProgressDialog pr;
@@ -38,7 +38,7 @@ class _LoginPageState extends State<UserLogin> {
     pr = new ProgressDialog(context);
 
     pr.style(
-        message: 'Please Waiting...',
+        message: Strings.progressText,
         borderRadius: 10.0,
         backgroundColor: Colors.white,
         progressWidget: CircularProgressIndicator(),
@@ -138,7 +138,7 @@ class _LoginPageState extends State<UserLogin> {
       child: Row(
         children: <Widget>[
           Text(
-            "Amar Daktar ",
+            AppConf.appName,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: _large ? 30 : (_medium ? 20 : 10),
@@ -155,7 +155,7 @@ class _LoginPageState extends State<UserLogin> {
       child: Row(
         children: <Widget>[
           Text(
-            "Sign in to your account",
+            Strings.signInText,
             style: TextStyle(
               fontWeight: FontWeight.w200,
               fontSize: _large ? 20 : (_medium ? 17.5 : 15),
@@ -188,7 +188,7 @@ class _LoginPageState extends State<UserLogin> {
       keyboardType: TextInputType.emailAddress,
       textEditingController: emailController,
       icon: Icons.email,
-      hint: "Email ID",
+      hint: Strings.emailId,
     );
   }
 
@@ -198,7 +198,7 @@ class _LoginPageState extends State<UserLogin> {
       textEditingController: passwordController,
       icon: Icons.lock,
       obscureText: true,
-      hint: "Password",
+      hint: Strings.password,
     );
   }
 
@@ -209,7 +209,7 @@ class _LoginPageState extends State<UserLogin> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            "Forgot your password?",
+           Strings.forgotPasswordText,
             style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: _large ? 14 : (_medium ? 12 : 10)),
@@ -257,7 +257,7 @@ class _LoginPageState extends State<UserLogin> {
           ),
         ),
         padding: const EdgeInsets.all(12.0),
-        child: Text('SIGN IN',
+        child: Text(Strings.signInbtn,
             style: TextStyle(fontSize: _large ? 14 : (_medium ? 12 : 10))),
       ),
     );
@@ -270,7 +270,7 @@ class _LoginPageState extends State<UserLogin> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            "Don't have an account?",
+            Strings.accountText,
             style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: _large ? 14 : (_medium ? 12 : 10)),
@@ -288,7 +288,7 @@ class _LoginPageState extends State<UserLogin> {
               print("Routing to Sign up screen");
             },
             child: Text(
-              "Sign up",
+              Strings.signUpbtn,
               style: TextStyle(
                   fontWeight: FontWeight.w800,
                   color: Colors.orange[200],
@@ -354,7 +354,7 @@ Widget _builRegister(BuildContext context) {
     },
     padding: const EdgeInsets.only(left: 40, right: 40, top: 8),
     child: Text(
-      "If you are not register? Register here",
+      Strings.registerbtn,
       style: TextStyle(fontSize: 12),
     ),
   );

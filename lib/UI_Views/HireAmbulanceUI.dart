@@ -1,10 +1,8 @@
 import 'dart:async';
-
-import 'package:amar_daktar/RestApi/UserRegisterApi.dart';
+import 'package:amar_daktar/Resources/Strings.dart';
 import 'package:amar_daktar/UI_Views/UserLogin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class HireAmbulances extends StatefulWidget {
   @override
@@ -44,7 +42,7 @@ class _HireAmbulancesPageState extends State<HireAmbulances> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Hire an Ambulance"),
+          title: Text(Strings.ambulanceTextTitle),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -54,7 +52,7 @@ class _HireAmbulancesPageState extends State<HireAmbulances> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Ambulance Type",
+                    Strings.ambulanceTextType,
                     style: TextStyle(fontSize: 15),
                   ),
                 ),
@@ -65,23 +63,23 @@ class _HireAmbulancesPageState extends State<HireAmbulances> {
                         EdgeInsets.symmetric(vertical: 3, horizontal: 15),
                     border: OutlineInputBorder(),
                   ),
-                  hint: Text("Please Choose One"),
+                  hint: Text(Strings.ambulanceSelectOne),
                   items: [
                     DropdownMenuItem(
-                      child: Text("Ac Ambulance"),
-                      value: "Ac Ambulance",
+                      child: Text(Strings.ambulanceTypeAC),
+                      value: Strings.ambulanceTypeAC,
                     ),
                     DropdownMenuItem(
-                      child: Text("Non-Ac Ambulance"),
-                      value: "Non-Ac Ambulance",
+                      child: Text(Strings.ambulanceTypeNonAC),
+                      value: Strings.ambulanceTypeNonAC,
                     ),
                     DropdownMenuItem(
-                      child: Text("Frezen Van"),
-                      value: "Frezen Van",
+                      child: Text(Strings.ambulanceTypeFrezen),
+                      value: Strings.ambulanceTypeFrezen,
                     ),
                     DropdownMenuItem(
-                      child: Text("ICU Ambulance"),
-                      value: "ICU Ambulance",
+                      child: Text(Strings.ambulanceTypeICU),
+                      value: Strings.ambulanceTypeICU,
                     ),
                   ],
                   // value: "Doctor",
@@ -174,7 +172,7 @@ class _HireAmbulancesPageState extends State<HireAmbulances> {
                         ),
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
-                          if (value.isEmpty) return ("This is Required");
+                          if (value.isEmpty) return (Strings.regquiredValitationTxt);
                           return null;
                         },
                         onSaved: (value) => print(value),

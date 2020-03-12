@@ -1,4 +1,5 @@
 import 'package:amar_daktar/ListViewAll/hospitalListView.dart';
+import 'package:amar_daktar/Resources/Strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class HospitalListPage extends State<HospitalListUI> {
       backgroundColor: Colors.white,
       drawer: AppDrawer(currentRoute: '/dashboard'),
       appBar: AppBar(
-        title: Text('Hospital List'),
+        title: Text(Strings.hospitalDataList),
       ),
       body: Container(
         child: Column(children: <Widget>[
@@ -30,7 +31,7 @@ class HospitalListPage extends State<HospitalListUI> {
                 child: TextField(
                     textAlign: TextAlign.center,
                     decoration:
-                        InputDecoration(hintText: "Hospital Searching "),
+                        InputDecoration(hintText: Strings.hospitalDataListHint),
                     onChanged: (text) {
                       print(text);
                       setState(() {

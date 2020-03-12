@@ -1,3 +1,5 @@
+import 'package:amar_daktar/Resources/AssetsStrings.dart';
+import 'package:amar_daktar/Resources/Strings.dart';
 import 'package:amar_daktar/RestApi/UserLoginApi.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
@@ -50,10 +52,10 @@ class _AppDrawerState extends State<AppDrawer> {
         child: Carousel(
           boxFit: BoxFit.fill,
           images: [
-            AssetImage('images/doctorpic.png'),
-            AssetImage('images/ambulances.png'),
-            AssetImage('images/bloodpicture.png'),
-            AssetImage('images/hospitalpic.png'),
+            AssetImage(AssetsStrings.doctorPic),
+            AssetImage(AssetsStrings.amublancePic),
+            AssetImage(AssetsStrings.bloodPic),
+            AssetImage(AssetsStrings.hospitalPic),
           ],
           dotSize: 3.0,
           dotSpacing: 15.0,
@@ -70,7 +72,7 @@ class _AppDrawerState extends State<AppDrawer> {
         theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
         home: Scaffold(
           appBar: AppBar(
-            title: Text("DeshBoard"),
+            title: Text(Strings.deshBoardTitle),
           ),
           body: ListView(
             children: <Widget>[
@@ -86,7 +88,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 _createHeader(),
                 _createDrawerItem(
                     icon: Icons.dashboard,
-                    text: 'DashBoard',
+                    text: Strings.deshBoardTitle,
                     onTap: () {
                       print('dashboard');
                       print(current);
@@ -98,7 +100,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     }),
                 _createDrawerItem(
                     icon: Icons.perm_identity,
-                    text: 'Profile Settings',
+                    text: Strings.profileSettringsDrawer,
                     onTap: () {
                       if (current != '/user_profile') {
                         Navigator.popAndPushNamed(context, '/user_profile');
@@ -108,7 +110,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     }),
                 _createDrawerItem2(
                   icon: Icons.settings,
-                  text: 'Services',
+                  text: Strings.serviceDrawer,
                   onTap1: () {
                     if (current != '/doctorList') {
                       Navigator.popAndPushNamed(context, '/doctorList');
@@ -126,7 +128,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 _createDrawerItem(
                     icon: Icons.call,
-                    text: 'Contact',
+                    text: Strings.contactDrawer,
                     onTap: () {
                       if (current != '/Contact') {
                         Navigator.popAndPushNamed(context, '/Contact');
@@ -136,7 +138,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     }),
                 _createDrawerItem(
                     icon: Icons.info,
-                    text: 'About',
+                    text: Strings.aboutDrawer,
                     onTap: () {
                       if (current != '/About') {
                         Navigator.popAndPushNamed(context, '/About');
@@ -146,7 +148,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     }),
                 _createDrawerItemThems(
                   icon: Icons.info,
-                  text: 'Thems',
+                  text: Strings.themsDrawer,
                 ),
                 Divider(
                   color: Colors.purple,
@@ -155,7 +157,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 _createDrawerItem(
                     icon: Icons.exit_to_app,
-                    text: 'Log Out',
+                    text: Strings.logoutDrawer,
                     onTap: () {
                       UserLoginApi.status = false;
                       print('flag' + UserLoginApi.status.toString());
@@ -171,7 +173,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 ListTile(
                   trailing: Text(
-                    'Version : 1.0',
+                    AppConf.appVersion,
                     textScaleFactor: .8,
                   ),
                 )
@@ -186,17 +188,17 @@ class _AppDrawerState extends State<AppDrawer> {
             barrierDismissible: false,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("Confirm Exit"),
-                content: Text("Are you sure you want to exit?"),
+                title: Text(Strings.confirmExitTitle),
+                content: Text(Strings.confirmExitDescription),
                 actions: <Widget>[
                   FlatButton(
-                    child: Text("YES"),
+                    child: Text(Strings.confirmExitYes),
                     onPressed: () {
                       SystemNavigator.pop();
                     },
                   ),
                   FlatButton(
-                    child: Text("NO"),
+                    child: Text(Strings.confirmExitNo),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -317,7 +319,7 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 8.0),
-                child: Text('Doctors'),
+                child: Text(Strings.deshboardMenuItemDoctor),
               )
             ],
           ),
@@ -332,7 +334,7 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 8.0),
-                child: Text('Hospitals'),
+                child: Text(Strings.deshboardMenuItemHospital),
               )
             ],
           ),
@@ -347,7 +349,7 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 8.0),
-                child: Text('Blood Donar'),
+                child: Text(Strings.deshboardMenuItemBlood),
               )
             ],
           ),
@@ -362,7 +364,7 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 8.0),
-                child: Text('Ambulances'),
+                child: Text(Strings.deshboardMenuItemAmbulances),
               )
             ],
           ),
@@ -420,13 +422,13 @@ class DeshboardItemList extends StatelessWidget{
           children: <Widget>[
             Align(
               alignment: Alignment.center,
-              child: MenuItemCard('Doctors', Image.asset('images/doctorpic.png')),
+              child: MenuItemCard(Strings.deshboardMenuItemDoctor, Image.asset(AssetsStrings.doctorPic)),
 
             ),
             Align(
               alignment: Alignment.center,
               child:  MenuItemCard(
-                  'Hospitals', Image.asset('images/hospitalpic.png')),
+                  Strings.deshboardMenuItemHospital, Image.asset(AssetsStrings.hospitalPic)),
             ),
 
           ],
@@ -452,12 +454,12 @@ class DeshboardItemList02 extends StatelessWidget{
             Align(
               alignment: Alignment.center,
               child: MenuItemCard(
-                  'Blood Donars', Image.asset('images/bloodpicture.png')),
+                  Strings.deshboardMenuItemBlood, Image.asset(AssetsStrings.bloodPic)),
             ),
             Align(
               alignment: Alignment.center,
               child:  MenuItemCard(
-                  'Ambulances', Image.asset('images/ambulances.png')),
+                  Strings.deshboardMenuItemAmbulances, Image.asset(AssetsStrings.amublancePic)),
             ),
 
           ],
@@ -485,17 +487,17 @@ class MenuItemCard extends StatelessWidget {
           color: Colors.red,
           child: InkWell(
             onTap: () {
-              if (title == 'Doctors') {
+              if (title == Strings.deshboardMenuItemDoctor) {
                 Navigator.push(
                     context,
                     //MaterialPageRoute(builder: (context) => DoctorListUI()));
                     MaterialPageRoute(builder: (context) => FindDoctorUI()));
-              } else if (title == 'Hospitals') {
+              } else if (title == Strings.deshboardMenuItemHospital) {
                 Navigator.push(
                     context,
                     //MaterialPageRoute(builder: (context) => HospitalListUI()));
                     MaterialPageRoute(builder: (context) => FindHospitalUI()));
-              } else if (title == 'Blood Donars') {
+              } else if (title == Strings.deshboardMenuItemBlood) {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => BloodDonorUI()));
               } else {
